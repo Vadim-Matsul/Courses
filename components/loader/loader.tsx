@@ -1,6 +1,6 @@
 import { NextPage } from "next"
-import Layout from "./layout";
-import cl from '../styles/layout.module.css';
+import Layout from "../layout/layout";
+import cl from '../../styles/layout.module.css';
 
 const Loader: NextPage = () => {
   

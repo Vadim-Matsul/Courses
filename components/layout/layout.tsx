@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { AppRoute } from "../const";
-import cl from '../styles/layout.module.css';
+import { AppRoute } from "../../const";
+import cl from '../../styles/layout.module.css';
 
 type LayoutProps = {
     children: JSX.Element
 }
 
 export default function Layout ( { children }:LayoutProps ) {
-  
+
 
   return (
     <>

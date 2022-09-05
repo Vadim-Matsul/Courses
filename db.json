@@ -1,6 +1,6 @@
 {
   "posts" : [
-    { "id":1, "title": "Lorem ipsum dolor sit, amet consectetur adipisicing.", "body":"Lorem, ipsum dolor."},
+    { "id":1, "title": "Lorem ipsum adipisicing.", "body":"Lorem, ipsum dolor."},
     { "id":2, "title": "ipsum dolor sit, amet consectetur", "body":"onsectetur adipisicing"},
     { "id":3, "title": "dolor sit", "body":"sit, amet consectetu"},
     { "id":4, "title": "Lorem ipsum dolor sit, amet", "body":"sit, amet"},

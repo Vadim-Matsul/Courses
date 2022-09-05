@@ -41,3 +41,78 @@
        text-align: center;
             color: rgb(155, 11, 11);
 }
+
+.Posts {
+          display: flex;
+        flex-flow: wrap;
+  justify-content: space-around;
+      align-items: center;
+            width: 800px;
+           margin: auto;
+}
+
+.Post {
+         position: relative;
+          display: flex;
+        flex-flow: column;
+           margin: auto;
+      align-items: center;
+           height: 200px;
+            width: 200px;
+           margin: 15px;
+          padding: 10px;
+          border-radius: 10%;
+       background: peru;
+            color: white;
+}
+
+.PostNum {
+         position: absolute;
+       text-align: center;
+            width: 20px;
+           height: 20px;
+          padding: 10px;
+             left: -15px;
+              top: -10px;
+           margin: 0px;
+    border-radius: 50%;
+           border: 2px solid black;
+            color:rgb(0, 0, 0);
+ background-color: aqua;
+}
+
+.Post span {
+          display: block;
+           margin: auto;
+       text-align: center;
+          padding: 5px;
+           margin: 5px 0;
+       min-height: 80px;
+            width: 160px;
+    border-radius: 10px;
+            color: rgba(70, 51, 51, 0.92);
+       background: lightgrey;
+}
+
+.Post span a {
+          display: block;
+           margin: auto;
+       text-align: center;
+  text-decoration: none;
+  margin-bottom: 5px;
+            width: 160px;
+    border-radius: 10px;
+            color: rgba(70, 51, 51, 0.92);
+}
+
+.Post span a:hover {
+            color: rgb(3, 0, 82);
+}
+
+.Post span p {
+       text-align: left;
+      font-weight: 600;
+           margin: 0px;
+          padding: 4px;
+            color: black;
+}
