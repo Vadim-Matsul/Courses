@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "mockDB": "json-server --watch db.json --port 3800 --delay 700"
   },
   "dependencies": {
     "next": "12.2.5",

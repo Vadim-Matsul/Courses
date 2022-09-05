@@ -11,7 +11,6 @@ const AboutScreen: NextPage = () => {
       </>
     </Layout>
   );
+ 
 };
-
-
 export default AboutScreen;
