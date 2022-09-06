@@ -7,5 +7,5 @@ export enum AppRoute {
 export enum Http {
   Base = 'http://localhost:3800',
   Posts = 'http://localhost:3800/posts',
-  About = 'http://localhost:3800/about'
+  About = 'http://localhost:3800/info'
 }

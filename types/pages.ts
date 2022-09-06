@@ -1,4 +1,12 @@
     
+export type AboutInfo = {
+  name: string,
+  title: string,
+  body: string
+}
+
+
+
 export type Post = {
   id: number,
   title: string,

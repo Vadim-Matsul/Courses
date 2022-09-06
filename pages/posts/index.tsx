@@ -24,10 +24,14 @@ const PostsScreen: NextPage< PostsScreenProps > = ({ posts }) => {
     if(!posts.length){ loadPosts() }
   }, [])
 
-  if (!data.length){ return <Loader/> }
+  if (!data.length){ return (
+    <Layout title='Loading...'>
+      <Loader/>
+    </Layout>
+  ) }
 
   return (
-    <Layout>
+    <Layout title="Posts Base">
       <>
         <h1> Posts Screen </h1>
         <h2> We have this base: </h2>

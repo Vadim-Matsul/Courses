@@ -25,20 +25,28 @@ const CurrentPost: NextPage< CurrentPostProps > = ({ post }) => {
     if(!post){ loadPost() }
   },[])
 
-  if ( !currentPost ){ return <Loader/> }
+  if ( !currentPost ){ return (
+    <Layout title="Loading...">
+      <Loader/>
+    </Layout>
+  ) }
 
   function handlerClick(){ Router.back(); }
 
 
   return (
-    <Layout>
+    <Layout title="Current Post">
       <>
-        <section>
-          <span>{ currentPost.id }</span>
-          <span>{ currentPost.title }</span>
-          <span>{ currentPost.body }</span>
+        <section className={ cl.CurrentPost }>
+          <span>Id: { currentPost.id }</span>
+          <span>Title: { currentPost.title }</span>
+          <span>Body: { currentPost.body }</span>
         </section>
-        <button onClick={ handlerClick }>Go back to Posts</button>   
+        <button
+          className={ cl.CurrentPostButton }
+          onClick={ handlerClick }
+        >Go back to Posts
+        </button>   
       </>
     </Layout>
   );
