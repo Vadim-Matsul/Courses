@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start":"next start",
     "lint": "next lint",
-    "mockDB": "json-server --watch db.json --port 3800 --delay 700"
+    "mockDB": "json-server --watch db.json --port 3800 --delay 700",
+    "clearLint":"tslint --config tslint-imports.json --fix --project"
   },
   "dependencies": {
     "next": "12.2.5",
