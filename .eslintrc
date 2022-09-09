@@ -1,0 +1,24 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"rules": {
+		"semi": "off", // используем правила точки с запятой eslint
+		"@typescript-eslint/semi": [
+			"warn"       //нет ; - warning
+		],
+		"@typescript-eslint/no-empty-interface": [
+			"error",  // пустой интерфейс не допускается                        |
+			{                                                                // |
+				"allowSingleExtends": true // за исключение интерфейса с extends  |
+			}
+		]
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	]
+}
