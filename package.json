@@ -5,14 +5,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start":"next start",
+    "start": "next start",
     "lint": "next lint",
-    "mockDB": "json-server --watch db.json --port 3800 --delay 700",
-    "clearLint":"tslint --config tslint-imports.json --fix --project"
+    "mockDB": "json-server --watch db.json --port 3800 --delay 700"
   },
   "dependencies": {
     "next": "12.2.5",
     "nextjs-progressbar": "0.0.14",
+    "nvm": "0.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
