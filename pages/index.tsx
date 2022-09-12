@@ -1,18 +1,20 @@
 import { NextPage } from 'next';
 import React from 'react';
+import { Button, HTag } from '../components';
+
 
 type NameType = {
 
 }
 
-const Main:NextPage< NameType > = () => {
-  let a = 5;
+const Main: NextPage<NameType> = () => {
 
-  return(
-    <>
-      <h1>Main Screen</h1>
-      <h2>{ a }</h2>
-    </>
+  return (
+    <div>
+      <HTag tag='h1'> Some Text </HTag>
+      <Button appearance > Узнать подробнее </Button>
+      <Button arrow='down' > Узнать подробнее </Button>
+    </div>
   );
 }
 
