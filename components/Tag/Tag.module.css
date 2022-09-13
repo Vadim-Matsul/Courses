@@ -1,0 +1,55 @@
+.tag {
+  display: inline-block;
+  background: none;
+  text-align: center;
+  margin: 0 5px 0 0;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+/* Size */
+.small {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.medium {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.large {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+}
+/* Colors */
+.grey {
+  background: #B3C0D9;
+  color: var(--white);
+}
+
+.ghost {
+  border: 1px solid #EBEBEB
+}
+
+.green {
+  background: var(--green-lite);
+  color: var(--green);
+}
+
+.red {
+  background: #DE0000;
+  color: var(--white);
+}
+
+.primary {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+}
+.primary a {
+  text-decoration: none;
+}
+

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { NextPage } from 'next';
 import { ButtonProps } from './Button.props';
-import ArrowIcon from './Arrow.svg';
+import { Arrow } from '../svg';
 import stls from './Button.module.css';
 
 
@@ -13,7 +13,6 @@ export const Button: NextPage<ButtonProps> = ({ appearance, arrow = 'none', chil
   });
 
   const ArrowClass = classNames(stls.arrow, {
-    [stls.arrowright]: arrow === 'right',
     [stls.arrowdown]: arrow === 'down'
   });
 
@@ -23,7 +22,7 @@ export const Button: NextPage<ButtonProps> = ({ appearance, arrow = 'none', chil
       {...props}
       className={ButtonClass}
     >{children}
-      {/* {arrow !== 'none' && <ArrowIcon/> } */}
+      {arrow !== 'none' && <Arrow className={ArrowClass} />}
     </button>
   );
 };
