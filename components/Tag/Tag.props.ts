@@ -1,4 +1,6 @@
-export interface TagProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+import { DetailedProps } from '../svg/types';
+
+export interface TagProps extends DetailedProps {
   size?: 'small' | 'medium' | 'large',
   color?: 'grey' | 'ghost' | 'green' | 'red' | 'primary',
   href?: string,

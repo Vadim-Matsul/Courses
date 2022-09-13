@@ -1,4 +1,6 @@
-export interface PProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+import { DetailedProps } from '../svg/types'
+
+export interface PProps extends DetailedProps<HTMLParagraphElement> {
   size?: 'large' | 'medium' | 'small'
   children: string
 }

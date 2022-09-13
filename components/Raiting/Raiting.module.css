@@ -1,0 +1,8 @@
+.star {
+  margin-right: 5px;
+}
+
+.filled {
+  fill: var(--primary);
+  transition: all 0.2s ease-in;
+}
