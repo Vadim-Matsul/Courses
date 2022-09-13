@@ -1,41 +1,16 @@
-import classNames from 'classnames';
 import { NextPage } from 'next';
+import DinamicRaiting from './DinamicRaiting/DinamicRaiting';
 import { RaitingProps } from './Raiting.props';
-import stls from './Raiting.module.css';
-import { useEffect, useState } from 'react';
-import { Star } from '../svg';
-
-export const Raiting: NextPage<RaitingProps> = ({ raiting, isEditable = false, ...props }) => {
-
-  const [stars, setStars] = useState<JSX.Element[]>(new Array(5).fill(<></>))
+import StaticRaiting from './StaticRaiting/StaticRaiting';
 
 
-  const handlerRaitingStars = (raiting: number): void => {
-
-    const actualStars: JSX.Element[] = stars.map((star, i) => {
-
-      const StarClass = classNames(stls.star, {
-        [stls.filled]: i < raiting,
-      })
-
-      return (<Star key={i} className={StarClass} />);
-    })
-
-    setStars(actualStars)
-  }
-
-
-  useEffect(() => {
-    handlerRaitingStars(raiting)
-    //eslint-disable-next-line
-  }, [raiting]);
-
+export const Raiting: NextPage<RaitingProps> = ({ rating, isEditable = false, ...props }) => {
 
   return (
-    <div
-      {...props}
-    >
-      {stars.map((star, i) => <span key={i} >{star}</span>)}
+    <div {...props} >
+      {isEditable
+        ? <DinamicRaiting currentRating={rating} />
+        : <StaticRaiting rating={rating} />}
     </div>
-  )
-}
+  );
+};

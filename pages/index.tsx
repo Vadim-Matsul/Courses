@@ -30,7 +30,10 @@ const Main: NextPage<NameType> = () => {
       ________________________
 
       <div style={{ background: 'white' }}>
-        <Raiting raiting={4} />
+        <Raiting />
+        <Raiting rating={1} />
+        <Raiting isEditable />
+        <Raiting rating={4} isEditable />
       </div>
     </div>
   );

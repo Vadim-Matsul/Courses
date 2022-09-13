@@ -1,6 +1,14 @@
 import { DetailedProps } from '../svg/types'
 
 export interface RaitingProps extends DetailedProps {
-  raiting: number,
-  isEditable?: boolean
+  rating?: number,
+  isEditable?: boolean,
+}
+
+export interface StaticRaitingProps {
+  rating?: number
+}
+
+export interface DinamicRaitingProps {
+  currentRating?: number
 }
