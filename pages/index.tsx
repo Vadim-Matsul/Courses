@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import { Button, HTag, P, Raiting, Tag } from '../components';
 import { Arrow, Star } from '../components/svg';
+import { Layout } from '../layout';
 
 
 type NameType = {
@@ -13,7 +14,7 @@ const Main: NextPage<NameType> = () => {
 
 
   return (
-    <div>
+    <Layout>
       <HTag tag='h1'>{num}</HTag>
       <Button appearance arrow='right' onClick={() => setNum(prev => prev += 1)}> Узнать подробнее </Button>
       <Button arrow='down' > Узнать подробнее </Button>
@@ -35,7 +36,7 @@ const Main: NextPage<NameType> = () => {
         <Raiting isEditable />
         <Raiting rating={4} isEditable />
       </div>
-    </div>
+    </Layout>
   );
 }
 
