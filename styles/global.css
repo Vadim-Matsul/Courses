@@ -22,3 +22,77 @@ body {
 
   --font-family: "Noto Sans", sans-serif;
 }
+
+/*  Test Grid  */
+
+.container {
+  display: grid;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 20px;
+  height: 80vh;
+
+
+  grid-template-rows: 2fr 6fr 2fr;
+}
+
+.container > div.header {
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(5, 1fr);
+}
+
+.container > div.header > span:nth-child(1){
+  grid-column: span 5;
+  justify-self: center;
+}
+.container > div.header > span:nth-child(4), 
+.container > div.header > span:nth-child(5){
+  justify-self: end;
+}
+
+.container > div.header > span:nth-child(4){
+  grid-column: 4/5;
+}
+
+.main {
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+}
+
+.sidebar {
+  background: green;
+  grid-row: span 2;
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(1, 1fr);
+}
+
+.sidebar > span {
+  justify-self: left;
+}
+
+.component {
+  background: yellow;
+  grid-row: span 2;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 24px;
+}
+
+
+.footer {
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(8, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.footer > span{
+  grid-column: span 2;
+}
+
+.footer > span:nth-child(1){
+  grid-column: span 8;
+}
+/*^^^^^^^^^^^*/ 

@@ -1,8 +1,9 @@
 import { NextPage } from 'next';
 import { LayoutProps } from './Layout.props';
 import { Footer, Header, Main } from './index'
+import React, { useState } from 'react';
 
-export const Layout: NextPage<LayoutProps> = ({ children }) => (
+const Layout: NextPage<LayoutProps> = ({ children }) => (
   <>
     <Header />
     <Main>
@@ -11,3 +12,18 @@ export const Layout: NextPage<LayoutProps> = ({ children }) => (
     <Footer />
   </>
 );
+
+
+
+export function wrapperLayoutHOC<T extends Record<string, unknown>>(Component: React.FC<T>): React.FC<T> {
+
+  return function WrappedComponent(props: T): JSX.Element {
+    return (
+      <Layout>
+        <Component{...props} />
+      </Layout>
+    );
+  };
+
+};
+
