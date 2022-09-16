@@ -1,10 +1,23 @@
 import { NextPage } from 'next';
 import { FooterProps } from './Footer.props';
+import stls from './Footer.module.css';
+import classNames from 'classnames';
+import { format } from 'date-fns';
 
+export const Footer: NextPage<FooterProps> = ({ className, ...props }) => {
 
-export const Footer: NextPage<FooterProps> = ({ ...props }) => (
-  <footer {...props}>
-    Footer
-  </footer>
-)
+  const FooterClass = classNames(className, stls.footer)
+  const date = format(new Date(), 'yyyy')
+
+  return (
+    <footer
+      className={FooterClass}
+      {...props}
+    >
+      <div>OwlTop © 2020 - {date} Все права защищены</div>
+      <a href='#' target='_blank'>Пользовательское соглашение</a>
+      <a href='#' target='_blank'>Политика конфиденциальности</a>
+    </footer>
+  );
+}
 

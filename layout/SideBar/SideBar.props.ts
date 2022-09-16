@@ -1,3 +1,3 @@
-import { DetailedProps } from '../../../components/svg/types';
+import { DetailedProps } from '../../components/svg/types';
 
 export interface SideBarProps extends DetailedProps<HTMLElement> { }
