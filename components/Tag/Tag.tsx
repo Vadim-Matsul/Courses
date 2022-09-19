@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { NextPage } from 'next';
 import { TagProps } from './Tag.props';
 import stls from './Tag.module.css';
-import { objT } from '../svg/types';
+import { SVGModule } from '../svg/types';
 
 export const Tag: NextPage<TagProps> = ({ size = 'small', color = 'primary', href, children, ...props }) => {
 

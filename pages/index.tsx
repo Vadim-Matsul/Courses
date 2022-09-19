@@ -1,38 +1,40 @@
-import { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
-import { Button, HTag, P, Raiting, Tag } from '../components';
+import { GetStaticProps, NextPage } from 'next';
+import React, { useState } from 'react';
 import { wrapperLayoutHOC } from '../layout';
+import { MenuItem } from '../types/menu.types';
+import { CATEGORY, HTTP } from '../const';
+import axios from 'axios';
+
+interface ReturnProps extends Record<string, unknown> {
+  menu: MenuItem[]
+}
 
 
-const Main: NextPage = () => {
+const Main: NextPage<ReturnProps> = ({ menu }) => {
   const [num, setNum] = useState(0)
 
   return (
     <>
-      <HTag tag='h1'>{num}</HTag>
-      <Button appearance arrow='right' onClick={() => setNum(prev => prev += 1)}> Узнать подробнее </Button>
-      <Button arrow='down' > Узнать подробнее </Button>
-      <P size='small'>Small</P>
-      <P>Medium</P>
-      <P size='large' >Big</P>
-      ________________________
-      <Tag size='large' color='grey'> 10 </Tag>
-      <Tag size='medium' color='ghost' > Photoshop </Tag>
-      <Tag color='ghost' > Дизайн </Tag>
-      <Tag color='green'> -10.000 </Tag>
-      <Tag size='large' color='red'> hh.ru </Tag>
-      <Tag size='medium' href='/' > primary </Tag>
-      ________________________
-
-      <div style={{ background: 'white' }}>
-        <Raiting />
-        <Raiting rating={1} />
-        <Raiting isEditable />
-        <Raiting rating={4} isEditable />
-      </div>
-      ________________________
+      <ul>
+        {menu.map((category) =>
+          <li key={category._id.secondCategory} >
+            {category._id.secondCategory}
+          </li>)}
+      </ul>
     </>
   );
 }
 
 export default wrapperLayoutHOC(Main);
+
+
+export const getStaticProps: GetStaticProps<ReturnProps> = async () => {
+  const firstCategory = CATEGORY.COURSES;
+  const { data: menu } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + HTTP.SIDEBAR_NAV, {
+    firstCategory
+  });
+
+  return {
+    props: { menu }
+  }
+}
