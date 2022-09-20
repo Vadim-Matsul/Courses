@@ -9,6 +9,16 @@ export enum CATEGORY {
   SERVIСES
 }
 
+export enum MenuDataTitle {
+  COURSES = 'Курсы',
+  SERVICES = 'Сервисы'
+}
+
+export enum MenuDataRoutes {
+  COURSES = '/courses/',
+  SERVICES = '/services/'
+}
+
 export enum NumbersData {
   products_limit = 10
 }

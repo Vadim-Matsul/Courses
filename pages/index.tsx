@@ -6,7 +6,8 @@ import { CATEGORY, HTTP } from '../const';
 import axios from 'axios';
 
 interface ReturnProps extends Record<string, unknown> {
-  menu: MenuItem[]
+  menu: MenuItem[],
+  firstCategory: CATEGORY
 }
 
 
@@ -15,17 +16,12 @@ const Main: NextPage<ReturnProps> = ({ menu }) => {
 
   return (
     <>
-      <ul>
-        {menu.map((category) =>
-          <li key={category._id.secondCategory} >
-            {category._id.secondCategory}
-          </li>)}
-      </ul>
+
     </>
   );
 }
 
-export default wrapperLayoutHOC(Main);
+export default wrapperLayoutHOC<ReturnProps>(Main);
 
 
 export const getStaticProps: GetStaticProps<ReturnProps> = async () => {
@@ -35,6 +31,6 @@ export const getStaticProps: GetStaticProps<ReturnProps> = async () => {
   });
 
   return {
-    props: { menu }
+    props: { menu, firstCategory }
   }
 }
