@@ -2,12 +2,12 @@ import classNames from 'classnames';
 import { NextPage } from 'next';
 import { TagProps } from './Tag.props';
 import stls from './Tag.module.css';
-import { SVGModule } from '../svg/types';
+import { PropsWithChildren } from 'react';
 
-export const Tag: NextPage<TagProps> = ({ size = 'small', color = 'primary', href, children, ...props }) => {
+export const Tag: NextPage<PropsWithChildren<TagProps>> = ({ size = 'small', color = 'primary', href, children, className, ...props }) => {
 
 
-  const TagClass = classNames(stls.tag, {
+  const TagClass = classNames(className, stls.tag, {
     [stls.small]: size === 'small',
     [stls.medium]: size === 'medium',
     [stls.large]: size === 'large',
@@ -20,7 +20,6 @@ export const Tag: NextPage<TagProps> = ({ size = 'small', color = 'primary', hre
   });
 
   return (
-    <>
       <div
         {...props}
         className={TagClass}
@@ -29,6 +28,5 @@ export const Tag: NextPage<TagProps> = ({ size = 'small', color = 'primary', hre
           ? <a href={href}>{children}</a>
           : <>{children}</>}
       </div>
-    </>
   );
 };

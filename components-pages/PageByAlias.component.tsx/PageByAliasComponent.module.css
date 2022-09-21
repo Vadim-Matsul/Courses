@@ -1,0 +1,62 @@
+.pageWrapper {
+  margin-top: 40px;
+}
+
+.title {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  justify-items: left;
+  gap: 0 20px;
+}
+
+.products {
+  border: 1px solid black;
+  margin-top: 21px;
+}
+
+.hhWrapper{
+  margin-top: 51px;
+}
+
+.hhTitle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items:  baseline;
+  justify-items: left;
+  gap: 21px;
+}
+
+@media(max-width: 950px){
+  .hhTitle {
+    grid-template-columns: 62px 1fr;
+    grid-template-rows: 1fr;
+    align-items:  center;
+    justify-items: left;
+    gap: 5px;
+  }
+
+  .hhTitle > h1 {
+    grid-column: 2 / span 1;
+  }
+
+  .hhTitle > div {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .title {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    justify-items: left;
+    gap: 0 20px;
+  }
+
+    .title > div:nth-child(2) {
+      justify-self: right;
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+}

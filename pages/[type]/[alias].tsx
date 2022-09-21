@@ -4,13 +4,12 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import { wrapperLayoutHOC } from '../../layout';
 import { MenuItem } from '../../types/menu.types';
-import { CATEGORY, HTTP, NumbersData } from '../../const';
+import { CATEGORY, firstLevelData, HTTP, MenuDataRoutes, NumbersData } from '../../const';
 import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
 import { PageModel } from '../../types/page.types';
 import { ProductModel } from '../../types/product.types';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import PageByAliasComponent from '../../components-pages/PageByAlias.component.tsx/PageByAliasComponent';
 
 interface ReturnProps extends Record<string, unknown> {
   menu: MenuItem[],
@@ -20,40 +19,57 @@ interface ReturnProps extends Record<string, unknown> {
 }
 
 interface Params extends ParsedUrlQuery {
+  type: string,
   alias: string
 }
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
-const firstCategory = CATEGORY.COURSES;
+const firstCategory: CATEGORY = CATEGORY.COURSES;
 
-const Page: NextPage<ReturnProps> = ({ menu, page, products }) => {
-  const [num, setNum] = useState(0)
-  const router = useRouter()
-
-
+const PageByAlias: NextPage<ReturnProps> = ({ page, products, firstCategory }) => {
 
   return (
-    <div>
-      <span>{products && products.length}</span>
-    </div>
+    <PageByAliasComponent
+      page={page}
+      products={products}
+      firstCategory={firstCategory}
+    />
   );
 }
 
-export default wrapperLayoutHOC<ReturnProps>(Page);
+export default wrapperLayoutHOC<ReturnProps>(PageByAlias);
+/*
 
 
+
+
+
+
+
+
+*/
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: menu } = await axios.post<MenuItem[]>(DOMAIN + HTTP.SIDEBAR_NAV, {
-    firstCategory
-  })
 
-  const actualPaths = menu.flatMap(category => category.pages.map(page => ({ params: { alias: page.alias } })));
+  let actualPaths: string[] = [];
+
+  for (let toBePage of firstLevelData) {
+    const firstCategory = toBePage.id;
+
+    const { data: menu } = await axios.post<MenuItem[]>(DOMAIN + HTTP.SIDEBAR_NAV, {
+      firstCategory
+    })
+
+    const currentPaths = menu.flatMap(category => category.pages.map(bundleAlias => `${toBePage.route}${bundleAlias.alias}`));
+
+    actualPaths = actualPaths.concat(currentPaths)
+  }
 
   return {
     paths: actualPaths,
     fallback: true
   }
 }
+
 
 export const getStaticProps: GetStaticProps<ReturnProps, Params> = async ({ params }) => {
 

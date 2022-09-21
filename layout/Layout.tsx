@@ -22,7 +22,7 @@ export function wrapperLayoutHOC<T extends Record<string, unknown> & MyContextTy
 
   return function WrappedComponent(props: T): JSX.Element {
     return (
-      <AppContextProvider menu={props.menu} firstCategory={ props.firstCategory } >
+      <AppContextProvider menu={props.menu} firstCategory={props.firstCategory} >
         <Layout>
           <Component{...props} />
         </Layout>

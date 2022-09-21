@@ -1,19 +1,14 @@
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useContext } from 'react'
-import { ServicesCloud, UndergraduateHelmet } from '../../../components/svg'
-import { CATEGORY, MenuDataRoutes, MenuDataTitle } from '../../../const'
+import { firstLevelData } from '../../../const';
 import { MyContext } from '../../../context/AppContext'
-import { MenuData } from '../../../types/menu.types'
 import stls from '../Menu.module.css';
 import { MenuSecondLevel } from './Menu-SecondLevel'
 
 export const MenuFirstLevel = () => {
-  const {  menu, firstCategory } = useContext(MyContext)
-  const firstLevelData: MenuData[] = [
-    { title: MenuDataTitle.COURSES, id: CATEGORY.COURSES, route: MenuDataRoutes.COURSES, icon: UndergraduateHelmet },
-    { title: MenuDataTitle.SERVICES, id: CATEGORY.SERVIСES, route: MenuDataRoutes.SERVICES, icon: ServicesCloud }
-  ]
+  const { menu, firstCategory } = useContext(MyContext)
+
 
   return (
     <>

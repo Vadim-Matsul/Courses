@@ -1,3 +1,6 @@
+import { ServicesCloud, UndergraduateHelmet } from './components/svg';
+import { MenuData } from './types/menu.types';
+
 export enum HTTP {
   SIDEBAR_NAV = '/api/top-page/find',
   CURRENT_PAGE = '/api/top-page/byAlias/',
@@ -22,3 +25,8 @@ export enum MenuDataRoutes {
 export enum NumbersData {
   products_limit = 10
 }
+
+export const firstLevelData: MenuData[] = [
+  { title: MenuDataTitle.COURSES, id: CATEGORY.COURSES, route: MenuDataRoutes.COURSES, icon: UndergraduateHelmet },
+  { title: MenuDataTitle.SERVICES, id: CATEGORY.SERVIСES, route: MenuDataRoutes.SERVICES, icon: ServicesCloud }
+]
