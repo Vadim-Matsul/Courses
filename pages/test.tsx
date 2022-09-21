@@ -1,24 +1,19 @@
-import { NextPage } from 'next';
+import Link from 'next/link'
+import { forwardRef } from 'react'
 
-
-type NameType = {
-
-}
-
-const Test: NextPage<NameType> = () => {
-
-
+// `onClick`, `href` и `ref` должны быть переданы DOM-элементу
+const MyButton = forwardRef(({ onClick, href }, ref) => {
   return (
-    <>
-      <div className="wrapper">
-        <div className="header">header</div>
-        <div className="sidebar">sidebar</div>
-        <div className="component">component</div>
-        <div className="footer">footer</div>
-      </div>
-    </>
-  );
+    <a href={href} onClick={onClick} ref={ref}>
+      Кликни
+    </a>
+  )
+})
+
+export default function Home() {
+  return (
+    <Link href="/about" passHref>
+      <MyButton />
+    </Link>
+  )
 }
-
-
-export default Test;

@@ -9,9 +9,12 @@ import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
 import { PageModel } from '../../types/page.types';
 import { ProductModel } from '../../types/product.types';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface ReturnProps extends Record<string, unknown> {
   menu: MenuItem[],
+  firstCategory: CATEGORY,
   page: PageModel,
   products: ProductModel[]
 }
@@ -21,16 +24,13 @@ interface Params extends ParsedUrlQuery {
 }
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
-const firstCategory = 0;
+const firstCategory = CATEGORY.COURSES;
 
 const Page: NextPage<ReturnProps> = ({ menu, page, products }) => {
   const [num, setNum] = useState(0)
+  const router = useRouter()
 
-  useEffect(() => {
-    const paths = menu.flatMap(category => category.pages.map(courses => ({ params: { alias: courses.alias } })));
-    console.log(paths);
 
-  })
 
   return (
     <div>
@@ -39,7 +39,7 @@ const Page: NextPage<ReturnProps> = ({ menu, page, products }) => {
   );
 }
 
-export default wrapperLayoutHOC(Page);
+export default wrapperLayoutHOC<ReturnProps>(Page);
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -73,6 +73,6 @@ export const getStaticProps: GetStaticProps<ReturnProps, Params> = async ({ para
   })
 
   return {
-    props: { menu, page, products }
+    props: { menu, page, products, firstCategory }
   }
 }

@@ -14,7 +14,7 @@ export const MyContext = createContext<MyContextType>({
   menu: []
 })
 
-export const AppContextProvider: NextPage<PropsWithChildren<MyContextType>> = ({children, menu, firstCategory}) => {
+export const AppContextProvider: NextPage<PropsWithChildren<MyContextType>> = ({ children, menu, firstCategory }) => {
   const [menuState, setMenuState] = useState<MenuItem[]>(menu)
   const setMenu = (updatedMenu: MenuItem[]) => {
     setMenuState(updatedMenu)

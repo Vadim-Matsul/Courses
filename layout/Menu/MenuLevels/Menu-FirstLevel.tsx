@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import Link from 'next/link'
 import { useContext } from 'react'
 import { ServicesCloud, UndergraduateHelmet } from '../../../components/svg'
 import { CATEGORY, MenuDataRoutes, MenuDataTitle } from '../../../const'
@@ -8,7 +9,7 @@ import stls from '../Menu.module.css';
 import { MenuSecondLevel } from './Menu-SecondLevel'
 
 export const MenuFirstLevel = () => {
-  const { menu, firstCategory } = useContext(MyContext)
+  const {  menu, firstCategory } = useContext(MyContext)
   const firstLevelData: MenuData[] = [
     { title: MenuDataTitle.COURSES, id: CATEGORY.COURSES, route: MenuDataRoutes.COURSES, icon: UndergraduateHelmet },
     { title: MenuDataTitle.SERVICES, id: CATEGORY.SERVIСES, route: MenuDataRoutes.SERVICES, icon: ServicesCloud }
@@ -25,12 +26,14 @@ export const MenuFirstLevel = () => {
 
         return (
           <div key={menuTitle.id}>
-            <a href={menuTitle.route}>
-              <div className={firstLevelClass}>
-                <menuTitle.icon />
-                <span>{menuTitle.title}</span>
-              </div>
-            </a>
+            <Link href={menuTitle.route}>
+              <a>
+                <div className={firstLevelClass}>
+                  <menuTitle.icon />
+                  <span>{menuTitle.title}</span>
+                </div>
+              </a>
+            </Link>
             {shouldShow && <MenuSecondLevel menu={menu} route={menuTitle.route} />}
           </div>
         )

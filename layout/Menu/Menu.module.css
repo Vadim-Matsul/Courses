@@ -40,16 +40,19 @@
 
 .secondLevel{
   color: var(--grey-dark);
+  cursor: pointer;
   font-weight: 300;
   font-size: 12px;
   line-height: 16px;
 }
 
 .thirdLevelBlock {
+  display: none;
   margin: 10px 0 20px 0;
 }
 
 .thirdLevelBlockActive {
+  display: block
 }
 
 .thirdLevel{

@@ -14,7 +14,7 @@ export interface Page {
 
 export interface MenuItem {
     _id: Id;
-		isOpened: boolean;
+    isOpened: boolean;
     pages: Page[];
 }
 

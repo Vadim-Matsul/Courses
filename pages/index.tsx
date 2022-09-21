@@ -4,6 +4,7 @@ import { wrapperLayoutHOC } from '../layout';
 import { MenuItem } from '../types/menu.types';
 import { CATEGORY, HTTP } from '../const';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 interface ReturnProps extends Record<string, unknown> {
   menu: MenuItem[],
@@ -12,11 +13,11 @@ interface ReturnProps extends Record<string, unknown> {
 
 
 const Main: NextPage<ReturnProps> = ({ menu }) => {
-  const [num, setNum] = useState(0)
+  const route = useRouter()
 
   return (
     <>
-
+      MAIN
     </>
   );
 }
