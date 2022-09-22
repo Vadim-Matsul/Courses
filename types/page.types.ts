@@ -37,6 +37,12 @@ export interface Learningclub {
   _id: string;
 }
 
+export interface Advantages {
+  title: string,
+  description: string,
+  _id: string
+}
+
 export interface PageModel {
   _id: string;
   tags: string[];
@@ -45,14 +51,15 @@ export interface PageModel {
   alias: string;
   title: string;
   category: string;
+  seoText?: string;
   tagsTitle: string;
   metaTitle: string;
   metaDescription: string;
-  advantages: any[];
+  advantages?: Advantages[] | [];
   createdAt: Date;
   updatedAt: Date;
   __v: number;
-  hh: HhData;
+  hh?: HhData;
   qas: any[];
   addresses: any[];
   categoryOn: string;
@@ -64,5 +71,5 @@ export interface PageModel {
 export interface HhDataGroup {
   title: 'Начальный' | 'Средний' | 'Профессионал',
   number: string,
-  rating: number, 
+  rating: number,
 }

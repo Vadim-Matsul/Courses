@@ -9,7 +9,6 @@
   height: minmax(72px, auto);
   grid-template-columns: 1fr auto auto;
   align-items: center;
-
   gap: 0 40px;
 } 
 .footer > a {
@@ -28,5 +27,9 @@
     gap: 7px 0;
     grid-template-columns: 1fr;
     justify-items: center;
+  }
+
+  .footer > span {
+    text-align: center;
   }
 }

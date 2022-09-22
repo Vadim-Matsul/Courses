@@ -1,16 +1,19 @@
-.h1 {
+.seoTextWrapper {
+  padding: 0 0 30px 25px;
+}
+.seoTextWrapper h1 {
   font-weight: 500;
   font-size: 26px;
   line-height: 35px;
 }
 
-.h2 {
+.seoTextWrapper h2 {
   font-weight: 500;
   font-size: 22px;
   line-height: 30px;
 }
 
-.h3 {
+.seoTextWrapper h3 {
   font-weight: 700;
   font-size: 20px;
   line-height: 27px;

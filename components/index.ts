@@ -4,3 +4,7 @@ export * from './P/P';
 export * from './Tag/Tag';
 export * from './Raiting/Raiting';
 export * from './Card/Card';
+export * from './AdvantageBlock/AdvantageBlock';
+export * from './HhData/HhData';
+export * from './SeoBlock/SeoBlock';
+export * from './Skills/Skills';

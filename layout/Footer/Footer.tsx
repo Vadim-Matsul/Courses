@@ -14,7 +14,7 @@ export const Footer: NextPage<FooterProps> = ({ className, ...props }) => {
       className={FooterClass}
       {...props}
     >
-      <div>OwlTop © 2020 - {date} Все права защищены</div>
+      <span>OwlTop © 2020 - {date} Все права защищены</span>
       <a href='#' target='_blank'>Пользовательское соглашение</a>
       <a href='#' target='_blank'>Политика конфиденциальности</a>
     </footer>

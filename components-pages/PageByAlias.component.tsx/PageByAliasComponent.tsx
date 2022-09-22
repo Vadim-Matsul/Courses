@@ -1,21 +1,27 @@
 import { NextPage } from 'next';
 import { PageByAliasProps } from './PageByAliasComponent.props';
-import { HTag, Tag, Card } from '../../components';
-import { HhData } from '../../components/HhData/HhData';
-import { format } from 'date-fns';
-import stls from './PageByAliasComponent.module.css';
+import { HTag, Tag, SeoBlock, Skills, AdvantageBlock, HhData } from '../../components';
 import { CATEGORY } from '../../const';
+import { doNonBrackingSpaces } from '../../utils/helpers';
+import stls from './PageByAliasComponent.module.css';
 
 const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page, products }) => {
 
   // сделать возврат empty page
   if (!page) return <></>
+  const nonBrackingTitle = doNonBrackingSpaces(page.title);
+  const nonBrackingCategory = doNonBrackingSpaces(page.category);
+
+
+  const shouldShowAdvantageBlock = page.advantages && page.advantages.length > 0;
+  const shouldShowSeoText = page.seoText;
 
   return (
     <div className={stls.pageWrapper}>
+
       <div className={stls.title}>
         <HTag tag='h1'  >
-          {page.title}
+          {nonBrackingTitle}
         </HTag>
         {products && <Tag size='large' color='grey'  >{products.length}</Tag>}
         <div> Сортировка </div>
@@ -28,12 +34,18 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       <div className={stls.hhWrapper}>
         <div className={stls.hhTitle}>
           <HTag tag='h1'>
-            Вакансии - {page.category}
+            Вакансии - {nonBrackingCategory}
           </HTag>
           {products && <Tag size='large' color='red'>hh.ru</Tag>}
         </div>
-        {firstCategory === CATEGORY.COURSES && <HhData {...page.hh} />}
+        {firstCategory === CATEGORY.COURSES && page.hh && <HhData {...page.hh} />}
       </div>
+
+      {shouldShowAdvantageBlock && <AdvantageBlock advantages={page.advantages!} />}
+
+      {shouldShowSeoText && <SeoBlock   seoText={page.seoText!} />}
+
+      <Skills tags={page.tags} />
 
     </div>
   );

@@ -3,7 +3,7 @@ import { OwlLabel } from '../../components/svg';
 import { LabelProps } from './Label.props';
 import stls from './Label.module.css';
 
-export const Label: NextPage<LabelProps> = ( props ) => {
+export const Label: NextPage<LabelProps> = (props) => {
 
 
   return (
