@@ -26,6 +26,20 @@ export enum NumbersData {
   products_limit = 10
 }
 
+export enum SortProductsOptions {
+  RatingHighToLow,
+  RatingLowToHigh,
+  PriceHighToLow,
+  PriceLowToHigh,
+
+  SetState,
+
+  StatusRating,
+  StatusPrice,
+}
+
+
+
 export const firstLevelData: MenuData[] = [
   { title: MenuDataTitle.COURSES, id: CATEGORY.COURSES, route: MenuDataRoutes.COURSES, icon: UndergraduateHelmet },
   { title: MenuDataTitle.SERVICES, id: CATEGORY.SERVIСES, route: MenuDataRoutes.SERVICES, icon: ServicesCloud }

@@ -6,7 +6,6 @@ import stls from './AdvantageBlock.module.css';
 import { CheckMark } from '../svg';
 
 export const AdvantageBlock: NextPage<AdvantageBlockProps> = ({ advantages }) => {
-  console.log(advantages);
 
 
   return (
