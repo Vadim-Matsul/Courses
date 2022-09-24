@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { NextPage } from 'next';
 import { ButtonProps } from './Button.props';
-import { Arrow } from '../svg';
+import { Arrow } from '../../svg';
 import stls from './Button.module.css';
 
 

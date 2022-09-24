@@ -5,12 +5,12 @@ import { Card } from '../Card/Card';
 import { HhDataGroup } from '../../types/page.types';
 import stls from './HhData.module.css';
 import { Rating } from '../svg';
-import { replaceNemberToNewFormat } from '../../utils/helpers';
+import { getFormatter, replaceNumberToNewFormat } from '../../utils/helpers';
 
 export const HhData: NextPage<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSalary, updatedAt, _id, ...props }) => {
 
-  const formatter = new Intl.NumberFormat('ru', { style: 'currency', currency: 'RUB', minimumFractionDigits: 0 });
-  const updateTotalCountVacancies = replaceNemberToNewFormat(count);
+  const formatter = getFormatter();
+  const updateTotalCountVacancies = replaceNumberToNewFormat(count);
 
   const HhDataGroups: HhDataGroup[] = [
     { title: 'Начальный', number: formatter.format(juniorSalary), rating: 1 },

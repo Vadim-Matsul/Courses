@@ -1,4 +1,4 @@
-import { DetailedProps } from '../svg/types'
+import { DetailedProps } from '../../svg/types'
 
 export interface PProps extends DetailedProps<HTMLParagraphElement> {
   size?: 'large' | 'medium' | 'small'

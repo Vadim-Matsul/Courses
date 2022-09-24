@@ -19,7 +19,8 @@ export enum MenuDataTitle {
 
 export enum MenuDataRoutes {
   COURSES = '/courses/',
-  SERVICES = '/services/'
+  SERVICES = '/services/',
+  SEARCH = '/search/',
 }
 
 export enum NumbersData {
@@ -44,3 +45,5 @@ export const firstLevelData: MenuData[] = [
   { title: MenuDataTitle.COURSES, id: CATEGORY.COURSES, route: MenuDataRoutes.COURSES, icon: UndergraduateHelmet },
   { title: MenuDataTitle.SERVICES, id: CATEGORY.SERVIСES, route: MenuDataRoutes.SERVICES, icon: ServicesCloud }
 ]
+
+export const ReviewsDeclinations:[string, string, string] = ['отзыв', 'отзыва', 'отзывов'];

@@ -1,21 +1,19 @@
 import { NextPage } from 'next';
 import { PageByAliasProps } from './PageByAliasComponent.props';
-import { HTag, Tag, SeoBlock, Skills, AdvantageBlock, HhData } from '../../components';
+import { HTag, Tag, SeoBlock, Skills, AdvantageBlock, HhData, Product } from '../../components/';
 import { CATEGORY, SortProductsOptions } from '../../const';
 import { doNonBrackingSpaces } from '../../utils/helpers';
 import stls from './PageByAliasComponent.module.css';
 import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../../state/reducers/sort-reducer/sort.reducer';
-import { setStateProducts } from '../../state/actions/sort.actions';
+import { setRatingHighToLow, setStateProducts } from '../../state/actions/sort.actions';
 import { SortForm } from '../../components/SortForm/SortForm';
 
 const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page, products }) => {
 
-
-
   const [{ products: sortedProducts, sort, ratingIsOpen, priceIsOpen }, dispatchSort] = useReducer(sortReducer, {
     products,
-    sort: SortProductsOptions.RatingLowToHigh,
+    sort: SortProductsOptions.RatingHighToLow,
     ratingIsOpen: false,
     priceIsOpen: false
   });
@@ -23,6 +21,7 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
   useEffect(() => {
     if (products) {
       dispatchSort(setStateProducts(products));
+      dispatchSort(setRatingHighToLow());
     }
   }, [products])
 
@@ -37,9 +36,6 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
 
   return (
     <div className={stls.pageWrapper}>
-      <button onClick={() => dispatchSort({ type: SortProductsOptions.PriceHighToLow })} >PriceHighToLow</button>
-      <button onClick={() => dispatchSort({ type: SortProductsOptions.PriceLowToHigh })} >PriceLowToHigh</button>
-
       <div className={stls.title}>
         <HTag tag='h1'  >
           {nonBrackingTitle}
@@ -54,9 +50,9 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       </div>
 
       <div className={stls.products} >
-        {sortedProducts && sortedProducts.map(product => <div key={product._id}>{product.price}</div>)}
+        {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product} />)}
       </div>
-
+      
       <div className={stls.hhWrapper}>
         <div className={stls.hhTitle}>
           <HTag tag='h1'>

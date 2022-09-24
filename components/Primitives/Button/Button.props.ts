@@ -1,5 +1,5 @@
 import React from 'react';
-import { DetailedProps } from '../svg/types';
+import { DetailedProps } from '../../svg/types';
 
 export interface ButtonProps extends DetailedProps<HTMLButtonElement> {
   appearance?: boolean,

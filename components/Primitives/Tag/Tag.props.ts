@@ -1,4 +1,4 @@
-import { DetailedProps } from '../svg/types';
+import { DetailedProps } from '../../svg/types';
 
 export interface TagProps extends DetailedProps {
   size?: 'small' | 'medium' | 'large',

@@ -1,3 +1,19 @@
-.searchWrapper {
-  margin-bottom: 30px;
+.search {
+  width: 100%;
+  position: relative;
+}
+
+.search input {
+  width: 80%;
+  padding-right: 35px;
+}
+
+.search button {
+  position: absolute;
+  margin: 0px;
+  height: 26px;
+  width: 26px;
+  padding: 5px;
+  top: 3px;
+  right: 3px;
 }

@@ -1,9 +1,7 @@
 import { NextPage } from 'next';
 import { SkillsProps } from './Skills.props';
 import stls from './Skills.module.css';
-import { P } from '../P/P';
-import { HTag } from '../HTag/Htag';
-import { Tag } from '../Tag/Tag';
+import { HTag, Tag } from '..';
 
 export const Skills: NextPage<SkillsProps> = ({ tags }) => {
 

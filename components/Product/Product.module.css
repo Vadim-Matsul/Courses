@@ -1,0 +1,144 @@
+.product {
+  display: grid;
+  padding: 30px;
+  margin-bottom: 30px;
+  grid-template-columns: [start] 70px [logoend] 20px [starttitle] calc(50% - 90px) [middle] 1fr [startprice] auto [endprice] 30px [startcredit] auto [endcredit] 20px [startrating] auto [end];
+}
+
+.logo{
+  grid-column: start/logoend;
+  grid-row: 1/ span 2;
+}
+
+.title, .tags {
+  grid-column: starttitle/middle;
+}
+
+.price, .cost {
+  grid-column: startprice/endprice;
+}
+.credit, .inCredit {
+  grid-column: startcredit/endcredit;
+}
+
+.rating, .reviews{
+  grid-column: startrating/end;
+}
+
+.hr {
+  grid-column: start/end;
+}
+.description, .buttonsBlock {
+  grid-column: start/end;
+}
+.fich{
+  grid-column: start/middle;
+}
+
+.advantageBlock {
+  grid-column: middle/end;
+}
+
+
+
+.hr {
+  margin: 18px 0 22px 0;
+}
+
+
+.suretyWrapper {
+  width: 50%;
+  margin-top: 20px;
+}
+
+.surety {
+  height: 50px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.surety::-webkit-scrollbar {
+  background: var(--grey-lite);;
+  width: 4px;
+  border-radius: 2px;
+}
+.surety::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.logo > span > img {
+  border-radius: 5px;
+}
+
+.title,
+.price,
+.credit,
+.rating {
+  align-self: end;
+}
+
+.price > span,
+.credit {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.credit > span {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.cost,
+.inCredit,
+.reviews {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.price {
+  position: relative;
+}
+
+.discount {
+  position: relative;
+  margin-left: 10px;
+  top: -4px;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 14px;
+}
+
+.tags > div {
+  margin-top: 7px;
+}
+
+.advantageBlock > div > div{
+  color: var(--black);
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.advantages,
+.disAdvantages {
+  border-radius: 2px;
+  padding-left: 15px;
+}
+
+.advantages {
+  border-left: 2px solid var(--green);
+  margin-bottom: 25px;
+}
+
+.disAdvantages{
+  border-left: 2px solid var(--red);
+}

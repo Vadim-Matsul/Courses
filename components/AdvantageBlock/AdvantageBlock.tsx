@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { NextPage } from 'next';
-import { HTag } from '../HTag/Htag';
 import { AdvantageBlockProps } from './AdvantageBlock.props';
 import stls from './AdvantageBlock.module.css';
 import { CheckMark } from '../svg';
+import { HTag } from '..';
 
 export const AdvantageBlock: NextPage<AdvantageBlockProps> = ({ advantages }) => {
 

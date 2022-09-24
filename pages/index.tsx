@@ -5,6 +5,8 @@ import { MenuItem } from '../types/menu.types';
 import { CATEGORY, HTTP } from '../const';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { Input, TextArea } from '../components';
+import { translateWordToCase } from '../utils/helpers';
 
 interface ReturnProps extends Record<string, unknown> {
   menu: MenuItem[],
@@ -17,7 +19,9 @@ const Main: NextPage<ReturnProps> = ({ menu }) => {
 
   return (
     <>
-      MAIN
+      <span>Main</span>
+      <Input placeholder='' />
+      <TextArea placeholder='test area' />
     </>
   );
 }
