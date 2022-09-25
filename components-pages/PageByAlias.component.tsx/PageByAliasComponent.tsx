@@ -8,6 +8,7 @@ import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../../state/reducers/sort-reducer/sort.reducer';
 import { setRatingHighToLow, setStateProducts } from '../../state/actions/sort.actions';
 import { SortForm } from '../../components/SortForm/SortForm';
+import Image from 'next/image';
 
 const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page, products }) => {
 
@@ -36,6 +37,7 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
 
   return (
     <div className={stls.pageWrapper}>
+
       <div className={stls.title}>
         <HTag tag='h1'  >
           {nonBrackingTitle}
@@ -52,7 +54,7 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       <div className={stls.products} >
         {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product} />)}
       </div>
-      
+
       <div className={stls.hhWrapper}>
         <div className={stls.hhTitle}>
           <HTag tag='h1'>

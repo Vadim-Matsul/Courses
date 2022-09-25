@@ -19,8 +19,10 @@ body {
   --primary: #7653FC;
   --primary-hover: #4f30c8;
   --green: #1DC37E;
+  --green-hover: #0f965e;
   --green-lite: #C8F8E4;
   --red: #FC836D;
+  --red-hover: #ca533e;
 
   --font-family: "Noto Sans", sans-serif;
 }

@@ -1,87 +1,135 @@
 import classNames from 'classnames';
 import { NextPage } from 'next';
-import { ProductProps } from './Product.props';
+import { OpenStaticType, ProductProps } from './Product.props';
 import stls from './Product.module.css';
 import Image from 'next/image';
-import { Card } from '../Card/Card';
-import { Raiting } from '../Raiting/Raiting';
-import { Tag } from '../Primitives/Tag/Tag';
-import { HTag } from '../Primitives/HTag/Htag';
-import { Button } from '../Primitives/Button/Button';
 import { getFormatter, translateWordToCase } from '../../utils/helpers';
-import { Devider, P } from '..';
+import { Devider, P, Card, Raiting, Tag, HTag, Button } from '..';
 import { ReviewsDeclinations } from '../../const';
 import { Characteristic } from '../Characteristic/Characteristic';
+import { useState } from 'react';
+
 
 export const Product: NextPage<ProductProps> = ({ className, product, ...props }) => {
 
-
   const formatter = getFormatter();
   const ProductClass = classNames(className, stls.product);
+  const reviewsText = `${product.reviewCount}${translateWordToCase(product.reviewCount, ReviewsDeclinations)}`
+  const [openStatic, setOpenStatic] = useState<OpenStaticType>(
+    { price: false, credit: false, rating: false, advantages: false, disadvantages: false }
+  )
+
+  function hanlderStaticOpen<B extends boolean>(p: B, c: B, r: B, a: B, da: B) {
+    setOpenStatic({ price: p, credit: c, rating: r, advantages: a, disadvantages: da })
+  }
+
+  const f = false;
+  const osP = openStatic.price;
+  const osC = openStatic.credit;
+  const osR = openStatic.rating;
+  const osA = openStatic.advantages;
+  const osDA = openStatic.disadvantages;
+
 
   return (
-    <Card className={ProductClass}>
-      <div className={stls.logo} >
-        <Image
-          src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
-          blurDataURL={process.env.NEXT_PUBLIC_DOMAIN + product.image}
-          alt={product.title}
-          width={70}
-          height={70}
-          placeholder='blur'
-        />
-      </div>
-      <div className={stls.title} >
-        <HTag tag='h3' >{product.title}</HTag>
-      </div>
-      <div className={stls.price} >
-        <span>{formatter.format(product.price)}</span>
-        {product.oldPrice &&
-          <Tag
-            color='green'
-            className={stls.discount}
-          >
-            {formatter.format(product.price - product.oldPrice)}
-          </Tag>}
-      </div>
-      <span className={stls.credit} >
-        {formatter.format(product.credit)}/<span>мес</span>
-      </span>
-      <Raiting className={stls.rating} rating={product.initialRating} />
+    <div  {...props}>
+      <Card className={ProductClass} >
 
-      <div className={stls.tags}>
-        {product.categories.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
-      </div>
-      <span className={stls.cost}>цена</span>
-      <span className={stls.inCredit} >в кредит</span>
-      <span className={stls.reviews} >{product.reviewCount} {translateWordToCase(product.reviewCount, ReviewsDeclinations)}</span>
-      <Devider className={stls.hr} />
-      <P className={stls.description} >{product.description}</P>
-      <div className={stls.fich}>
-        <Characteristic characteristics={product.characteristics} />
-        <div className={stls.suretyWrapper} >
-          <div className={stls.surety} >
-            {product.tags.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
+        <div className={stls.logo} >
+          <Image
+            layout='fixed'
+            src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
+            blurDataURL={process.env.NEXT_PUBLIC_DOMAIN + product.image}
+            alt={product.title}
+            width={70}
+            height={70}
+            placeholder='blur'
+          />
+        </div>
+
+        <div className={stls.title} >
+          <HTag tag='h3' >{product.title}</HTag>
+        </div>
+
+        <Button className={stls.priceToggle}
+          onClick={() => hanlderStaticOpen(!osP, f, f, osA, osDA)}
+        >Цена</Button>
+        <div className={classNames(stls.price, { [stls.priceOpen]: osP })} >
+          <span>{formatter.format(product.price)}</span>
+          {product.oldPrice &&
+            <Tag color='green' className={stls.discount}
+            > {formatter.format(product.price - product.oldPrice)}
+            </Tag>}
+        </div>
+
+        <Button className={stls.сreditToggle}
+          onClick={() => hanlderStaticOpen(f, !osC, f, osA, osDA)}
+        >Кредит</Button>
+        <span className={classNames(stls.credit, { [stls.creditOpen]: osC })}
+        > {formatter.format(product.credit)}/<span>мес</span>
+        </span>
+
+        <Button className={stls.ratingToggle}
+          onClick={() => hanlderStaticOpen(f, f, !osR, osA, osDA)}
+        >Рейтинг</Button>
+        <Raiting className={classNames(stls.rating, { [stls.ratingOpen]: osR })} />
+
+        <div className={stls.tags}>
+          {product.categories.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
+        </div>
+
+        <span className={stls.cost}>цена</span>
+        <span className={stls.inCredit} >в кредит</span>
+        <span className={stls.reviews} >{reviewsText}</span>
+
+        <Devider className={stls.hr} id='hr1' />
+
+        <P className={stls.description} >{product.description}</P>
+
+        <div className={stls.fich}>
+          <Characteristic characteristics={product.characteristics} />
+          <div className={stls.suretyWrapper} >
+            <div className={stls.surety} >
+              {product.tags.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
+            </div>
           </div>
         </div>
-      </div>
-      <div className={stls.advantageBlock}>
-        {product.advantages &&
-          <div className={stls.advantages} >
-            <div>Преимущества</div>
-            {product.advantages}
-          </div>}
-        {product.disAdvantages &&
-          <div className={stls.disAdvantages} >
-            <div>Недостатки</div>
-            {product.disAdvantages}
-          </div>}
-      </div>
-      <Devider className={stls.hr} />
-      <div className={stls.buttonsBlock} >
-        <Button appearance >Узнать подробнее</Button>
-        <Button arrow='right' >Читать отзывы</Button>
-      </div>
-    </Card>
+
+        <div className={stls.advantageBlock}>
+          {product.advantages &&
+            <>
+              <Button className={stls.advantagesToggle}
+                onClick={() => hanlderStaticOpen(osP, osC, osR, !osA, f)}
+              >Преимущества</Button>
+              <div
+                className={classNames(stls.advantages, { [stls.advantagesOpen]: osA })}
+              >
+                <div>Преимущества</div>
+                {product.advantages}
+              </div>
+            </>}
+          {product.disAdvantages &&
+            <>
+              <Button className={stls.disAdvantagesToggle}
+                onClick={() => hanlderStaticOpen(osP, osC, osR, f, !osDA)}
+              >Недостатки</Button>
+              <div className={classNames(stls.disAdvantages, { [stls.disAdvantagesOpen]: osDA })}
+              >
+                <div>Недостатки</div>
+                {product.disAdvantages}
+              </div>
+            </>}
+        </div>
+
+        <Devider className={stls.hr} />
+
+        <div className={stls.buttonsBlock} >
+          <Button appearance >Узнать подробнее</Button>
+          <Button arrow='right' >Читать отзывы</Button>
+        </div>
+
+      </Card>
+    </div>
+
   )
 }

@@ -142,3 +142,207 @@
 .disAdvantages{
   border-left: 2px solid var(--red);
 }
+
+.priceToggle,
+.сreditToggle,
+.ratingToggle,
+.advantagesToggle,
+.disAdvantagesToggle {
+  display: none;
+}
+
+@media(max-width: 1310px){
+
+    .product {
+      grid-template-columns: [start] 70px [logoend] 20px [starttitle] auto [endprice] 30px [startcredit] auto [endcredit] 30px [startrating] auto [endrating] 20px [startequal] auto [end];
+    }
+
+    .logo {
+      grid-column: start/logoend;
+      grid-row: 1/ span 2;
+      margin-bottom: 20px;
+    }
+    
+    .title, .tags  {
+      grid-column: starttitle/end;
+    }
+    .tags{
+      grid-row: 2/3;
+    }
+
+    .price, .cost {
+      grid-column: start/endprice;
+    }
+    .credit, .inCredit {
+      grid-column: startcredit/endcredit;
+    }
+    
+    .rating, .reviews{
+      grid-column: startrating/end;
+    }
+
+    .suretyWrapper {
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    .surety {
+      height: auto;
+      overflow: auto;
+    }
+
+    .fich,
+    .hr,
+    .description,
+    .buttonsBlock,
+    .advantageBlock {
+      grid-column: start/end;
+    }
+   
+}
+
+
+
+
+@media(min-width: 766px){
+  @media(max-width: 1000px){
+
+  .product {
+    grid-template-columns: [start] 70px [logoend] 20px [starttitle] auto [endprice] 30px [startcredit] auto [endcredit] 30px [startrating] auto [endrating] 20px [startequal] auto [end];
+  }
+
+  .logo {
+    grid-column: start/logoend;
+    grid-row: 1/ span 2;
+    margin-bottom: 20px;
+  }
+  
+  .title, .tags  {
+    grid-column: starttitle/end;
+  }
+  .tags{
+    grid-row: 2/3;
+  }
+
+
+  .suretyWrapper {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .surety {
+    height: auto;
+    overflow: auto;
+  }
+
+  .fich,
+  .hr,
+  .description,
+  .buttonsBlock,
+  .advantageBlock {
+    grid-column: start/end;
+  }
+ 
+  }
+}
+
+@media (max-width: 1050px){
+    
+  .priceToggle,
+  .сreditToggle,
+  .ratingToggle {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+    grid-row: 3/4;
+  }
+
+  .priceToggle {
+    grid-column: starttitle/endprice;
+  }
+
+  .сreditToggle {
+    grid-column: startcredit/endcredit;
+  }
+
+  .ratingToggle {
+    grid-column: startrating/endrating;
+  }
+
+  .cost,
+  .inCredit,
+  .reviews,
+  .advantages,
+  .disAdvantages {
+    display: none;
+  }
+
+  .price,
+  .credit,
+  .rating {
+    display: none;
+  }
+
+  .priceOpen,
+  .creditOpen,
+  .ratingOpen {
+    display: block;
+    grid-row: 4/5;
+    grid-column: starttitle/endrating;
+    margin: 5px 0;
+    justify-self: center;
+  }
+
+
+  .ratingOpen {
+    margin-left: -10px;
+  }
+
+  .hr {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+
+  .advantageBlock{
+    display: grid;
+    grid-template-columns: [start] 47% [middle] 47% [end];
+    grid-template-rows: auto auto;
+    gap: 0 6%
+  }
+
+  .advantagesToggle,
+  .disAdvantagesToggle{
+    display: block;
+    margin: 0;
+    grid-row: 1/2;
+    color: var(--white);
+  }
+
+  .advantagesToggle {
+    background: var(--green);
+    grid-column: start / middle;
+  }
+  .advantagesToggle:hover {
+    background: var(--green-hover);
+  }
+  .disAdvantagesToggle {
+    background: var(--red);
+    grid-column: middle / end;
+  }
+
+  .disAdvantagesToggle:hover {
+    background: var(--red-hover);
+  }
+
+  .advantagesOpen, 
+  .disAdvantagesOpen {
+    margin-top: 8px;
+    display: block;
+    grid-row: 2/3;
+    grid-column: start / end;
+    margin-bottom: 0;
+  }
+
+  
+}
