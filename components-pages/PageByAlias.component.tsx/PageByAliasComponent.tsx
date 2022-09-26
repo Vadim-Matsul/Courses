@@ -8,7 +8,7 @@ import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../../state/reducers/sort-reducer/sort.reducer';
 import { setRatingHighToLow, setStateProducts } from '../../state/actions/sort.actions';
 import { SortForm } from '../../components/SortForm/SortForm';
-import Image from 'next/image';
+
 
 const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page, products }) => {
 

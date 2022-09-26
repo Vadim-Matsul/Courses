@@ -2,8 +2,25 @@ import classNames from 'classnames';
 import { NextPage } from 'next';
 import { InputProps } from './Input.props';
 import stls from './Input.module.css';
+import React, { ForwardedRef } from 'react';
+import PropTypes from 'prop-types'
 
-export const Input: NextPage<InputProps> = ({ className, ...props }) => {
-  const InputClass = classNames(className, stls.input);
-  return <input className={InputClass} {...props} />
-}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, errors, ...props }, ref): JSX.Element => {
+
+  const inputWrapperClass = classNames(className, stls.inputWrapper)
+
+  const InputClass = classNames(stls.input, {
+    [stls.errorInput]: errors
+  });
+
+  return (
+    <div className={inputWrapperClass}>
+      <input className={InputClass} {...props} ref={ref} />
+      {errors && <span>{errors.message}</span>}
+    </div>
+  )
+})
+
+Input.displayName = 'Input';
+export { Input };

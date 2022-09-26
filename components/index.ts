@@ -14,3 +14,5 @@ export * from './SeoBlock/SeoBlock';
 export * from './Skills/Skills';
 export * from './TextArea/TextArea';
 export * from './Product/Product';
+export * from './Review/Review';
+export * from './ReviewForm/ReviewForm';

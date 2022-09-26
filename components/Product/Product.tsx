@@ -4,7 +4,7 @@ import { OpenStaticType, ProductProps } from './Product.props';
 import stls from './Product.module.css';
 import Image from 'next/image';
 import { getFormatter, translateWordToCase } from '../../utils/helpers';
-import { Devider, P, Card, Raiting, Tag, HTag, Button } from '..';
+import { Devider, P, Card, Raiting, Tag, HTag, Button, Review, ReviewForm } from '..';
 import { ReviewsDeclinations } from '../../const';
 import { Characteristic } from '../Characteristic/Characteristic';
 import { useState } from 'react';
@@ -12,16 +12,20 @@ import { useState } from 'react';
 
 export const Product: NextPage<ProductProps> = ({ className, product, ...props }) => {
 
+  const { title, image, price, oldPrice, credit, categories,
+    description, characteristics, tags, advantages, disAdvantages, reviews, _id } = product;
+
   const formatter = getFormatter();
   const ProductClass = classNames(className, stls.product);
-  const reviewsText = `${product.reviewCount}${translateWordToCase(product.reviewCount, ReviewsDeclinations)}`
+  const reviewsText = `${product.reviewCount} ${translateWordToCase(product.reviewCount, ReviewsDeclinations)}`
+  const [reviewsForm, setReviewsForm] = useState<boolean>(false);
   const [openStatic, setOpenStatic] = useState<OpenStaticType>(
     { price: false, credit: false, rating: false, advantages: false, disadvantages: false }
-  )
+  );
 
   function hanlderStaticOpen<B extends boolean>(p: B, c: B, r: B, a: B, da: B) {
     setOpenStatic({ price: p, credit: c, rating: r, advantages: a, disadvantages: da })
-  }
+  };
 
   const f = false;
   const osP = openStatic.price;
@@ -38,9 +42,9 @@ export const Product: NextPage<ProductProps> = ({ className, product, ...props }
         <div className={stls.logo} >
           <Image
             layout='fixed'
-            src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
-            blurDataURL={process.env.NEXT_PUBLIC_DOMAIN + product.image}
-            alt={product.title}
+            src={process.env.NEXT_PUBLIC_DOMAIN + image}
+            blurDataURL={process.env.NEXT_PUBLIC_DOMAIN + image}
+            alt={title}
             width={70}
             height={70}
             placeholder='blur'
@@ -48,25 +52,25 @@ export const Product: NextPage<ProductProps> = ({ className, product, ...props }
         </div>
 
         <div className={stls.title} >
-          <HTag tag='h3' >{product.title}</HTag>
+          <HTag tag='h3' >{title}</HTag>
         </div>
 
         <Button className={stls.priceToggle}
           onClick={() => hanlderStaticOpen(!osP, f, f, osA, osDA)}
         >Цена</Button>
         <div className={classNames(stls.price, { [stls.priceOpen]: osP })} >
-          <span>{formatter.format(product.price)}</span>
-          {product.oldPrice &&
+          <span>{formatter.format(price)}</span>
+          {oldPrice &&
             <Tag color='green' className={stls.discount}
-            > {formatter.format(product.price - product.oldPrice)}
+            > {formatter.format(price - oldPrice)}
             </Tag>}
         </div>
 
         <Button className={stls.сreditToggle}
           onClick={() => hanlderStaticOpen(f, !osC, f, osA, osDA)}
-        >Кредит</Button>
+        >В кредит</Button>
         <span className={classNames(stls.credit, { [stls.creditOpen]: osC })}
-        > {formatter.format(product.credit)}/<span>мес</span>
+        > {formatter.format(credit)}/<span>мес</span>
         </span>
 
         <Button className={stls.ratingToggle}
@@ -75,7 +79,7 @@ export const Product: NextPage<ProductProps> = ({ className, product, ...props }
         <Raiting className={classNames(stls.rating, { [stls.ratingOpen]: osR })} />
 
         <div className={stls.tags}>
-          {product.categories.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
+          {categories.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
         </div>
 
         <span className={stls.cost}>цена</span>
@@ -84,19 +88,19 @@ export const Product: NextPage<ProductProps> = ({ className, product, ...props }
 
         <Devider className={stls.hr} id='hr1' />
 
-        <P className={stls.description} >{product.description}</P>
+        <P className={stls.description} >{description}</P>
 
         <div className={stls.fich}>
-          <Characteristic characteristics={product.characteristics} />
+          <Characteristic characteristics={characteristics} />
           <div className={stls.suretyWrapper} >
             <div className={stls.surety} >
-              {product.tags.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
+              {tags.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
             </div>
           </div>
         </div>
 
         <div className={stls.advantageBlock}>
-          {product.advantages &&
+          {advantages &&
             <>
               <Button className={stls.advantagesToggle}
                 onClick={() => hanlderStaticOpen(osP, osC, osR, !osA, f)}
@@ -105,10 +109,10 @@ export const Product: NextPage<ProductProps> = ({ className, product, ...props }
                 className={classNames(stls.advantages, { [stls.advantagesOpen]: osA })}
               >
                 <div>Преимущества</div>
-                {product.advantages}
+                {advantages}
               </div>
             </>}
-          {product.disAdvantages &&
+          {disAdvantages &&
             <>
               <Button className={stls.disAdvantagesToggle}
                 onClick={() => hanlderStaticOpen(osP, osC, osR, f, !osDA)}
@@ -116,7 +120,7 @@ export const Product: NextPage<ProductProps> = ({ className, product, ...props }
               <div className={classNames(stls.disAdvantages, { [stls.disAdvantagesOpen]: osDA })}
               >
                 <div>Недостатки</div>
-                {product.disAdvantages}
+                {disAdvantages}
               </div>
             </>}
         </div>
@@ -125,9 +129,19 @@ export const Product: NextPage<ProductProps> = ({ className, product, ...props }
 
         <div className={stls.buttonsBlock} >
           <Button appearance >Узнать подробнее</Button>
-          <Button arrow='right' >Читать отзывы</Button>
+          <Button
+            arrow={reviewsForm ? 'down' : 'right'}
+            onClick={() => setReviewsForm(!reviewsForm)}
+          >Читать отзывы</Button>
         </div>
 
+      </Card>
+      <Card
+        color='blue'
+        className={classNames(stls.reviewsForm, { [stls.reviewsFormOpen]: reviewsForm })}
+      >
+        {reviews.map(review => <Review key={review._id} review={review} />)}
+        <ReviewForm productId={_id} />
       </Card>
     </div>
 

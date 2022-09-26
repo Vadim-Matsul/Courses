@@ -1,7 +1,7 @@
 
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { wrapperLayoutHOC } from '../../layout';
 import { MenuItem } from '../../types/menu.types';
 import { CATEGORY, firstLevelData, HTTP, MenuDataRoutes, NumbersData } from '../../const';

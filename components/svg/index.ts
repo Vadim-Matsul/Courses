@@ -7,3 +7,5 @@ export * from './svg-components/Rating/Rating';
 export * from './svg-components/CheckMark/CheckMark';
 export * from './svg-components/Sort/Sort';
 export * from './svg-components/Magnifier/Magnifier';
+export * from './svg-components/User/User'
+export * from './svg-components/MiniClose/MiniClose';

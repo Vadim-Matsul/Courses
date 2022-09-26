@@ -1,19 +1,34 @@
 import classNames from 'classnames';
 import { NextPage } from 'next';
+import React from 'react';
 import { useEffect, useState, KeyboardEvent } from 'react';
 import { Star } from '../../svg';
 import stls from '../Raiting.module.css';
 import { DinamicRaitingProps } from '../Raiting.props';
 
-const DinamicRaiting: NextPage<DinamicRaitingProps> = ({currentRating = 0}) => {
+const DinamicRaiting = React.forwardRef<HTMLDivElement, DinamicRaitingProps>((props, ref) => {
+  const { className, currentRating, setRating, errors, ...propsDinamic } = props;
 
-  const [rating, setRating] = useState<number>(currentRating);
+  const [rating, setRatingState] = useState<number>(currentRating);
   const [stars, setStars] = useState<JSX.Element[]>(new Array(5).fill(<></>));
+  console.log('rating', rating);
 
+
+  const starsWrapperClass = classNames(className, {
+    [stls.wrapperStarsError]: errors
+  })
+
+  useEffect(() => setRatingState(currentRating ?? 0), [currentRating]);
   useEffect(() => {
     constructRaiting(rating);
-    //eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rating])
+
+
+  const onClick = (rating: number): void => {
+    setRating(rating)
+    handleStarActive(rating, true)
+  }
 
   function constructRaiting(quantity: number) {
 
@@ -28,7 +43,7 @@ const DinamicRaiting: NextPage<DinamicRaitingProps> = ({currentRating = 0}) => {
           className={stls.enabled}
           onMouseEnter={() => handleStarActive(i + 1)}
           onMouseLeave={() => handleStarActive(rating)}
-          onClick={() => handleStarActive(i + 1, true)}
+          onClick={() => onClick(i + 1)}
         >
           <Star
             className={starsClass}
@@ -43,18 +58,19 @@ const DinamicRaiting: NextPage<DinamicRaitingProps> = ({currentRating = 0}) => {
 
   function handleStarActive(current: number, shouldSetRating?: boolean, evt?: KeyboardEvent<SVGElement>) {
     if (evt && evt.code !== 'Space') return
-    shouldSetRating && setRating(current);
+    shouldSetRating && setRatingState(current);
 
     constructRaiting(current);
   }
 
 
   return (
-    <>
+    <div {...propsDinamic} ref={ref} className={starsWrapperClass}>
       {stars.map((star, i) => <span key={i} >{star}</span>)}
-    </>
+      {errors && <div>{errors.message}</div>}
+    </div>
   );
-};
+});
 
-
+DinamicRaiting.displayName = 'DinamicRaiting';
 export default DinamicRaiting;

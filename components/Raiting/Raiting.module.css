@@ -1,3 +1,22 @@
+.wrapperStarsError {
+  position: relative;
+}
+
+
+.wrapperStarsError > span > span > svg {
+  stroke: var(--red);
+}
+.wrapperStarsError > div {
+  display: inline;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  top: 20px;
+  left: 0;
+  color: var(--red);
+}
+
 .star {
   margin-right: 5px;
 }

@@ -5,11 +5,12 @@ import { Arrow } from '../../svg';
 import stls from './Button.module.css';
 
 
-export const Button: NextPage<ButtonProps> = ({ appearance, arrow = 'none', className, children, ...props }) => {
+export const Button: NextPage<ButtonProps> = ({ disabled, appearance, arrow = 'none', className, children, ...props }) => {
 
   const ButtonClass = classNames(stls.button, className, {
     [stls.primary]: appearance,
-    [stls.ghost]: !appearance
+    [stls.ghost]: !appearance,
+    [stls.disabled]: disabled
   });
 
   const ArrowClass = classNames(stls.arrow, {
@@ -19,8 +20,9 @@ export const Button: NextPage<ButtonProps> = ({ appearance, arrow = 'none', clas
 
   return (
     <button
-      {...props}
       className={ButtonClass}
+      {...props}
+      disabled={disabled}
     >{children}
       {arrow !== 'none' && <Arrow className={ArrowClass} />}
     </button>

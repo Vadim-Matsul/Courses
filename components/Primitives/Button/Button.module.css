@@ -46,3 +46,13 @@
 .ghost:hover svg {
   fill: var(--white);
 }
+
+.disabled {
+  background: var(--grey-lite);
+  color: var(--black);
+  font-weight: 600;
+}
+
+.disabled:hover {
+  background: var(--grey);
+}

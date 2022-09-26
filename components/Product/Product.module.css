@@ -1,7 +1,7 @@
 .product {
   display: grid;
   padding: 30px;
-  margin-bottom: 30px;
+  margin-top: 30px;
   grid-template-columns: [start] 70px [logoend] 20px [starttitle] calc(50% - 90px) [middle] 1fr [startprice] auto [endprice] 30px [startcredit] auto [endcredit] 20px [startrating] auto [end];
 }
 
@@ -39,12 +39,9 @@
   grid-column: middle/end;
 }
 
-
-
 .hr {
   margin: 18px 0 22px 0;
 }
-
 
 .suretyWrapper {
   width: 50%;
@@ -147,9 +144,22 @@
 .сreditToggle,
 .ratingToggle,
 .advantagesToggle,
-.disAdvantagesToggle {
-  display: none;
+.disAdvantagesToggle,
+.reviewsForm {
+  overflow: hidden;
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
 }
+
+.reviewsFormOpen {
+  overflow: auto;
+  height: auto;
+  width: auto;
+  padding: 30px;
+}
+
 
 @media(max-width: 1310px){
 
@@ -255,6 +265,10 @@
     width: 100%;
     border-radius: 20px;
     grid-row: 3/4;
+    overflow: auto;
+    height: auto;
+    width: auto;
+    padding: 5px 7px;
   }
 
   .priceToggle {
@@ -271,22 +285,24 @@
 
   .cost,
   .inCredit,
-  .reviews,
-  .advantages,
-  .disAdvantages {
+  .reviews {
     display: none;
   }
 
   .price,
   .credit,
-  .rating {
-    display: none;
+  .rating,
+  .advantages,
+  .disAdvantages {
+    height: 0px;
+    overflow: hidden;
   }
 
   .priceOpen,
   .creditOpen,
   .ratingOpen {
-    display: block;
+    height: auto;
+    overflow: auto;
     grid-row: 4/5;
     grid-column: starttitle/endrating;
     margin: 5px 0;
@@ -313,6 +329,9 @@
 
   .advantagesToggle,
   .disAdvantagesToggle{
+    width: auto;
+    height: auto;
+    padding: 7px;
     display: block;
     margin: 0;
     grid-row: 1/2;
@@ -337,12 +356,12 @@
 
   .advantagesOpen, 
   .disAdvantagesOpen {
+    height: auto;
+    overflow: auto;
     margin-top: 8px;
     display: block;
     grid-row: 2/3;
     grid-column: start / end;
     margin-bottom: 0;
   }
-
-  
 }

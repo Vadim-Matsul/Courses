@@ -5,6 +5,7 @@ export enum HTTP {
   SIDEBAR_NAV = '/api/top-page/find',
   CURRENT_PAGE = '/api/top-page/byAlias/',
   ANOTHER_PRODUCTS = '/api/product/find',
+  POSTREVIEW = '/api/review/create-demo'
 }
 
 export enum CATEGORY {
@@ -40,10 +41,9 @@ export enum SortProductsOptions {
 }
 
 
-
 export const firstLevelData: MenuData[] = [
   { title: MenuDataTitle.COURSES, id: CATEGORY.COURSES, route: MenuDataRoutes.COURSES, icon: UndergraduateHelmet },
   { title: MenuDataTitle.SERVICES, id: CATEGORY.SERVIСES, route: MenuDataRoutes.SERVICES, icon: ServicesCloud }
 ]
 
-export const ReviewsDeclinations:[string, string, string] = ['отзыв', 'отзыва', 'отзывов'];
+export const ReviewsDeclinations: [string, string, string] = ['отзыв', 'отзыва', 'отзывов'];

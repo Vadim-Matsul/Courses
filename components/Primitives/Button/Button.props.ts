@@ -1,8 +1,7 @@
-import React from 'react';
-import { DetailedProps } from '../../svg/types';
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
-export interface ButtonProps extends DetailedProps<HTMLButtonElement> {
+export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   appearance?: boolean,
-  arrow?: 'right' | 'down' | 'none'
+  arrow?: 'right' | 'down' | 'none',
   children: React.ReactNode
 }

@@ -1,5 +1,10 @@
-.textarea {
+.textAreaWrapper {
+  position: relative;
+}
 
+.textarea {
+  resize: none;
+  width: 95%;
   padding: 7px 12px;
 
   border: none;
@@ -15,4 +20,28 @@
 
 .textarea::placeholder {
   color: var(--grey-medium);
+}
+
+.textAreaError {
+  border: 1px solid var(--red);
+}
+
+.textAreaWrapper > span {
+  position: absolute;
+  top: 52px;
+  left: 5px;
+  color: var(--red);
+}
+
+.textarea::-webkit-scrollbar {
+  width: 8px;
+  background: var(--grey-lite);
+  border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: var(--primary);
+  border-radius: 3px;
 }
