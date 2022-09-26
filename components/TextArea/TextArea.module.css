@@ -3,19 +3,21 @@
 }
 
 .textarea {
-  resize: none;
   width: 95%;
   padding: 7px 12px;
 
-  border: none;
-  outline-color: var(--primary);
-  color: var(--black);
-  font-family: var(--font-family);
+  resize: none;
 
+  color: var(--black);
+
+  border: none;
+  border-radius: 5px;
+  outline-color: var(--primary);
 
   background: var(--white);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05); 
-  border-radius: 5px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+
+  font-family: var(--font-family);
 }
 
 .textarea::placeholder {
@@ -30,18 +32,21 @@
   position: absolute;
   top: 52px;
   left: 5px;
+
   color: var(--red);
 }
 
 .textarea::-webkit-scrollbar {
   width: 8px;
-  background: var(--grey-lite);
+
   border-radius: 4px;
+  background: var(--grey-lite);
 }
 
 .textarea::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
-  background: var(--primary);
+
   border-radius: 3px;
+  background: var(--primary);
 }

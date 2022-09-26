@@ -4,9 +4,10 @@
 }
 
 body {
-  font-family: "Noto Sans", sans-serif;
   color: var(--black);
   background: #E5E5E5;
+
+  font-family: "Noto Sans", sans-serif;
 }
 
 :root {
@@ -17,12 +18,11 @@ body {
   --grey-dark: #787D85;
   --white: white;
   --primary: #7653FC;
-  --primary-hover: #4f30c8;
+  --primary-hover: #4F30C8;
   --green: #1DC37E;
-  --green-hover: #0f965e;
+  --green-hover: #0F965E;
   --green-lite: #C8F8E4;
   --red: #FC836D;
-  --red-hover: #ca533e;
-
+  --red-hover: #CA533E;
   --font-family: "Noto Sans", sans-serif;
 }

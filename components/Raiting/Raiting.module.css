@@ -2,18 +2,21 @@
   position: relative;
 }
 
-
 .wrapperStarsError > span > span > svg {
   stroke: var(--red);
 }
+
 .wrapperStarsError > div {
-  display: inline;
   position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 150px;
   top: 20px;
   left: 0;
+
+  display: inline;
+
+  width: 150px;
+  margin: 0;
+  padding: 0;
+
   color: var(--red);
 }
 
@@ -23,7 +26,8 @@
 
 .filled {
   fill: var(--primary);
-  transition: all 0.2s ease-in ;
+
+  transition: all 0.2s ease-in;
 }
 
 .enabled {

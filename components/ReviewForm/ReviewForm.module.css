@@ -1,12 +1,14 @@
-.reviewForm{
+.reviewForm {
   display: grid;
   grid-template-columns: [start] auto [first] 1fr [seccond] auto [end];
+
   align-items: center;
   gap: 20px 30px;
+
   margin-top: 20px;
 }
 
-.firstname{
+.firstname {
   grid-column: start/first;
 }
 
@@ -23,8 +25,8 @@
 }
 
 .rating > span {
-  font-weight: 400;
   font-size: 14px;
+  font-weight: 400;
   line-height: 19px;
 }
 
@@ -33,56 +35,64 @@
   grid-row: 2/3;
 }
 
-.submit{
+.submit {
   display: grid;
   grid-column: [startsubmit] auto [endbutton] 1fr [endsubmit];
   grid-column: start/end;
   gap: 0 30px;
+
   align-items: center;
 }
 
 .submit > button {
   grid-row: 1/2;
+
   margin: 0;
 }
 
 .submit > span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
   grid-column: endbutton/endsubmit;
   grid-row: 1/2;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
 }
 
 .successfullySubmit {
   position: relative;
-  grid-column: start/end;
-  padding: 10px;
-  background: var(--green-lite);
+
   margin-top: 5px;
+  padding: 10px;
+
   border-radius: 10px;
+  background: var(--green-lite);
+  grid-column: start/end;
 }
 
 .successfullySubmit > span {
   color: var(--black);
-  font-weight: 700;
+
   font-size: 16px;
+  font-weight: 700;
   line-height: 32px;
 }
 
 .rejectedSubmit {
   position: relative;
-  grid-column: start/end;
-  padding: 10px;
-  background: var(--red);
+
   margin-top: 5px;
+  padding: 10px;
+
   border-radius: 10px;
+  background: var(--red);
+  grid-column: start/end;
 }
 
 .rejectedSubmit > span {
   color: var(--black);
-  font-weight: 700;
+
   font-size: 16px;
+  font-weight: 700;
   line-height: 32px;
 }
 
@@ -90,8 +100,10 @@
   position: absolute;
   top: 5px;
   right: 5px;
+
   cursor: pointer;
 }
+
 .rejectedSubmit > svg > line {
   stroke: var(--green);
 }
@@ -104,81 +116,93 @@
   position: absolute;
   top: 5px;
   right: 5px;
+
   cursor: pointer;
 }
 
-@media(max-width: 1200px){
-
+@media (max-width: 1200px) {
   .reviewForm {
     grid-template-columns: [start] auto [middle] auto [end];
   }
 
- .title {
+  .title {
     grid-column: start/end;
     grid-row: 1/2;
- }
- .firstname{
-  grid-column: start/middle;
-  grid-row: 2/3;
-}
-.rating{
-  grid-template-columns: [startrating] auto [middlerating] auto [endrating];
-  grid-column: middle/end;
-  grid-row: 2/3;
+  }
+
+  .firstname {
+    grid-column: start/middle;
+    grid-row: 2/3;
+  }
+
+  .rating {
+    grid-template-columns: [startrating] auto [middlerating] auto [endrating];
+    grid-column: middle/end;
+    grid-row: 2/3;
+  }
+
+  .rating > span {
+    grid-column: startrating / middlerating;
+    justify-self: right;
+  }
+
+  .rating > button {
+    grid-column: middlerating / endrating;
+    justify-self: left;
+  }
+
+  .description {
+    grid-column: start / end;
+    grid-row: 3/4;
+  }
+
+  .submit {
+    grid-template-columns: [startsubmit] 1fr [endsubmit];
+    grid-row: 4/5;
+  }
+
+  .submit > button {
+    grid-column: startsubmit/endsubmit;
+    grid-row: 1/2;
+    justify-self: left;
+
+    margin-bottom: 15px;
+  }
+
+  .submit > span {
+    grid-column: startsubmit/endsubmit;
+    grid-row: 2/3;
+  }
 }
 
-.rating > span {
-  grid-column: startrating / middlerating;
-  justify-self: right;
-}
-
-.rating > button {
-  grid-column: middlerating / endrating;
-  justify-self: left;
-}
-
-.description {
-  grid-column: start / end;
-  grid-row: 3/4;
-}
-.submit{
-  grid-template-columns: [startsubmit] 1fr [endsubmit];
-  grid-row: 4/5;
-}
-
-.submit > button {
-  grid-column: startsubmit/endsubmit;
-  grid-row: 1/2;
-  justify-self: left;
-  margin-bottom: 15px;
-}
-.submit > span {
-  grid-column: startsubmit/endsubmit;
-  grid-row: 2/3;
-}
-}
-
-@media(max-width: 900px){
+@media (max-width: 900px) {
   .reviewForm {
-    border: 1px solid var(--grey);
     padding: 15px;
+
+    border: 1px solid var(--grey);
     border-radius: 20px;
   }
+
   .rating {
     justify-self: left;
     grid-column: start/end;
     grid-row: 3/4;
+
     margin-left: 10px;
   }
+
   .firstname {
     grid-column: start/end;
     justify-self: left;
   }
+
   .description {
     grid-row: 4/5;
   }
+
   .submit {
     grid-row: 5/6;
+
     margin-bottom: 5px;
   }
 }

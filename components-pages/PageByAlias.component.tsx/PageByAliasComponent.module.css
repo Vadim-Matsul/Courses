@@ -4,6 +4,7 @@
 .title {
   display: grid;
   grid-template-columns: auto 1fr auto;
+
   align-items: baseline;
   justify-items: left;
   gap: 40px 20px;
@@ -13,23 +14,25 @@
   margin-top: 17px;
 }
 
-.hhWrapper{
+.hhWrapper {
   margin-top: 51px;
 }
 
 .hhTitle {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items:  baseline;
+
+  align-items: baseline;
   justify-items: left;
   gap: 21px;
 }
 
-@media(max-width: 950px){
+@media (max-width: 950px) {
   .hhTitle {
     grid-template-columns: 62px 1fr;
     grid-template-rows: 1fr;
-    align-items:  center;
+
+    align-items: center;
     justify-items: left;
     gap: 5px;
   }
@@ -46,16 +49,15 @@
   .title {
     display: grid;
     grid-template-columns: 40px 1fr auto;
+
     align-items: center;
     justify-items: left;
     gap: 0 20px;
   }
 
-    .title > div:nth-child(2) {
-      justify-self: right;
-      grid-column: 1/2;
-      grid-row: 1/2;
-    }
-
+  .title > div:nth-child(2) {
+    justify-self: right;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
 }
-

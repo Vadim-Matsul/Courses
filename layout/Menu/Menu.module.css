@@ -4,24 +4,26 @@
 
 .menu > div > a {
   text-decoration: none;
+
   color: var(--grey-dark);
 }
 
 .firstLevel {
   display: grid;
   align-items: center;
-  grid-template-columns: 24px 1fr;
-  gap: 0px 20px;
+
+  font-size: 18px;
 
   font-weight: 500;
-  font-size: 18px;
   line-height: 25px;
+  grid-template-columns: 24px 1fr;
+  gap: 0 20px;
 }
 
 .firstLevel:hover,
-.firstLevel:hover svg{
+.firstLevel:hover svg {
   color: var(--primary);
-  fill: var(--primary)
+  fill: var(--primary);
 }
 
 .firstLevelActive {
@@ -33,36 +35,44 @@
 }
 
 .secondLevelBlock {
-  border-left: 1px solid #cfa2a2;
   margin: 15px 0 24px 12px;
   padding: 11px 0 11px 32px;
+
+  border-left: 1px solid #CFA2A2;
 }
 
-.secondLevel{
-  color: var(--grey-dark);
+.secondLevel {
   cursor: pointer;
-  font-weight: 300;
+
+  color: var(--grey-dark);
+
   font-size: 12px;
+  font-weight: 300;
   line-height: 16px;
 }
 
 .thirdLevelBlock {
   display: none;
-  margin: 10px 0 20px 0;
+
+  margin: 10px 0 20px;
 }
 
 .thirdLevelBlockActive {
-  display: block
+  display: block;
 }
 
-.thirdLevel{
+.thirdLevel {
   display: block;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  text-decoration: none;
+
   margin-bottom: 10px;
+
+  text-decoration: none;
+
   color: var(--grey-dark);
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
 }
 
 .thirdLevel::first-letter {

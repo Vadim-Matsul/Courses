@@ -1,55 +1,61 @@
 .tag {
   display: inline-block;
-  background: none;
-  text-align: center;
+
   margin: 0 5px 0 0;
   padding: 5px 10px;
+
+  text-align: center;
+
   border-radius: 20px;
+  background: none;
 }
+
 /* Size */
 .small {
-  font-weight: 500;
   font-size: 12px;
+  font-weight: 500;
   line-height: 12px;
 }
 
 .medium {
-  font-weight: 700;
   font-size: 12px;
+  font-weight: 700;
   line-height: 16px;
 }
 
 .large {
-  font-weight: 700;
   font-size: 14px;
+  font-weight: 700;
   line-height: 19px;
 }
+
 /* Colors */
 .grey {
-  background: #B3C0D9;
   color: var(--white);
+  background: #B3C0D9;
 }
 
 .ghost {
-  border: 1px solid #EBEBEB
+  border: 1px solid #EBEBEB;
 }
 
 .green {
-  background: var(--green-lite);
   color: var(--green);
+  background: var(--green-lite);
 }
 
 .red {
-  background: #DE0000;
   color: var(--white);
+  background: #DE0000;
 }
 
 .primary {
-  border: 1px solid var(--primary);
-  color: var(--primary);
   cursor: pointer;
+
+  color: var(--primary);
+  border: 1px solid var(--primary);
 }
+
 .primary a {
   text-decoration: none;
 }
-

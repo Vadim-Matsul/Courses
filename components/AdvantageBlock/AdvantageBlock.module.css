@@ -1,24 +1,23 @@
 .aBlockWrapper {
-  margin: 47px 0 30px 0;
+  margin: 47px 0 30px;
 }
 
-
-
 .advantageWrapper > section {
-  margin: 27px 0 30px 0;
+  margin: 27px 0 30px;
 }
 
 .advantageWrapper > section:hover > div > svg > circle {
-  fill: #41ffb0;
+  fill: #41FFB0;
 }
 
-.advantageWrapper > section:hover > div > svg > g > path  {
- fill: #5db08e;
+.advantageWrapper > section:hover > div > svg > g > path {
+  fill: #5DB08E;
 }
 
 .advantageTitle {
   display: grid;
   grid-template-columns: 50px 1fr;
+
   align-items: center;
   gap: 0 40px;
 }
@@ -26,11 +25,13 @@
 .advantageDescription {
   margin: 17px 0 0 25px;
   padding-left: 65px;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 29px;
+
   color: var(--black);
   border-left: 1px solid #D2D2D2;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 29px;
 }
 
 .aStaticText {

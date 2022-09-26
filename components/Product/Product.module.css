@@ -1,37 +1,46 @@
 .product {
   display: grid;
-  padding: 30px;
+
   margin-top: 30px;
+  padding: 30px;
   grid-template-columns: [start] 70px [logoend] 20px [starttitle] calc(50% - 90px) [middle] 1fr [startprice] auto [endprice] 30px [startcredit] auto [endcredit] 20px [startrating] auto [end];
 }
 
-.logo{
+.logo {
   grid-column: start/logoend;
   grid-row: 1/ span 2;
 }
 
-.title, .tags {
+.title,
+.tags {
   grid-column: starttitle/middle;
 }
 
-.price, .cost {
+.price,
+.cost {
   grid-column: startprice/endprice;
 }
-.credit, .inCredit {
+
+.credit,
+.inCredit {
   grid-column: startcredit/endcredit;
 }
 
-.rating, .reviews{
+.rating,
+.reviews {
   grid-column: startrating/end;
 }
 
 .hr {
   grid-column: start/end;
 }
-.description, .buttonsBlock {
+
+.description,
+.buttonsBlock {
   grid-column: start/end;
 }
-.fich{
+
+.fich {
   grid-column: start/middle;
 }
 
@@ -40,7 +49,7 @@
 }
 
 .hr {
-  margin: 18px 0 22px 0;
+  margin: 18px 0 22px;
 }
 
 .suretyWrapper {
@@ -49,19 +58,22 @@
 }
 
 .surety {
-  height: 50px;
   overflow: scroll;
   overflow-x: hidden;
+
+  height: 50px;
 }
 
 .surety::-webkit-scrollbar {
-  background: var(--grey-lite);;
   width: 4px;
+
   border-radius: 2px;
+  background: var(--grey-lite);
 }
+
 .surety::-webkit-scrollbar-thumb {
-  background: var(--primary);
   border-radius: 2px;
+  background: var(--primary);
 }
 
 .logo > span > img {
@@ -77,22 +89,22 @@
 
 .price > span,
 .credit {
-  font-weight: 400;
   font-size: 20px;
+  font-weight: 400;
   line-height: 27px;
 }
 
 .credit > span {
-  font-weight: normal;
   font-size: 14px;
+  font-weight: normal;
   line-height: 19px;
 }
 
 .cost,
 .inCredit,
 .reviews {
-  font-weight: 300;
   font-size: 14px;
+  font-weight: 300;
   line-height: 19px;
 }
 
@@ -102,41 +114,47 @@
 
 .discount {
   position: relative;
-  margin-left: 10px;
   top: -4px;
+
+  margin-left: 10px;
 }
 
 .description {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
   margin-bottom: 14px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .tags > div {
   margin-top: 7px;
 }
 
-.advantageBlock > div > div{
-  color: var(--black);
+.advantageBlock > div > div {
   margin-bottom: 5px;
-  font-weight: 700;
+
+  color: var(--black);
+
   font-size: 16px;
+  font-weight: 700;
   line-height: 22px;
 }
 
 .advantages,
 .disAdvantages {
-  border-radius: 2px;
   padding-left: 15px;
+
+  border-radius: 2px;
 }
 
 .advantages {
-  border-left: 2px solid var(--green);
   margin-bottom: 25px;
+
+  border-left: 2px solid var(--green);
 }
 
-.disAdvantages{
+.disAdvantages {
   border-left: 2px solid var(--red);
 }
 
@@ -147,76 +165,22 @@
 .disAdvantagesToggle,
 .reviewsForm {
   overflow: hidden;
-  height: 0;
+
   width: 0;
-  padding: 0;
+  height: 0;
   margin: 0;
+  padding: 0;
 }
 
 .reviewsFormOpen {
   overflow: auto;
-  height: auto;
+
   width: auto;
+  height: auto;
   padding: 30px;
 }
 
-
-@media(max-width: 1310px){
-
-    .product {
-      grid-template-columns: [start] 70px [logoend] 20px [starttitle] auto [endprice] 30px [startcredit] auto [endcredit] 30px [startrating] auto [endrating] 20px [startequal] auto [end];
-    }
-
-    .logo {
-      grid-column: start/logoend;
-      grid-row: 1/ span 2;
-      margin-bottom: 20px;
-    }
-    
-    .title, .tags  {
-      grid-column: starttitle/end;
-    }
-    .tags{
-      grid-row: 2/3;
-    }
-
-    .price, .cost {
-      grid-column: start/endprice;
-    }
-    .credit, .inCredit {
-      grid-column: startcredit/endcredit;
-    }
-    
-    .rating, .reviews{
-      grid-column: startrating/end;
-    }
-
-    .suretyWrapper {
-      margin-bottom: 30px;
-      width: 100%;
-    }
-
-    .surety {
-      height: auto;
-      overflow: auto;
-    }
-
-    .fich,
-    .hr,
-    .description,
-    .buttonsBlock,
-    .advantageBlock {
-      grid-column: start/end;
-    }
-   
-}
-
-
-
-
-@media(min-width: 766px){
-  @media(max-width: 1000px){
-
+@media (max-width: 1310px) {
   .product {
     grid-template-columns: [start] 70px [logoend] 20px [starttitle] auto [endprice] 30px [startcredit] auto [endcredit] 30px [startrating] auto [endrating] 20px [startequal] auto [end];
   }
@@ -224,25 +188,43 @@
   .logo {
     grid-column: start/logoend;
     grid-row: 1/ span 2;
+
     margin-bottom: 20px;
   }
-  
-  .title, .tags  {
+
+  .title,
+  .tags {
     grid-column: starttitle/end;
   }
-  .tags{
+
+  .tags {
     grid-row: 2/3;
   }
 
+  .price,
+  .cost {
+    grid-column: start/endprice;
+  }
+
+  .credit,
+  .inCredit {
+    grid-column: startcredit/endcredit;
+  }
+
+  .rating,
+  .reviews {
+    grid-column: startrating/end;
+  }
 
   .suretyWrapper {
-    margin-bottom: 30px;
     width: 100%;
+    margin-bottom: 30px;
   }
 
   .surety {
-    height: auto;
     overflow: auto;
+
+    height: auto;
   }
 
   .fich,
@@ -252,23 +234,65 @@
   .advantageBlock {
     grid-column: start/end;
   }
- 
+}
+
+@media (min-width: 766px) {
+  @media (max-width: 1000px) {
+    .product {
+      grid-template-columns: [start] 70px [logoend] 20px [starttitle] auto [endprice] 30px [startcredit] auto [endcredit] 30px [startrating] auto [endrating] 20px [startequal] auto [end];
+    }
+
+    .logo {
+      grid-column: start/logoend;
+      grid-row: 1/ span 2;
+
+      margin-bottom: 20px;
+    }
+
+    .title,
+    .tags {
+      grid-column: starttitle/end;
+    }
+
+    .tags {
+      grid-row: 2/3;
+    }
+
+    .suretyWrapper {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .surety {
+      overflow: auto;
+
+      height: auto;
+    }
+
+    .fich,
+    .hr,
+    .description,
+    .buttonsBlock,
+    .advantageBlock {
+      grid-column: start/end;
+    }
   }
 }
 
-@media (max-width: 1050px){
-    
+@media (max-width: 1050px) {
   .priceToggle,
   .сreditToggle,
   .ratingToggle {
     display: block;
+    overflow: auto;
+
     width: 100%;
+    width: auto;
+    height: auto;
+    padding: 5px 7px;
+
     border-radius: 20px;
     grid-row: 3/4;
-    overflow: auto;
-    height: auto;
-    width: auto;
-    padding: 5px 7px;
   }
 
   .priceToggle {
@@ -294,21 +318,22 @@
   .rating,
   .advantages,
   .disAdvantages {
-    height: 0px;
     overflow: hidden;
+
+    height: 0;
   }
 
   .priceOpen,
   .creditOpen,
   .ratingOpen {
-    height: auto;
     overflow: auto;
+
+    height: auto;
+    margin: 5px 0;
     grid-row: 4/5;
     grid-column: starttitle/endrating;
-    margin: 5px 0;
     justify-self: center;
   }
-
 
   .ratingOpen {
     margin-left: -10px;
@@ -319,32 +344,35 @@
     margin-bottom: 20px;
   }
 
-
-  .advantageBlock{
+  .advantageBlock {
     display: grid;
     grid-template-columns: [start] 47% [middle] 47% [end];
     grid-template-rows: auto auto;
-    gap: 0 6%
+    gap: 0 6%;
   }
 
   .advantagesToggle,
-  .disAdvantagesToggle{
+  .disAdvantagesToggle {
+    display: block;
+
     width: auto;
     height: auto;
-    padding: 7px;
-    display: block;
     margin: 0;
-    grid-row: 1/2;
+    padding: 7px;
+
     color: var(--white);
+    grid-row: 1/2;
   }
 
   .advantagesToggle {
     background: var(--green);
     grid-column: start / middle;
   }
+
   .advantagesToggle:hover {
     background: var(--green-hover);
   }
+
   .disAdvantagesToggle {
     background: var(--red);
     grid-column: middle / end;
@@ -354,14 +382,15 @@
     background: var(--red-hover);
   }
 
-  .advantagesOpen, 
+  .advantagesOpen,
   .disAdvantagesOpen {
-    height: auto;
-    overflow: auto;
-    margin-top: 8px;
     display: block;
+    overflow: auto;
+
+    height: auto;
+    margin-top: 8px;
+    margin-bottom: 0;
     grid-row: 2/3;
     grid-column: start / end;
-    margin-bottom: 0;
   }
 }

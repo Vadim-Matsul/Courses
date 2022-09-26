@@ -2,8 +2,10 @@
   display: grid;
   grid-template-columns: 41px 70px auto;
   gap: 0 4px;
+
   align-items: center;
   justify-items: left;
+
   margin-bottom: 20px;
 
   text-decoration: none;
@@ -15,16 +17,19 @@
 
 /* OWL */
 .titleLable > a > span:nth-child(2) {
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 41px;
   margin-left: 4px;
+
   color: var(--primary);
+
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 41px;
 }
 
 .titleLable > a > span:nth-child(3) {
-  font-weight: 200;
-  font-size: 24px;
-  line-height: 33px;
   color: var(--primary);
+
+  font-size: 24px;
+  font-weight: 200;
+  line-height: 33px;
 }
