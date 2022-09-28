@@ -1,15 +1,11 @@
-import classNames from 'classnames'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useContext } from 'react'
-import { ServicesCloud } from '../../../components/svg/svg-components/ServicesCloud/ServicesCloud'
-import { UndergraduateHelmet } from '../../../components/svg/svg-components/UndergraduateHelmet/UndergraduateHelmet'
-import { CATEGORY, MenuDataRoutes, MenuDataTitle } from '../../../const'
+import { useContext, useEffect, useState } from 'react'
+import { MenuDataRoutes } from '../../../const'
 import { MyContext } from '../../../context/AppContext'
-import { MenuData, MenuItem } from '../../../types/menu.types'
+import { MenuItem } from '../../../types/menu.types'
 import stls from '../Menu.module.css';
-import { motion } from 'framer-motion';
 import MenuThirdLevel from './Menu-ThirdLevel'
+import React from 'react';
 
 interface MenuSecondLevelProps {
   menu: MenuItem[],
@@ -19,6 +15,7 @@ interface MenuSecondLevelProps {
 export const MenuSecondLevel: NextPage<MenuSecondLevelProps> = ({ menu, route }) => {
 
   const { setMenu } = useContext(MyContext);
+  const [menuState, setMenuState] = useState<MenuItem[]>(menu)
 
   function handlerOpenCategory(category_name: string): void {
     const updatedMenu = menu.map(category => {
@@ -31,21 +28,35 @@ export const MenuSecondLevel: NextPage<MenuSecondLevelProps> = ({ menu, route })
     setMenu && setMenu(updatedMenu)
   }
 
+
+  function handleTapSpace(evt: React.KeyboardEvent<HTMLSpanElement>, categoryTitle: string): void {
+    if (evt && evt.code === 'Space' || evt.code === 'Enter') {
+      evt.preventDefault();
+      handlerOpenCategory(categoryTitle);
+    }
+  }
+
   return (
     <div className={stls.secondLevelBlock}>
-      {menu.map(category => {
+      {menuState.map(category => {
+
+        
 
         return (
-          <div key={category._id.secondCategory} >
+          <div
+            key={category._id.secondCategory}
+          >
             <span
               className={stls.secondLevel}
               onClick={() => handlerOpenCategory(category._id.secondCategory)}
+              onKeyDown={evt => handleTapSpace(evt, category._id.secondCategory)}
+              tabIndex={0}
             >{category._id.secondCategory.toUpperCase()}</span>
             <MenuThirdLevel category={category} route={route} />
           </div>
         )
       })}
-    </div>
+    </div >
   )
 
 }

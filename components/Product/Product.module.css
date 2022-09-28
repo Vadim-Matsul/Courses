@@ -406,6 +406,4 @@
   .ratingToggle {
     grid-column: startrating/end;
   }
- /* [start] 70px [logoend] 20px [starttitle] auto [endprice] 30px [startcredit] auto [endcredit] 30px [startrating] auto [endrating] 20px [startequal] auto [end]; */
-
 }

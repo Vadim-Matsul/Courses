@@ -30,9 +30,6 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
     { price: false, credit: false, rating: false, advantages: false, disadvantages: false }
   );
 
-  console.log(openStatic);
-
-
   function hanlderStaticOpen<B extends boolean>(p: B, c: B, r: B, a: B, da: B) {
     setOpenStatic({ price: p, credit: c, rating: r, advantages: a, disadvantages: da })
   };
@@ -59,6 +56,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
     hidden: {
       height: 0,
       opacity: 0,
+      overflow: 'hidden'
     },
     visible: {
       height: 'auto',
@@ -205,4 +203,4 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 })
 
 Product.displayName = 'Product';
-export default motion(Product);
+export default React.memo(Product);

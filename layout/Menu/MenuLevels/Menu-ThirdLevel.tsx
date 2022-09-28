@@ -6,6 +6,7 @@ import { MenuDataRoutes } from '../../../const'
 import { MenuItem } from '../../../types/menu.types'
 import { motion } from 'framer-motion';
 import stls from '../Menu.module.css';
+import { useEffect, useLayoutEffect, useMemo } from 'react'
 
 
 interface MenuThirdLevelProps {
@@ -41,16 +42,16 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
 
   const router = useRouter();
 
-  (function () {
-
-    const currentAlias = router.asPath.split('/').pop();
-    const aliasArr = category.pages.map(page => page.alias);
-
-    if (currentAlias && aliasArr.includes(currentAlias)) { category.isOpened = true }
-  })();
-
-
   const thirdLevelBlock = classNames(stls.thirdLevelBlock)
+
+  const categoryAliaSarr = useMemo(() => category.pages.map(aliasBundle => aliasBundle.alias), [category]);
+  const currentAlias = router.asPath.split('/').pop();
+
+  if (currentAlias && categoryAliaSarr.includes(currentAlias)) {
+    category.isOpened = true
+  }
+
+
 
   return (
     <motion.div
@@ -62,11 +63,10 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
     >
       {category.pages.map(page => {
 
-
-        //typeof window !== 'undefined' - заглушка для сервера для несоответствия классов
         const thirdLevelClass = classNames(stls.thirdLevel, {
-          [stls.thirdLevelActive]: typeof window !== 'undefined' && `${route}${page.alias}` == router.asPath
-        })
+          [stls.thirdLevelActive]: `${route}${page.alias}` == router.asPath
+        });
+
 
         return (
           <motion.div
@@ -76,7 +76,10 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
             <Link
               href={route + page.alias}
             >
-              <a className={thirdLevelClass}>{page.alias}</a>
+              <a
+                className={thirdLevelClass}
+                tabIndex={category.isOpened ? 0 : -1}
+              >{page.alias}</a>
             </Link>
           </motion.div>
         )
