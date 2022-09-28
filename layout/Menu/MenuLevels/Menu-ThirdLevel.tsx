@@ -2,20 +2,42 @@ import classNames from 'classnames'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
-import { ServicesCloud } from '../../../components/svg/svg-components/ServicesCloud/ServicesCloud'
-import { UndergraduateHelmet } from '../../../components/svg/svg-components/UndergraduateHelmet/UndergraduateHelmet'
-import { CATEGORY, MenuDataRoutes, MenuDataTitle } from '../../../const'
-import { MyContext } from '../../../context/AppContext'
-import { MenuData, MenuItem, Page } from '../../../types/menu.types'
+import { MenuDataRoutes } from '../../../const'
+import { MenuItem } from '../../../types/menu.types'
+import { motion } from 'framer-motion';
 import stls from '../Menu.module.css';
+
 
 interface MenuThirdLevelProps {
   category: MenuItem,
   route: MenuDataRoutes
 }
 
-export const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
+const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
+
+  const variants = {
+    visible: {
+      marginBottom: 20,
+      transition: {
+        when: 'afterChildren',
+        staggerChildren: 0.05
+      }
+    },
+    hidden: {
+      marginBottom: 10
+    }
+  }
+
+  const variantsChildren = {
+    visible: {
+      opacity: 1,
+      height: 29
+    },
+    hidden: {
+      opacity: 0,
+      height: 0
+    }
+  }
 
   const router = useRouter();
 
@@ -25,33 +47,43 @@ export const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route 
     const aliasArr = category.pages.map(page => page.alias);
 
     if (currentAlias && aliasArr.includes(currentAlias)) { category.isOpened = true }
-  })()
+  })();
 
 
-  const thirdLevelBlock = classNames(stls.thirdLevelBlock, {
-    [stls.thirdLevelBlockActive]: category.isOpened
-  })
-
-
+  const thirdLevelBlock = classNames(stls.thirdLevelBlock)
 
   return (
-    <div className={thirdLevelBlock}>
+    <motion.div
+      variants={variants}
+      layout
+      initial={category.isOpened ? 'visible' : 'hidden'}
+      animate={category.isOpened ? 'visible' : 'hidden'}
+      className={thirdLevelBlock}
+    >
       {category.pages.map(page => {
 
+
+        //typeof window !== 'undefined' - заглушка для сервера для несоответствия классов
         const thirdLevelClass = classNames(stls.thirdLevel, {
-          [stls.thirdLevelActive]: page.alias === router.asPath.split('/').pop()
+          [stls.thirdLevelActive]: typeof window !== 'undefined' && `${route}${page.alias}` == router.asPath
         })
 
         return (
-          <Link
+          <motion.div
             key={page._id}
-            href={route + page.alias}
+            variants={variantsChildren}
           >
-            <a className={thirdLevelClass}>{page.alias}</a>
-          </Link>
+            <Link
+              href={route + page.alias}
+            >
+              <a className={thirdLevelClass}>{page.alias}</a>
+            </Link>
+          </motion.div>
         )
       })}
-    </div>
+    </motion.div>
   )
 
 }
+
+export default MenuThirdLevel;

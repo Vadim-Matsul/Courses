@@ -7,6 +7,7 @@ import { SortProductsOptions } from '../../const';
 import { Card } from '../Card/Card';
 import { changePriceOpen, changeRatingOpen, setPriceHighToLow, setPriceLowToHigh, setRatingHighToLow, setRatingLowToHigh } from '../../state/actions/sort.actions';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen, priceIsOpen }) => {
 
@@ -27,7 +28,6 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
   })
 
   const smallWidthSortClass = classNames(stls.smallWidthSort, {
-    [stls.smallClose]: !smallOpen,
     [stls.smallActive]: smallOpen,
     [stls.isHtLRating]: sort === SortProductsOptions.RatingHighToLow,
     [stls.isLtHRating]: sort === SortProductsOptions.RatingLowToHigh,
@@ -43,9 +43,25 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
   const handlerPriceHighToLow = () => { setSort(setPriceHighToLow()); setSort(changePriceOpen(false)) };
   const handlerPriceLowToHigh = () => { setSort(setPriceLowToHigh()); setSort(changePriceOpen(false)) };
 
+  const variants = {
+    hidden: {
+      height: 0,
+      opacity: 0,
+      overflow: 'hidden'
+
+    },
+    visible: {
+      height: 'auto',
+      opacity: 1,
+      transition: {
+        stiffness: 30,
+      }
+    }
+  };
+
+
   return (
     <div className={stls.sortWrapper} >
-
 
       <div
         className={RatingClass}
@@ -54,14 +70,24 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
       >
         <Sort />
         <span>По&nbsp;рейтингу</span>
-        <Card className={stls.sortRatingOptions} >
-          <span
-            onClick={handlerRatingHighToLow}
-          ><Rating /> высокий рейтинг</span>
-          <span
-            onClick={handlerRatingLowToHigh}
-          ><Rating /> низкий рейтинг</span>
-        </Card>
+        <motion.div
+          initial={'hidden'}
+          animate={ratingIsOpen ? 'visible' : 'hidden'}
+          variants={variants}
+          transition={{
+            duration: 0.5
+          }}
+        >
+          <Card className={stls.sortRatingOptions}>
+            <span
+              onClick={handlerRatingHighToLow}
+            ><Rating /> высокий рейтинг</span>
+            <span
+              onClick={handlerRatingLowToHigh}
+            ><Rating /> низкий рейтинг</span>
+          </Card>
+        </motion.div>
+
       </div>
 
 
@@ -72,14 +98,23 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
       >
         <Sort />
         <span>По&nbsp;цене</span>
-        <Card className={stls.sortPriceOptions} >
-          <span
-            onClick={handlerPriceHighToLow}
-          ><Rating /> высокая цена</span>
-          <span
-            onClick={handlerPriceLowToHigh}
-          ><Rating /> низкая цена</span>
-        </Card>
+        <motion.div
+          initial={'hidden'}
+          animate={priceIsOpen ? 'visible' : 'hidden'}
+          variants={variants}
+          transition={{
+            duration: 0.5
+          }}
+        >
+          <Card className={stls.sortPriceOptions} >
+            <span
+              onClick={handlerPriceHighToLow}
+            ><Rating /> высокая цена</span>
+            <span
+              onClick={handlerPriceLowToHigh}
+            ><Rating /> низкая цена</span>
+          </Card>
+        </motion.div>
       </div>
 
 
@@ -89,25 +124,31 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
         onClick={() => setSmallOpen(!smallOpen)}
       >
         <Sort />
-        <Card
-          onMouseLeave={() => setSmallOpen(false)}
+        <motion.div
+          initial={'hidden'}
+          animate={smallOpen ? 'visible' : 'hidden'}
+          variants={variants}
+          transition={{
+            duration: 0.5
+          }}
         >
-          <span
-            onClick={handlerRatingHighToLow}
-          ><Rating /> высокий рейтинг</span>
-          <span
-            onClick={handlerRatingLowToHigh}
-          ><Rating /> низкий рейтинг</span>
-          <span
-            onClick={handlerPriceHighToLow}
-          ><Rating /> высокая цена</span>
-          <span
-            onClick={handlerPriceLowToHigh}
-          ><Rating /> низкая цена</span>
-        </Card>
-      </div>
+          <Card onMouseLeave={() => setSmallOpen(false)}>
+            <span
+              onClick={handlerRatingHighToLow}
+            ><Rating /> высокий рейтинг</span>
+            <span
+              onClick={handlerRatingLowToHigh}
+            ><Rating /> низкий рейтинг</span>
+            <span
+              onClick={handlerPriceHighToLow}
+            ><Rating /> высокая цена</span>
+            <span
+              onClick={handlerPriceLowToHigh}
+            ><Rating /> низкая цена</span>
+          </Card>
+        </motion.div>
+      </div >
 
-      
-    </div>
+    </div >
   )
 }

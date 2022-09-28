@@ -1,12 +1,11 @@
 .search {
   position: relative;
-
   width: 100%;
 }
 
 .search input {
-  width: 80%;
-  padding-right: 35px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .search button {

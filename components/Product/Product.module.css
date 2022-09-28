@@ -30,7 +30,10 @@
 .reviews {
   grid-column: startrating/end;
 }
-
+.reviews > a {
+  text-decoration: none;
+  color: var(--primary);
+}
 .hr {
   grid-column: start/end;
 }
@@ -162,21 +165,16 @@
 .сreditToggle,
 .ratingToggle,
 .advantagesToggle,
-.disAdvantagesToggle,
-.reviewsForm {
+.disAdvantagesToggle {
   overflow: hidden;
-
   width: 0;
   height: 0;
   margin: 0;
   padding: 0;
 }
 
-.reviewsFormOpen {
-  overflow: auto;
-
-  width: auto;
-  height: auto;
+.reviewsForm {
+  overflow: hidden;
   padding: 30px;
 }
 
@@ -289,7 +287,7 @@
     width: 100%;
     width: auto;
     height: auto;
-    padding: 5px 7px;
+    padding: 10px 3px;
 
     border-radius: 20px;
     grid-row: 3/4;
@@ -327,11 +325,12 @@
   .creditOpen,
   .ratingOpen {
     overflow: auto;
-
     height: auto;
+    width: 100%;
+    text-align: center;
     margin: 5px 0;
     grid-row: 4/5;
-    grid-column: starttitle/endrating;
+    grid-column: start/end;
     justify-self: center;
   }
 
@@ -393,4 +392,20 @@
     grid-row: 2/3;
     grid-column: start / end;
   }
+}
+
+@media (max-width: 800px){
+  .priceToggle {
+    grid-column: start/logoend;
+  }
+
+  .сreditToggle {
+    grid-column: logoend/startrating;
+  }
+
+  .ratingToggle {
+    grid-column: startrating/end;
+  }
+ /* [start] 70px [logoend] 20px [starttitle] auto [endprice] 30px [startcredit] auto [endcredit] 30px [startrating] auto [endrating] 20px [startequal] auto [end]; */
+
 }

@@ -5,6 +5,7 @@ export * from './Primitives/Tag/Tag';
 export * from './Primitives/Input/Input';
 export * from './Primitives/Button/Button';
 export * from './Primitives/Devider/Devider';
+export * from './Primitives/Up/Up';
 
 export * from './Raiting/Raiting';
 export * from './Card/Card';

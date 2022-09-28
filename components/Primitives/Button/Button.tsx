@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import { ButtonProps } from './Button.props';
 import { Arrow } from '../../svg';
 import stls from './Button.module.css';
+import { motion } from 'framer-motion';
 
 
 export const Button: NextPage<ButtonProps> = ({ disabled, appearance, arrow = 'none', className, children, ...props }) => {
@@ -19,12 +20,13 @@ export const Button: NextPage<ButtonProps> = ({ disabled, appearance, arrow = 'n
 
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.05 }}
       className={ButtonClass}
       {...props}
       disabled={disabled}
     >{children}
       {arrow !== 'none' && <Arrow className={ArrowClass} />}
-    </button>
+    </motion.button>
   );
 };

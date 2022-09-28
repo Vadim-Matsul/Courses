@@ -1,20 +1,30 @@
 import { NextPage } from 'next';
 import { LayoutProps } from './Layout.props';
 import { Footer, Header, SideBar } from './index'
-import React, { useState } from 'react';
+import React from 'react';
 import stls from './Layout.module.css';
 import { AppContextProvider, MyContextType } from '../context/AppContext';
+import { Up } from '../components';
 
-const Layout: NextPage<LayoutProps> = ({ children }) => (
-  <div className={stls.wrapper}>
-    <Header className={stls.header} />
-    <SideBar className={stls.sidebar} />
-    <div className={stls.component}>
-      {children}
+const Layout: NextPage<LayoutProps> = ({ children }) => {
+
+  
+
+  return (
+    <div className={stls.wrapper} >
+      <div />
+      <Header className={stls.header} />
+      <SideBar className={stls.sidebar} />
+      <div className={stls.component}>
+        <>
+          {children}
+        </>
+      </div>
+      <Up />
+      <Footer className={stls.footer} />
     </div>
-    <Footer className={stls.footer} />
-  </div>
-);
+  )
+};
 
 
 

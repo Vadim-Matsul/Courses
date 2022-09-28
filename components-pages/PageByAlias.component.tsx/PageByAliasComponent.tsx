@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { PageByAliasProps } from './PageByAliasComponent.props';
-import { HTag, Tag, SeoBlock, Skills, AdvantageBlock, HhData, Product } from '../../components/';
+import { HTag, Tag, SeoBlock, Skills, AdvantageBlock, HhData } from '../../components/';
+import Product from '../../components/Product/Product';
 import { CATEGORY, SortProductsOptions } from '../../const';
 import { doNonBrackingSpaces } from '../../utils/helpers';
 import stls from './PageByAliasComponent.module.css';
@@ -52,7 +53,7 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       </div>
 
       <div className={stls.products} >
-        {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product} />)}
+        {sortedProducts && sortedProducts.map(product => <Product layout key={product._id} product={product} />)}
       </div>
 
       <div className={stls.hhWrapper}>

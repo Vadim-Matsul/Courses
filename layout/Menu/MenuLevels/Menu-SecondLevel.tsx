@@ -8,7 +8,8 @@ import { CATEGORY, MenuDataRoutes, MenuDataTitle } from '../../../const'
 import { MyContext } from '../../../context/AppContext'
 import { MenuData, MenuItem } from '../../../types/menu.types'
 import stls from '../Menu.module.css';
-import { MenuThirdLevel } from './Menu-ThirdLevel'
+import { motion } from 'framer-motion';
+import MenuThirdLevel from './Menu-ThirdLevel'
 
 interface MenuSecondLevelProps {
   menu: MenuItem[],

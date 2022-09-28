@@ -8,6 +8,10 @@
   color: var(--grey-dark);
 }
 
+.thirdLevelBlock {
+  overflow: hidden;
+}
+
 .firstLevel {
   display: grid;
   align-items: center;
@@ -51,15 +55,6 @@
   line-height: 16px;
 }
 
-.thirdLevelBlock {
-  display: none;
-
-  margin: 10px 0 20px;
-}
-
-.thirdLevelBlockActive {
-  display: block;
-}
 
 .thirdLevel {
   display: block;

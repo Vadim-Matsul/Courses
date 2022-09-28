@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { NextPage } from 'next';
 import React from 'react';
 import { useEffect, useState, KeyboardEvent } from 'react';
 import { Star } from '../../svg';
@@ -11,8 +10,6 @@ const DinamicRaiting = React.forwardRef<HTMLDivElement, DinamicRaitingProps>((pr
 
   const [rating, setRatingState] = useState<number>(currentRating);
   const [stars, setStars] = useState<JSX.Element[]>(new Array(5).fill(<></>));
-  console.log('rating', rating);
-
 
   const starsWrapperClass = classNames(className, {
     [stls.wrapperStarsError]: errors
@@ -65,7 +62,7 @@ const DinamicRaiting = React.forwardRef<HTMLDivElement, DinamicRaitingProps>((pr
 
 
   return (
-    <div {...propsDinamic} ref={ref} className={starsWrapperClass}>
+    <div {...propsDinamic} className={starsWrapperClass} ref={ref} >
       {stars.map((star, i) => <span key={i} >{star}</span>)}
       {errors && <div>{errors.message}</div>}
     </div>

@@ -3,9 +3,10 @@ import { NextPage } from 'next';
 import { Star } from '../../svg';
 import { RaitingProps } from '../Raiting.props';
 import stls from '../Raiting.module.css';
+import React from 'react';
 
 
-const StaticRaiting: NextPage<RaitingProps> = ({ rating }) => {
+const StaticRaiting = React.forwardRef<HTMLDivElement, RaitingProps>(({ rating, ...props }, ref) => {
 
   const staticArray: JSX.Element[] = new Array(5).fill(<></>);
   const currentRating = rating ?? 5
@@ -19,11 +20,11 @@ const StaticRaiting: NextPage<RaitingProps> = ({ rating }) => {
 
 
   return (
-    <>
+    <div {...props} ref={ref} >
       {actualArray.map((star, i) => <span key={i} >{star}</span>)}
-    </>
+    </div>
   );
-};
+});
 
-
+StaticRaiting.displayName = 'StaticRaiting'
 export default StaticRaiting;

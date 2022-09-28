@@ -2,12 +2,13 @@ import classNames from 'classnames';
 import { NextPage } from 'next';
 import { ReviewFormProps, FormData, responsePostReview } from './ReviewForm.props';
 import stls from './ReviewForm.module.css';
-import { Input, TextArea, Raiting, Button } from '..';
+import { Input, TextArea, Button } from '..';
 import { MiniClose } from '../svg';
 import { useForm, Controller } from 'react-hook-form';
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { HTTP } from '../../const';
+import Raiting from '../Raiting/Raiting';
 
 export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, className, ...props }) => {
 
@@ -108,9 +109,6 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, className, ..
             }
           }}
           render={({ field, fieldState }) => {
-
-            console.log('field.value', field.value);
-
             return (<Raiting
               isEditable
               rating={field.value}
