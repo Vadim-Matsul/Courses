@@ -6,7 +6,8 @@ import { MenuDataRoutes } from '../../../const'
 import { MenuItem } from '../../../types/menu.types'
 import { motion } from 'framer-motion';
 import stls from '../Menu.module.css';
-import { useEffect, useLayoutEffect, useMemo } from 'react'
+import { useMemo } from 'react'
+import { handleTap } from '../../../utils/helpers'
 
 
 interface MenuThirdLevelProps {
@@ -52,6 +53,8 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
   }
 
 
+  const togglePathOnTap = (path: string) => router.push(path);
+
 
   return (
     <motion.div
@@ -67,7 +70,6 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
           [stls.thirdLevelActive]: `${route}${page.alias}` == router.asPath
         });
 
-
         return (
           <motion.div
             key={page._id}
@@ -79,6 +81,7 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
               <a
                 className={thirdLevelClass}
                 tabIndex={category.isOpened ? 0 : -1}
+                onKeyDown={evt => handleTap<HTMLAnchorElement>(evt, togglePathOnTap, route.concat(page.alias))}
               >{page.alias}</a>
             </Link>
           </motion.div>

@@ -9,7 +9,7 @@ import stls from './Review.module.css';
 import { useState } from 'react';
 import Raiting from '../Raiting/Raiting';
 
-export const Review: NextPage<ReviewProps> = ({ review, className, ...props }) => {
+export const Review: NextPage<ReviewProps> = ({ review, tabIndex, className, ...props }) => {
 
   const [descOpen, setDescOpen] = useState<boolean>(false)
   const { title, description, name, createdAt, rating } = review;
@@ -35,6 +35,7 @@ export const Review: NextPage<ReviewProps> = ({ review, className, ...props }) =
           className={stls.descButton}
           onClick={() => setDescOpen(!descOpen)}
           arrow={descOpen ? 'down' : 'right'}
+          tabIndex={tabIndex}
         >Описание</Button>
         <div className={classNames(stls.description, {
           [stls.descriptionOpen]: descOpen

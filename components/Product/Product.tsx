@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { OpenStaticType, ProductProps } from './Product.props';
 import stls from './Product.module.css';
 import Image from 'next/image';
-import { getFormatter, translateWordToCase } from '../../utils/helpers';
+import { getFormatter, handleTap, translateWordToCase } from '../../utils/helpers';
 import { Devider, P, Card, Tag, HTag, Button, Review, ReviewForm } from '..';
 import { ReviewsDeclinations } from '../../const';
 import { Characteristic } from '../Characteristic/Characteristic';
@@ -10,7 +10,6 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Raiting from '../Raiting/Raiting';
-import { useScreenWidth } from '../../hooks/useScreenWidth';
 
 
 
@@ -49,8 +48,11 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
         behavior: 'smooth',
         block: 'start'
       })
+      reviewRef.current.focus();
     }, 50)
   }
+
+
 
   const variants = {
     hidden: {
@@ -88,6 +90,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 
         <Button className={stls.priceToggle}
           onClick={() => hanlderStaticOpen(!osP, f, f, osA, osDA)}
+          tabIndex={-1}
         >Цена</Button>
         <div
           className={classNames(stls.price, { [stls.priceOpen]: osP })}
@@ -102,6 +105,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 
         <Button className={stls.сreditToggle}
           onClick={() => hanlderStaticOpen(f, !osC, f, osA, osDA)}
+          tabIndex={-1}
         >В кредит</Button>
         <span
           className={classNames(stls.credit, { [stls.creditOpen]: osC })}
@@ -110,6 +114,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 
         <Button className={stls.ratingToggle}
           onClick={() => hanlderStaticOpen(f, f, !osR, osA, osDA)}
+          tabIndex={-1}
         >Рейтинг</Button>
         <Raiting
           className={classNames(stls.rating, { [stls.ratingOpen]: osR })}
@@ -126,6 +131,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
           <a
             href='#scrollRef'
             onClick={ScrollToReview}
+            onKeyDown={evt => handleTap<HTMLAnchorElement>(evt, ScrollToReview)}
           >
             {reviewsText}
           </a>
@@ -149,6 +155,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
             <>
               <Button className={stls.advantagesToggle}
                 onClick={() => hanlderStaticOpen(osP, osC, osR, !osA, f)}
+                tabIndex={-1}
               >Преимущества</Button>
               <div
                 className={classNames(stls.advantages, { [stls.advantagesOpen]: osA })}
@@ -159,8 +166,10 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
             </>}
           {disAdvantages &&
             <>
-              <Button className={stls.disAdvantagesToggle}
+              <Button
+                className={stls.disAdvantagesToggle}
                 onClick={() => hanlderStaticOpen(osP, osC, osR, f, !osDA)}
+                tabIndex={-1}
               >Недостатки</Button>
               <div
                 className={classNames(stls.disAdvantages, { [stls.disAdvantagesOpen]: osDA })}
@@ -193,8 +202,8 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
           ref={reviewRef}
           className={stls.reviewsForm}
         >
-          {reviews.map(review => <Review key={review._id} review={review} />)}
-          <ReviewForm productId={_id} />
+          {reviews.map(review => <Review key={review._id} review={review} tabIndex={reviewsForm ? 0 : -1} />)}
+          <ReviewForm productId={_id} tabIndex={reviewsForm ? 0 : -1} />
         </Card>
       </motion.div>
     </div>

@@ -5,7 +5,6 @@
 .wrapperStarsError > span > span > svg {
   stroke: var(--red);
 }
-
 .wrapperStarsError > div {
   position: absolute;
   top: 20px;
@@ -32,4 +31,6 @@
 
 .enabled {
   cursor: pointer;
+  padding-top: 5px;
+  padding-left: 3px;
 }

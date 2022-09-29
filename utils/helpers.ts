@@ -1,3 +1,4 @@
+import React from 'react';
 
 
 export const getFormatter = (): Intl.NumberFormat => {
@@ -22,5 +23,15 @@ export const translateWordToCase = (number: number, tappleCases: [string, string
     if (num === 0 || num >= 5 && num < 9) { return tappleCases[2] }
     else if (num === 1) { return tappleCases[0] }
     return tappleCases[1]
+  }
+}
+
+export function handleTap<T>(
+  evt: React.KeyboardEvent<T>,
+  action: (payload?: any) => void,
+  payload?: any) {
+  if (evt && evt.code === 'Space' || evt.code === 'Enter') {
+    evt.preventDefault();
+    action(payload)
   }
 }

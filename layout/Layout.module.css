@@ -42,6 +42,14 @@
   transition: all 0.2s ease-in-out;
 }
 
+.tabContent {
+  width: 100%;
+  margin-top: 10px;
+}
+.tabContent > button {
+  width: 100%;
+}
+
 .header {
   grid-area: header;
 
@@ -53,6 +61,7 @@
 
 .component {
   grid-area: component;
+  outline: none;
 }
 
 .footer {

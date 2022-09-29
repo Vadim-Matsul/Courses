@@ -10,7 +10,7 @@ import axios from 'axios';
 import { HTTP } from '../../const';
 import Raiting from '../Raiting/Raiting';
 
-export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, className, ...props }) => {
+export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, className, ...props }) => {
 
   const ReviewFormClass = classNames(stls.reviewForm, className)
   const [submitState, setSubmitState] = useState({ successfull: false, rejected: false })
@@ -89,12 +89,14 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, className, ..
         placeholder='Имя'
         className={stls.firstname}
         errors={errors.name}
+        tabIndex={tabIndex}
         {...firstnameRegister}
       />
       <Input
         placeholder='Заголовок отзыва'
         className={stls.title}
         errors={errors.title}
+        tabIndex={tabIndex}
         {...titleRegister}
       />
       <div className={stls.rating}>
@@ -115,6 +117,7 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, className, ..
               ref={field.ref}
               setRating={field.onChange}
               errors={fieldState.error}
+              tabIndex={tabIndex}
             />)
           }}
         />
@@ -124,11 +127,13 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, className, ..
         className={stls.description}
         errors={errors.description}
         {...descriptionRegister}
+        tabIndex={tabIndex}
       />
       <div className={stls.submit}>
         <Button
           appearance
           type='submit'
+          tabIndex={tabIndex}
         >Отправить</Button>
         <span>*Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
       </div>

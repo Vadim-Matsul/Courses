@@ -6,6 +6,7 @@ import { MenuItem } from '../../../types/menu.types'
 import stls from '../Menu.module.css';
 import MenuThirdLevel from './Menu-ThirdLevel'
 import React from 'react';
+import { handleTap } from '../../../utils/helpers'
 
 interface MenuSecondLevelProps {
   menu: MenuItem[],
@@ -28,20 +29,9 @@ export const MenuSecondLevel: NextPage<MenuSecondLevelProps> = ({ menu, route })
     setMenu && setMenu(updatedMenu)
   }
 
-
-  function handleTapSpace(evt: React.KeyboardEvent<HTMLSpanElement>, categoryTitle: string): void {
-    if (evt && evt.code === 'Space' || evt.code === 'Enter') {
-      evt.preventDefault();
-      handlerOpenCategory(categoryTitle);
-    }
-  }
-
   return (
     <div className={stls.secondLevelBlock}>
       {menuState.map(category => {
-
-        
-
         return (
           <div
             key={category._id.secondCategory}
@@ -49,7 +39,7 @@ export const MenuSecondLevel: NextPage<MenuSecondLevelProps> = ({ menu, route })
             <span
               className={stls.secondLevel}
               onClick={() => handlerOpenCategory(category._id.secondCategory)}
-              onKeyDown={evt => handleTapSpace(evt, category._id.secondCategory)}
+              onKeyDown={evt => handleTap<HTMLSpanElement>(evt, handlerOpenCategory, category._id.secondCategory)}
               tabIndex={0}
             >{category._id.secondCategory.toUpperCase()}</span>
             <MenuThirdLevel category={category} route={route} />
