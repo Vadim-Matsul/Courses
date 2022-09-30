@@ -81,6 +81,12 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
               <a
                 className={thirdLevelClass}
                 tabIndex={category.isOpened ? 0 : -1}
+                aria-label={
+                  `${route}${page.alias}` == router.asPath
+                    ? `Текущая страница ${page.alias}`
+                    : `${page.alias}`
+                }
+                aria-current={`${route}${page.alias}` == router.asPath} // не читается всеми screenReader
                 onKeyDown={evt => handleTap<HTMLAnchorElement>(evt, togglePathOnTap, route.concat(page.alias))}
               >{page.alias}</a>
             </Link>

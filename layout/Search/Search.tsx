@@ -30,7 +30,7 @@ export const Search: NextPage<SearchProps> = ({ className, ...props }) => {
   }
 
   return (
-    <div {...props} className={SearchClass} >
+    <form {...props} className={SearchClass} role='search' >
       <Input
         placeholder='Поиск...'
         onChange={ev => setSearch(ev.target.value)}
@@ -40,9 +40,10 @@ export const Search: NextPage<SearchProps> = ({ className, ...props }) => {
       <Button
         appearance
         onClick={handlerSearchClick}
+        aria-label='Искать по сайту'
       >
         <Magnifier />
       </Button>
-    </div>
+    </form>
   )
 }

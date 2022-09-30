@@ -2,7 +2,7 @@
   margin-top: 30px;
 }
 
-.menu > div > a {
+.menu > div > div > a {
   text-decoration: none;
 
   color: var(--grey-dark);

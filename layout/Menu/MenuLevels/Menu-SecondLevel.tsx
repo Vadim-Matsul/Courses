@@ -33,14 +33,15 @@ export const MenuSecondLevel: NextPage<MenuSecondLevelProps> = ({ menu, route })
     <div className={stls.secondLevelBlock}>
       {menuState.map(category => {
         return (
-          <div
-            key={category._id.secondCategory}
-          >
+          <div key={category._id.secondCategory}>
             <span
               className={stls.secondLevel}
               onClick={() => handlerOpenCategory(category._id.secondCategory)}
               onKeyDown={evt => handleTap<HTMLSpanElement>(evt, handlerOpenCategory, category._id.secondCategory)}
               tabIndex={0}
+              role='button'
+              aria-expanded={category.isOpened}
+              aria-label={`Категория ${category._id.secondCategory}, элементов ${category.pages.length}`}
             >{category._id.secondCategory.toUpperCase()}</span>
             <MenuThirdLevel category={category} route={route} />
           </div>

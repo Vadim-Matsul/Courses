@@ -43,7 +43,7 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
         <HTag tag='h1'  >
           {nonBrackingTitle}
         </HTag>
-        {sortedProducts && <Tag size='large' color='grey'  >{sortedProducts.length}</Tag>}
+        {sortedProducts && <Tag size='large' color='grey' aria-label={sortedProducts.length + 'предложений'}   >{sortedProducts.length}</Tag>}
         <SortForm
           sort={sort}
           setSort={dispatchSort}
@@ -52,8 +52,8 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
         />
       </div>
 
-      <div className={stls.products} >
-        {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product} />)}
+      <div className={stls.products} role='list'>
+        {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product} role='listitem' />)}
       </div>
 
       <div className={stls.hhWrapper}>

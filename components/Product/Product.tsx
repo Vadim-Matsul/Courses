@@ -91,31 +91,39 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
         <Button className={stls.priceToggle}
           onClick={() => hanlderStaticOpen(!osP, f, f, osA, osDA)}
           tabIndex={-1}
+          aria-hidden={true}
         >Цена</Button>
         <div
           className={classNames(stls.price, { [stls.priceOpen]: osP })}
-
         >
-          <span>{formatter.format(price)}</span>
+          <span>
+            <span className='visuallyAriaHidden'>Цена</span>
+            {formatter.format(price)}
+          </span>
           {oldPrice &&
-            <Tag color='green' className={stls.discount}
-            > {formatter.format(price - oldPrice)}
-            </Tag>}
+            <Tag color='green' className={stls.discount}>
+              <span className='visuallyAriaHidden'>Скидка</span>
+              {formatter.format(price - oldPrice)}
+            </Tag>
+          }
         </div>
 
         <Button className={stls.сreditToggle}
           onClick={() => hanlderStaticOpen(f, !osC, f, osA, osDA)}
           tabIndex={-1}
+          aria-hidden={true}
         >В кредит</Button>
-        <span
-          className={classNames(stls.credit, { [stls.creditOpen]: osC })}
-        > {formatter.format(credit)}/<span>мес</span>
+        <span className={classNames(stls.credit, { [stls.creditOpen]: osC })}>
+          <span className='visuallyAriaHidden'>Кредит</span>
+          {formatter.format(credit)}<span>/мес</span>
         </span>
 
         <Button className={stls.ratingToggle}
           onClick={() => hanlderStaticOpen(f, f, !osR, osA, osDA)}
           tabIndex={-1}
+          aria-hidden={true}
         >Рейтинг</Button>
+        
         <Raiting
           className={classNames(stls.rating, { [stls.ratingOpen]: osR })}
           rating={initialRating}
@@ -125,8 +133,8 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
           {categories.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
         </div>
 
-        <span className={stls.cost}>цена</span>
-        <span className={stls.inCredit} >в кредит</span>
+        <span className={stls.cost} aria-hidden={true} >цена</span>
+        <span className={stls.inCredit} aria-hidden={true}>в кредит</span>
         <span className={stls.reviews} >
           <a
             href='#scrollRef'
@@ -187,6 +195,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
           <Button
             arrow={reviewsForm ? 'down' : 'right'}
             onClick={() => setReviewsForm(!reviewsForm)}
+            aria-expanded={reviewsForm}
           >Читать отзывы</Button>
         </div>
 

@@ -6,8 +6,8 @@ import { MenuFirstLevel } from './MenuLevels/Menu-FirstLevel';
 export const Menu: NextPage<MenuProps> = ({ ...props }) => {
 
   return (
-    <div className={stls.menu}>
+    <nav className={stls.menu} {...props} role='navigation' >
       <MenuFirstLevel />
-    </div>
+    </nav>
   )
 }

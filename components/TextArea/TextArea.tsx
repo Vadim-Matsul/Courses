@@ -15,8 +15,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>((props, re
 
   return (
     <div className={TextAreaWrapperClass}>
-      <textarea className={TextAreaClass} {...propsTextArea} ref={ref} />
-      {errors && <span>{errors.message}</span>}
+      <textarea className={TextAreaClass} ref={ref}   {...propsTextArea} />
+      {errors && <span role='alert'  >{errors.message}</span>}
     </div>
   )
 })

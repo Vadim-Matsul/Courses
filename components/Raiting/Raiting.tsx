@@ -9,6 +9,7 @@ const Raiting = React.forwardRef<HTMLDivElement, RaitingProps>((props, ref) => {
 
   return (
     <div className={className} >
+      <span className='visuallyAriaHidden'>Рейтинг{rating}</span>
       {isEditable
         ? <DinamicRaiting
           currentRating={rating!}

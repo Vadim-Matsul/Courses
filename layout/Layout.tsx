@@ -20,13 +20,14 @@ const Layout: NextPage<LayoutProps> = ({ children }) => {
       />
       <Header className={stls.header} />
       <SideBar className={stls.sidebar} />
-      <div
+      <main
         className={stls.component}
         ref={focusRef}
         tabIndex={0}
+        role='main'
       >
         {children}
-      </div>
+      </main>
       <Up />
       <Footer className={stls.footer} />
     </div>

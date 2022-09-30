@@ -17,7 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, error
   return (
     <div className={inputWrapperClass}>
       <input className={InputClass} {...props} ref={ref} />
-      {errors && <span>{errors.message}</span>}
+      {errors && <span role='alert' >{errors.message}</span>}
     </div>
   )
 })

@@ -9,11 +9,11 @@ export const SideBar: NextPage<SideBarProps> = ({ className, ...props }) => {
   const SideBarClass = classNames(className, stls.sideBar)
 
   return (
-    <nav className={SideBarClass} {...props}>
+    <div className={SideBarClass} {...props}>
       <Label />
       <Search />
       <Menu />
-    </nav>
+    </div>
   )
 }
 

@@ -52,6 +52,9 @@ const DinamicRaiting = React.forwardRef<HTMLDivElement, DinamicRaitingProps>((pr
           tabIndex={tabIndex}
           onKeyDown={evt => ratingArrowHandler(i, evt)}
           ref={r => refStarsArray.current.length < 5 && refStarsArray.current.push(r)}
+          role='slider'
+          aria-invalid={Boolean(errors)}
+          aria-valuenow={rating}
         >
           <Star className={starsClass} />
         </span>
@@ -87,12 +90,18 @@ const DinamicRaiting = React.forwardRef<HTMLDivElement, DinamicRaitingProps>((pr
     constructRaiting(current);
   }
 
-
-
   return (
-    <div {...propsDinamic} className={starsWrapperClass} ref={ref} >
+    <div
+      {...propsDinamic}
+      className={starsWrapperClass}
+      ref={ref}
+      aria-label='Блок рейтинга, укажите в нем вашу оценку стрелками вверх или вниз'
+      aria-valuemax={5}
+      aria-valuemin={1}
+      tabIndex={tabIndex}
+    >
       {stars.map((star, i) => <span key={i} >{star}</span>)}
-      {errors && <div>{errors.message}</div>}
+      {errors && <div role='alert'>{errors.message}</div>}
     </div>
   );
 });

@@ -12,14 +12,15 @@
 .sortRating,
 .sortPrice {
   position: relative;
-
   display: grid;
   align-items: center;
   gap: 0 8px;
   grid-template-columns: 20px auto;
 }
 
-
+.labelForScreenReader{
+  display: none;
+}
 
 .ratingActive,
 .priceActive {

@@ -9,6 +9,7 @@ import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { HTTP } from '../../const';
 import Raiting from '../Raiting/Raiting';
+import { handleTap } from '../../utils/helpers';
 
 export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, className, ...props }) => {
 
@@ -22,10 +23,13 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, cla
     handleSubmit,
     formState: {
       errors,
-    }
+    },
+    clearErrors
   } = useForm<FormData>({ mode: 'onChange' });
 
   const handleFormSubmit = async (formData: FormData) => {
+    console.log('handleFormSubmit');
+
     try {
       const { data } = await axios.post<responsePostReview>(process.env.NEXT_PUBLIC_DOMAIN + HTTP.POSTREVIEW, {
         ...formData,
@@ -89,6 +93,7 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, cla
         placeholder='Имя'
         className={stls.firstname}
         errors={errors.name}
+        aria-invalid={Boolean(errors.name)}
         tabIndex={tabIndex}
         {...firstnameRegister}
       />
@@ -96,6 +101,7 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, cla
         placeholder='Заголовок отзыва'
         className={stls.title}
         errors={errors.title}
+        aria-invalid={Boolean(errors.title)}
         tabIndex={tabIndex}
         {...titleRegister}
       />
@@ -127,13 +133,19 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, cla
         className={stls.description}
         errors={errors.description}
         {...descriptionRegister}
+        aria-invalid={Boolean(errors.description)}
         tabIndex={tabIndex}
+        aria-label='Текст отзыва'
       />
       <div className={stls.submit}>
         <Button
           appearance
           type='submit'
           tabIndex={tabIndex}
+          onClick={() => {
+            console.log('clearErrors');
+            clearErrors()
+          }}
         >Отправить</Button>
         <span>*Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
       </div>
@@ -142,15 +154,23 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, cla
           <MiniClose
             className={stls.close}
             onClick={() => setSubmitState({ ...submitState, successfull: false })}
+            onKeyDown={evt => handleTap(evt, setSubmitState, { ...submitState, successfull: false })}
+            tabIndex={submitState.successfull ? 0 : -1}
+            aria-label='Закрыть'
+            role='button'
           />
-          <span>Спасибо, ваш отзыв успешно отправлен!</span>
+          <span role='alert' >Спасибо, ваш отзыв успешно отправлен!</span>
         </div>}
       {submitState.rejected &&
         <div className={stls.rejectedSubmit} >
           <MiniClose
             onClick={() => setSubmitState({ ...submitState, rejected: false })}
+            onKeyDown={evt => handleTap(evt, setSubmitState, { ...submitState, rejected: false })}
+            tabIndex={submitState.rejected ? 0 : -1}
+            aria-label='Закрыть'
+            role='button'
           />
-          <span>Что-то пошло не так, попробуйте обновить страницу</span>
+          <span role='alert'>Что-то пошло не так, попробуйте обновить страницу</span>
         </div>}
     </form>
   )

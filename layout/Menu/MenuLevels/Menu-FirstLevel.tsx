@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/role-supports-aria-props */
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -11,7 +12,7 @@ export const MenuFirstLevel = () => {
 
 
   return (
-    <>
+    <div role='list'>
       {firstLevelData.map(menuTitle => {
 
         const shouldShow = firstCategory === menuTitle.id;
@@ -20,7 +21,11 @@ export const MenuFirstLevel = () => {
         })
 
         return (
-          <div key={menuTitle.id}>
+          <div
+            key={menuTitle.id}
+            aria-expanded={shouldShow}
+            role='listitem'
+          >
             <Link href={menuTitle.route}>
               <a>
                 <div className={firstLevelClass}>
@@ -33,7 +38,7 @@ export const MenuFirstLevel = () => {
           </div>
         )
       })}
-    </>
+    </div>
   )
 
 }
