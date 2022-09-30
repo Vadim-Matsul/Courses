@@ -8,7 +8,7 @@ import { ReviewsDeclinations } from '../../const';
 import { Characteristic } from '../Characteristic/Characteristic';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import Raiting from '../Raiting/Raiting';
 
 
@@ -16,6 +16,7 @@ import Raiting from '../Raiting/Raiting';
 const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 
   const reviewRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const stopAnimation = useReducedMotion();
 
   const { className, product, ...propsProduct } = props;
   const { title, image, price, oldPrice, credit, categories,
@@ -58,11 +59,17 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
     hidden: {
       height: 0,
       opacity: 0,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      transition: {
+        duration: stopAnimation ? 1.3 : 0.5
+      }
     },
     visible: {
       height: 'auto',
       opacity: 1,
+      transition: {
+        duration: stopAnimation ? 1.5 : 0.7
+      }
     }
   }
 
@@ -93,37 +100,41 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
           tabIndex={-1}
           aria-hidden={true}
         >Цена</Button>
-        <div
+        <motion.div
           className={classNames(stls.price, { [stls.priceOpen]: osP })}
+          layout={stopAnimation ? false : true}
         >
           <span>
-            <span className='visuallyAriaHidden'>Цена</span>
+            <span className='visually-aria-hidden'>Цена</span>
             {formatter.format(price)}
           </span>
           {oldPrice &&
             <Tag color='green' className={stls.discount}>
-              <span className='visuallyAriaHidden'>Скидка</span>
+              <span className='visually-aria-hidden'>Скидка</span>
               {formatter.format(price - oldPrice)}
             </Tag>
           }
-        </div>
+        </motion.div>
 
         <Button className={stls.сreditToggle}
           onClick={() => hanlderStaticOpen(f, !osC, f, osA, osDA)}
           tabIndex={-1}
           aria-hidden={true}
         >В кредит</Button>
-        <span className={classNames(stls.credit, { [stls.creditOpen]: osC })}>
-          <span className='visuallyAriaHidden'>Кредит</span>
+        <motion.span
+          className={classNames(stls.credit, { [stls.creditOpen]: osC })}
+          layout={stopAnimation ? false : true}
+        >
+          <span className='visually-aria-hidden'>Кредит</span>
           {formatter.format(credit)}<span>/мес</span>
-        </span>
+        </motion.span>
 
         <Button className={stls.ratingToggle}
           onClick={() => hanlderStaticOpen(f, f, !osR, osA, osDA)}
           tabIndex={-1}
           aria-hidden={true}
         >Рейтинг</Button>
-        
+
         <Raiting
           className={classNames(stls.rating, { [stls.ratingOpen]: osR })}
           rating={initialRating}
@@ -165,12 +176,14 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
                 onClick={() => hanlderStaticOpen(osP, osC, osR, !osA, f)}
                 tabIndex={-1}
               >Преимущества</Button>
-              <div
+              <motion.div
+                layout={stopAnimation ? false : true}
+                transition={{ duration: 0.2 }}
                 className={classNames(stls.advantages, { [stls.advantagesOpen]: osA })}
               >
                 <div>Преимущества</div>
                 {advantages}
-              </div>
+              </motion.div>
             </>}
           {disAdvantages &&
             <>
@@ -179,12 +192,14 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
                 onClick={() => hanlderStaticOpen(osP, osC, osR, f, !osDA)}
                 tabIndex={-1}
               >Недостатки</Button>
-              <div
+              <motion.div
                 className={classNames(stls.disAdvantages, { [stls.disAdvantagesOpen]: osDA })}
+                layout={stopAnimation ? false : true}
+                transition={{ duration: 0.2 }}
               >
                 <div>Недостатки</div>
                 {disAdvantages}
-              </div>
+              </motion.div>
             </>}
         </div>
 
@@ -201,7 +216,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 
       </Card>
       <motion.div
-        layout
+        layout={stopAnimation ? false : true}
         initial={'hidden'}
         animate={reviewsForm ? 'visible' : 'hidden'}
         variants={variants}
@@ -221,4 +236,4 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 })
 
 Product.displayName = 'Product';
-export default React.memo(Product);
+export default motion(Product);

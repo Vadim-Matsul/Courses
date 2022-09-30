@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MenuDataRoutes } from '../../../const'
 import { MenuItem } from '../../../types/menu.types'
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import stls from '../Menu.module.css';
 import { useMemo } from 'react'
 import { handleTap } from '../../../utils/helpers'
@@ -17,12 +17,15 @@ interface MenuThirdLevelProps {
 
 const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
 
+  const stopAnimation = useReducedMotion();
+  const router = useRouter();
+
   const variants = {
     visible: {
       marginBottom: 20,
       transition: {
         when: 'afterChildren',
-        staggerChildren: 0.05
+        staggerChildren: stopAnimation ? 0 : 0.05,
       }
     },
     hidden: {
@@ -41,10 +44,9 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
     }
   }
 
-  const router = useRouter();
+
 
   const thirdLevelBlock = classNames(stls.thirdLevelBlock)
-
   const categoryAliaSarr = useMemo(() => category.pages.map(aliasBundle => aliasBundle.alias), [category]);
   const currentAlias = router.asPath.split('/').pop();
 
@@ -59,7 +61,7 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
   return (
     <motion.div
       variants={variants}
-      layout
+      layout={stopAnimation ? false : true}
       initial={category.isOpened ? 'visible' : 'hidden'}
       animate={category.isOpened ? 'visible' : 'hidden'}
       className={thirdLevelBlock}

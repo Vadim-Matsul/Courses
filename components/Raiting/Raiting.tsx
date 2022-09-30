@@ -2,14 +2,18 @@ import DinamicRaiting from './DinamicRaiting/DinamicRaiting';
 import { RaitingProps } from './Raiting.props';
 import StaticRaiting from './StaticRaiting/StaticRaiting';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const Raiting = React.forwardRef<HTMLDivElement, RaitingProps>((props, ref) => {
   const { rating, className, isEditable = false, setRating, errors, ...divProps } = props;
+  const stopAnimation = useReducedMotion();
 
   return (
-    <div className={className} >
-      <span className='visuallyAriaHidden'>Рейтинг{rating}</span>
+    <motion.div
+      className={className}
+      layout={stopAnimation ? false : true}
+    >
+      <span className='visually-aria-hidden'>Рейтинг{rating}</span>
       {isEditable
         ? <DinamicRaiting
           currentRating={rating!}
@@ -19,7 +23,7 @@ const Raiting = React.forwardRef<HTMLDivElement, RaitingProps>((props, ref) => {
           ref={ref}
         />
         : <StaticRaiting rating={rating} {...divProps} ref={ref} />}
-    </div>
+    </motion.div>
   );
 });
 

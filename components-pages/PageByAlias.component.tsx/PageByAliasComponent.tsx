@@ -9,6 +9,7 @@ import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../../state/reducers/sort-reducer/sort.reducer';
 import { setRatingHighToLow, setStateProducts } from '../../state/actions/sort.actions';
 import { SortForm } from '../../components/SortForm/SortForm';
+import { useReducedMotion } from 'framer-motion';
 
 
 const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page, products }) => {
@@ -26,6 +27,8 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       dispatchSort(setRatingHighToLow());
     }
   }, [products])
+
+  const stopAnimation = useReducedMotion();
 
   // сделать возврат empty page
   if (!page) return <></>
@@ -53,7 +56,13 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       </div>
 
       <div className={stls.products} role='list'>
-        {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product} role='listitem' />)}
+        {products && sortedProducts.map(product =>
+          <Product
+            key={product._id}
+            layout={stopAnimation ? false : true}
+            product={product}
+            role='listitem'
+          />)}
       </div>
 
       <div className={stls.hhWrapper}>

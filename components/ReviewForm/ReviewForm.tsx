@@ -28,8 +28,6 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, tabIndex, cla
   } = useForm<FormData>({ mode: 'onChange' });
 
   const handleFormSubmit = async (formData: FormData) => {
-    console.log('handleFormSubmit');
-
     try {
       const { data } = await axios.post<responsePostReview>(process.env.NEXT_PUBLIC_DOMAIN + HTTP.POSTREVIEW, {
         ...formData,

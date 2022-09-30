@@ -8,9 +8,11 @@ import { Button, Devider } from '..';
 import stls from './Review.module.css';
 import { useState } from 'react';
 import Raiting from '../Raiting/Raiting';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export const Review: NextPage<ReviewProps> = ({ review, tabIndex, className, ...props }) => {
 
+  const stopAnimation = useReducedMotion();
   const [descOpen, setDescOpen] = useState<boolean>(false)
   const { title, description, name, createdAt, rating } = review;
   const ReviewClass = classNames(className, stls.review)
@@ -37,11 +39,12 @@ export const Review: NextPage<ReviewProps> = ({ review, tabIndex, className, ...
           arrow={descOpen ? 'down' : 'right'}
           tabIndex={tabIndex}
         >Описание</Button>
-        <div className={classNames(stls.description, {
+        <motion.div className={classNames(stls.description, {
           [stls.descriptionOpen]: descOpen
-        })}>
+        })}
+        >
           {description}
-        </div>
+        </motion.div>
 
       </div>
       <Devider className={stls.hr} />
