@@ -60,8 +60,6 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
     }
   };
 
-  console.log(sort === SortProductsOptions.RatingHighToLow
-    || sort === SortProductsOptions.RatingLowToHigh);
 
   return (
     <div className={stls.sortWrapper} >

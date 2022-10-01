@@ -15,10 +15,10 @@ body {
   --grey: #E2E2E2;
   --grey-lite: #EBEBEB;
   --grey-medium: #A4A4A4;
-  --grey-dark: #62666c;
+  --grey-dark: #62666C;
   --white: white;
-  --primary: #6a52c7;
-  --primary-hover: #6a4edc;
+  --primary: #6A52C7;
+  --primary-hover: #6A4EDC;
   --green: #1DC37E;
   --green-hover: #0F965E;
   --green-lite: #C8F8E4;
@@ -29,18 +29,21 @@ body {
 
 ::-webkit-scrollbar {
   width: 4px;
+
   border-radius: 5px;
-  background: var(---grey-lite);
+  background: var(--grey-lite);
 }
 
-::-webkit-scrollbar-thumb{
-  background: var(--primary);
+::-webkit-scrollbar-thumb {
   border-radius: 5px;
+  background: var(--primary);
 }
 
 .visually-aria-hidden {
+  position: absolute;
+
+  overflow: hidden;
+
   width: 0;
   height: 0;
-  overflow: hidden;
-  position: absolute;
 }

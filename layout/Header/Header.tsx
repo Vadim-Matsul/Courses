@@ -39,7 +39,6 @@ export const Header: NextPage<HeaderProps> = ({ className, ...props }) => {
   }
 
   const headerClass = classNames(stls.header, className);
-  console.log(isOpened);
 
   return (
     <header {...props} className={headerClass} >

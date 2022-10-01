@@ -1,7 +1,7 @@
 
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { wrapperLayoutHOC } from '../../layout';
 import { MenuItem } from '../../types/menu.types';
 import { CATEGORY, firstLevelData, HTTP, MenuDataRoutes, NumbersData } from '../../const';
@@ -10,6 +10,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { PageModel } from '../../types/page.types';
 import { ProductModel } from '../../types/product.types';
 import PageByAliasComponent from '../../components-pages/PageByAlias.component.tsx/PageByAliasComponent';
+import Head from 'next/head';
 
 interface ReturnProps extends Record<string, unknown> {
   menu: MenuItem[],
@@ -29,11 +30,20 @@ const firstCategory: CATEGORY = CATEGORY.COURSES;
 const PageByAlias: NextPage<ReturnProps> = ({ page, products, firstCategory }) => {
 
   return (
-    <PageByAliasComponent
-      page={page}
-      products={products}
-      firstCategory={firstCategory}
-    />
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name='description' content={page.metaDescription} />
+        <meta property='og:title' content={page.metaTitle} />
+        <meta property='og:description' content={page.metaDescription} />
+        <meta name='og:type' content='product' />
+      </Head>
+      <PageByAliasComponent
+        page={page}
+        products={products}
+        firstCategory={firstCategory}
+      />
+    </>
   );
 }
 

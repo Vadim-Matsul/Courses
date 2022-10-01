@@ -5,8 +5,9 @@
 .input {
   padding: 7px 12px;
   padding-right: 30px;
+
   color: var(--black);
-  
+
   border: none;
   border-radius: 5px;
   outline-color: var(--primary);

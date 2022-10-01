@@ -14,16 +14,17 @@
 
 .mobileMenu {
   position: fixed;
+  z-index: 10;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
 
   overflow-y: scroll;
-  background: #E5E5E5;
 
   padding: 15px 20px;
-  z-index: 10;
+
+  background: #E5E5E5;
 }
 
 .close {
@@ -34,19 +35,22 @@
 
 .mobileMenu::-webkit-scrollbar {
   width: 2px;
-  background: var(--grey-lite);
+
   border-radius: 5px;
-}
-.mobileMenu::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 10px;
+  background: var(--grey-lite);
 }
 
-@media (max-width: 790px){
+.mobileMenu::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--primary);
+}
+
+@media (max-width: 790px) {
   .header {
     display: grid;
     grid-column: 1fr 40px;
     gap: 10px;
-    margin: 15px 20px 0 20px;
+
+    margin: 15px 20px 0;
   }
 }

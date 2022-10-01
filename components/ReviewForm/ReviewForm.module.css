@@ -21,10 +21,10 @@
   display: grid;
   grid-template-columns: auto auto;
   gap: 20px;
+
   align-items: center;
   grid-column: seccond/end;
 }
-
 
 .rating > span {
   font-size: 14px;
@@ -106,12 +106,12 @@
   cursor: pointer;
 }
 
-.rejectedSubmit > svg > line {
-  stroke: var(--green);
-}
-
 .close > line {
   stroke: var(--red);
+}
+
+.rejectedSubmit > svg > line {
+  stroke: var(--green);
 }
 
 .close {

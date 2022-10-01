@@ -5,28 +5,37 @@
 
   gap: 40px 30px;
 
-  grid-template-columns: auto 230px minmax(320px, 1200px) auto;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    ". header header ."
-    ". sidebar component ."
-    "footer footer footer footer";
+  grid-template:
+    ". header header ." auto
+    ". sidebar component ."  1fr
+    "footer footer footer footer" auto / auto 230px minmax(320px, 1200px) auto;
 }
 
 .scroll {
   position: fixed;
   bottom: 50px;
   left: 20px;
-  height: 30px;
+
   width: 30px;
+  height: 30px;
+
+  transition: all 0.2s ease-in-out;
+
+  border: 1px solid var(--white);
   border-radius: 50%;
   background: var(--primary);
-  border: 1px solid var(--white);
-  transition: all 0.2s ease-in-out;
 }
 
 .scroll:hover {
   background: var(--primary-hover);
+}
+
+.scroll > svg {
+  margin: 8px 0 0 12px;
+
+  transition: all 0.2s ease-in-out;
+  transform: rotate(-90deg);
+  fill: var(--white);
 }
 
 .scroll:hover > svg {
@@ -35,24 +44,17 @@
   margin: 5px 0 0 10px;
 }
 
-.scroll > svg {
-  fill: var(--white);
-  margin: 8px 0 0 12px;
-  transform: rotate(-90deg);
-  transition: all 0.2s ease-in-out;
-}
-
 .tabContent {
   width: 100%;
   margin-top: 10px;
 }
+
 .tabContent > button {
   width: 100%;
 }
 
 .header {
   grid-area: header;
-
 }
 
 .sidebar {
@@ -61,6 +63,7 @@
 
 .component {
   grid-area: component;
+
   outline: none;
 }
 
@@ -69,7 +72,6 @@
 }
 
 @media (max-width: 790px) {
-  
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -91,8 +93,8 @@
   .component {
     padding: 0 20px;
   }
+
   .footer {
     margin-bottom: -40px;
   }
-
 }

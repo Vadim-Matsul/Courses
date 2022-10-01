@@ -24,6 +24,10 @@
   gap: 0 20px;
 }
 
+.firstLevelActive svg {
+  fill: var(--primary);
+}
+
 .firstLevel:hover,
 .firstLevel:hover svg {
   color: var(--primary);
@@ -32,10 +36,6 @@
 
 .firstLevelActive {
   color: var(--primary);
-}
-
-.firstLevelActive svg {
-  fill: var(--primary);
 }
 
 .secondLevelBlock {
@@ -55,7 +55,6 @@
   line-height: 16px;
 }
 
-
 .thirdLevel {
   display: block;
 
@@ -65,11 +64,11 @@
 
   color: var(--grey-dark);
 
+  outline-offset: -1px;
+
   font-size: 14px;
   font-weight: 500;
   line-height: 19px;
-
-  outline-offset: -1px;
 }
 
 .thirdLevel::first-letter {
