@@ -4,6 +4,7 @@ import { ProductModel } from '../../types/product.types';
 // функция-помщник, создающая подмножество передаваемого типа ( помогает reducer определять типы actions )
 function inferLiteralFromString<T extends number>(type: T): T { return type };
 
+const setSortNone = () => ({ type: inferLiteralFromString(SortProductsOptions.None) });
 const setRatingHighToLow = () => ({ type: inferLiteralFromString(SortProductsOptions.RatingHighToLow) });
 const setRatingLowToHigh = () => ({ type: inferLiteralFromString(SortProductsOptions.RatingLowToHigh) });
 const setPriceHighToLow = () => ({ type: inferLiteralFromString(SortProductsOptions.PriceHighToLow) });
@@ -17,6 +18,7 @@ const changePriceOpen = ( statusPrice: boolean ) => ({ type: inferLiteralFromStr
 
 
 export {
+  setSortNone,
   setRatingHighToLow,
   setRatingLowToHigh,
   setPriceHighToLow,

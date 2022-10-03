@@ -6,8 +6,9 @@ import { HhDataGroup } from '../../types/page.types';
 import stls from './HhData.module.css';
 import { Rating } from '../svg';
 import { getFormatter, replaceNumberToNewFormat } from '../../utils/helpers';
+import React from 'react';
 
-export const HhData: NextPage<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSalary, updatedAt, _id, ...props }) => {
+const HhData: NextPage<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSalary, updatedAt, _id, ...props }) => {
 
   const formatter = getFormatter();
   const updateTotalCountVacancies = replaceNumberToNewFormat(count);
@@ -44,3 +45,5 @@ export const HhData: NextPage<HhDataProps> = ({ count, juniorSalary, middleSalar
     </div>
   );
 };
+
+export default React.memo( HhData );

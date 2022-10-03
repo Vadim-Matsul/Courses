@@ -15,25 +15,27 @@ export const Search: NextPage<SearchProps> = ({ className, ...props }) => {
   const router = useRouter();
   const SearchClass = classNames(className, stls.search)
 
-  const handlerSearchClick = () => {
+  const handlerSearchClick = (evt: React.MouseEvent | React.KeyboardEvent) => {
+    evt.preventDefault()
+
     router.push({
       pathname: MenuDataRoutes.SEARCH,
       query: {
-        q: search
+        alias: search
       }
     })
   }
 
   const handlerInputEnterSearch = (evt: React.KeyboardEvent<HTMLInputElement>) => {
     const shouldSearch = evt && evt.code === 'Enter';
-    shouldSearch && handlerSearchClick();
+    shouldSearch && handlerSearchClick(evt);
   }
 
   return (
     <form {...props} className={SearchClass} role='search' >
       <Input
-        placeholder='Поиск...'
-        onChange={ev => setSearch(ev.target.value)}
+        placeholder='Поиск по категориям...'
+        onChange={ev => { ev.target.value.length < 40 && setSearch(ev.target.value) }}
         value={search}
         onKeyDown={evt => handlerInputEnterSearch(evt)}
       />

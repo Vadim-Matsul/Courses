@@ -1,9 +1,10 @@
 import { SortProductsOptions } from '../../../const';
 import { ProductModel } from '../../../types/product.types';
-import { changeRatingOpen, changePriceOpen, setPriceHighToLow, setPriceLowToHigh, setRatingHighToLow, setRatingLowToHigh, setStateProducts } from '../../actions/sort.actions';
+import { changeRatingOpen, changePriceOpen, setPriceHighToLow, setPriceLowToHigh, setRatingHighToLow, setRatingLowToHigh, setStateProducts, setSortNone } from '../../actions/sort.actions';
 
 
 export type SortAction =
+  | ReturnType<typeof setSortNone>
   | ReturnType<typeof setStateProducts>
   | ReturnType<typeof setRatingHighToLow>
   | ReturnType<typeof setRatingLowToHigh>

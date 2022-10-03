@@ -28,4 +28,4 @@ const Raiting = React.forwardRef<HTMLDivElement, RaitingProps>((props, ref) => {
 });
 
 Raiting.displayName = 'Raiting';
-export default motion(Raiting);
+export default React.memo(motion(Raiting));

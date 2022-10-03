@@ -3,10 +3,14 @@ import stls from './Up.module.css';
 import { ArrowUp } from '../../svg';
 import { motion, useAnimation } from 'framer-motion';
 import { useScroll } from '../../../hooks/useScroll';
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 import { ButtonIcon } from '../ButtonIcon/ButtonIcon';
 
-export const Up = (): JSX.Element => {
+interface UpProps {
+  focusBlock: MutableRefObject<HTMLDivElement>
+}
+
+export const Up = ({ focusBlock }: UpProps): JSX.Element => {
   const control = useAnimation()
   const Yposition = useScroll();
 
@@ -21,6 +25,7 @@ export const Up = (): JSX.Element => {
       top: 0,
       behavior: 'smooth'
     })
+    focusBlock.current.focus()
   }
 
   return (
@@ -29,7 +34,7 @@ export const Up = (): JSX.Element => {
       animate={control}
       onClick={handleScreenUp}
     >
-      <ButtonIcon appearance icon='ArrowUp' className={stls.scrollUp} />
+      <ButtonIcon aria-label='Пролистать вверх страницы' appearance icon='ArrowUp' className={stls.scrollUp} />
     </motion.div>
   );
 }

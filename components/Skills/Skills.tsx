@@ -2,8 +2,9 @@ import { NextPage } from 'next';
 import { SkillsProps } from './Skills.props';
 import stls from './Skills.module.css';
 import { HTag, Tag } from '..';
+import React from 'react';
 
-export const Skills: NextPage<SkillsProps> = ({ tags }) => {
+const Skills: NextPage<SkillsProps> = ({ tags }) => {
 
   return (
     <div className={stls.SkillsWrapper}>
@@ -12,3 +13,5 @@ export const Skills: NextPage<SkillsProps> = ({ tags }) => {
     </div>
   );
 }
+
+export default React.memo(Skills)

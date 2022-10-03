@@ -2,6 +2,7 @@ import { SortProductsOptions } from '../../../const';
 import { InitialSortState, SortAction } from './sort.reducer.types';
 
 const {
+  None,
   RatingHighToLow,
   RatingLowToHigh,
   PriceHighToLow,
@@ -13,6 +14,12 @@ const {
 
 export const sortReducer = (state: InitialSortState, action: SortAction): InitialSortState => {
   switch (action.type) {
+    case None:
+      return {
+        ...state,
+        sort: None,
+        products: state.products
+      };
     case RatingHighToLow:
       return {
         ...state,

@@ -1,5 +1,6 @@
 import { useReducedMotion } from 'framer-motion';
 import React from 'react';
+import { MenuItem, Page } from '../types/menu.types';
 
 
 export const getFormatter = (): Intl.NumberFormat => {
@@ -35,4 +36,22 @@ export function handleTap<T>(
     evt.preventDefault();
     action(payload)
   }
+}
+
+export const searchAlias = (main: MenuItem[], search: string) => {
+
+  const output = new Map< string, string[] >();
+
+  main.forEach(category => {
+    const aliasS: string[] = []
+    category.pages.forEach(aliasB => {
+      if (aliasB.alias.includes(search.toLowerCase())) {
+        aliasS.push(aliasB.alias)
+      }
+    });
+
+    if (aliasS.length) output.set(category._id.secondCategory, aliasS)
+  })
+
+  return Array.from(output)
 }

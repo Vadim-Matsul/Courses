@@ -53,6 +53,7 @@ const DinamicRaiting = React.forwardRef<HTMLDivElement, DinamicRaitingProps>((pr
           onKeyDown={evt => ratingArrowHandler(i, evt)}
           ref={r => refStarsArray.current.length < 5 && refStarsArray.current.push(r)}
           role='slider'
+          aria-label={`Рейтинг ${i + 1}`}
           aria-invalid={Boolean(errors)}
           aria-valuenow={rating}
         >

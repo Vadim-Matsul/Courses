@@ -28,7 +28,7 @@ const Layout: NextPage<LayoutProps> = ({ children }) => {
       >
         {children}
       </main>
-      <Up />
+      <Up focusBlock={focusRef} />
       <Footer className={stls.footer} />
     </div>
   )

@@ -15,26 +15,33 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
 
   const [smallOpen, setSmallOpen] = useState(false);
 
+  const isR_HtL = sort === SortProductsOptions.RatingHighToLow;
+  const isR_LtH = sort === SortProductsOptions.RatingLowToHigh;
+
+  const isP_HtL = sort === SortProductsOptions.PriceHighToLow;
+  const isP_LtH = sort === SortProductsOptions.PriceLowToHigh;
+
+
   const RatingClass = classNames(stls.sortRating, {
-    [stls.ratingActive]: sort === SortProductsOptions.RatingHighToLow || sort === SortProductsOptions.RatingLowToHigh,
+    [stls.ratingActive]: isR_HtL || isR_LtH,
     [stls.ratingOpen]: ratingIsOpen,
-    [stls.isHtLRating]: sort === SortProductsOptions.RatingHighToLow,
-    [stls.isLtHRating]: sort === SortProductsOptions.RatingLowToHigh,
+    [stls.isHtLRating]: isR_HtL,
+    [stls.isLtHRating]: isR_LtH,
   })
 
   const PriceClasss = classNames(stls.sortPrice, {
-    [stls.priceActive]: sort === SortProductsOptions.PriceHighToLow || sort === SortProductsOptions.PriceLowToHigh,
+    [stls.priceActive]: isP_HtL || isP_LtH,
     [stls.priceOpen]: priceIsOpen,
-    [stls.isHtLPrice]: sort === SortProductsOptions.PriceHighToLow,
-    [stls.isLtHPrice]: sort === SortProductsOptions.PriceLowToHigh,
+    [stls.isHtLPrice]: isP_HtL,
+    [stls.isLtHPrice]: isP_LtH,
   })
 
   const smallWidthSortClass = classNames(stls.smallWidthSort, {
     [stls.smallActive]: smallOpen,
-    [stls.isHtLRating]: sort === SortProductsOptions.RatingHighToLow,
-    [stls.isLtHRating]: sort === SortProductsOptions.RatingLowToHigh,
-    [stls.isHtLPrice]: sort === SortProductsOptions.PriceHighToLow,
-    [stls.isLtHPrice]: sort === SortProductsOptions.PriceLowToHigh,
+    [stls.isHtLRating]: isR_HtL,
+    [stls.isLtHRating]: isR_LtH,
+    [stls.isHtLPrice]: isP_HtL,
+    [stls.isLtHPrice]: isP_LtH,
   })
 
   const handlerRatingOpen = () => { setSort(changeRatingOpen(!ratingIsOpen)); setSort(changePriceOpen(false)) };
@@ -67,19 +74,14 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
       <div
         className={RatingClass}
         onClick={handlerRatingOpen}
-
         onMouseLeave={() => setSort(changeRatingOpen(false))}
       >
         <Sort />
-
         <span
           id='rating'
           tabIndex={0}
           onKeyDown={evt => handleTap(evt, handlerRatingOpen)}
-          aria-selected={
-            sort === SortProductsOptions.RatingHighToLow
-            || sort === SortProductsOptions.RatingLowToHigh
-          }
+          aria-selected={isR_HtL || isR_LtH}
           role={'button'}
           aria-labelledby="sort rating"
         >По&nbsp;рейтингу</span>
@@ -87,20 +89,22 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
           initial={'hidden'}
           animate={ratingIsOpen ? 'visible' : 'hidden'}
           variants={variants}
-          transition={{
-            duration: 0.5
-          }}
+          transition={{ duration: 0.5 }}
         >
           <Card className={stls.sortRatingOptions}>
             <span
               onClick={handlerRatingHighToLow}
               onKeyDown={evt => handleTap(evt, handlerRatingHighToLow)}
               tabIndex={ratingIsOpen ? 0 : -1}
+              role='button'
+              aria-selected={isR_HtL}
             ><Rating /> высокий рейтинг</span>
             <span
               onClick={handlerRatingLowToHigh}
               onKeyDown={evt => handleTap(evt, handlerRatingLowToHigh)}
               tabIndex={ratingIsOpen ? 0 : -1}
+              role='button'
+              aria-selected={isR_LtH}
             ><Rating /> низкий рейтинг</span>
           </Card>
         </motion.div>
@@ -118,10 +122,7 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
           id='price'
           tabIndex={0}
           onKeyDown={evt => handleTap(evt, handlerPriceOpen)}
-          aria-selected={
-            sort === SortProductsOptions.PriceHighToLow
-            || sort === SortProductsOptions.PriceLowToHigh
-          }
+          aria-selected={isP_HtL || isP_LtH}
           role={'button'}
           aria-labelledby='sort price'
         >  По&nbsp;цене</span>
@@ -138,11 +139,15 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
               onClick={handlerPriceHighToLow}
               onKeyDown={evt => handleTap(evt, handlerPriceHighToLow)}
               tabIndex={priceIsOpen ? 0 : -1}
+              role='button'
+              aria-selected={isP_HtL}
             ><Rating /> высокая цена</span>
             <span
               onClick={handlerPriceLowToHigh}
               onKeyDown={evt => handleTap(evt, handlerPriceLowToHigh)}
               tabIndex={priceIsOpen ? 0 : -1}
+              role='button'
+              aria-selected={isP_LtH}
             ><Rating /> низкая цена</span>
           </Card>
         </motion.div>
@@ -167,27 +172,39 @@ export const SortForm: NextPage<SortFormProps> = ({ sort, setSort, ratingIsOpen,
           }}
         >
           <Card onMouseLeave={() => setSmallOpen(false)}>
+            
             <span
               onClick={handlerRatingHighToLow}
               onKeyDown={evt => handleTap(evt, handlerRatingHighToLow)}
               tabIndex={smallOpen ? 0 : -1}
-              aria-selected={smallOpen}
+              role='button'
+              aria-selected={isR_HtL}
             ><Rating /> высокий рейтинг</span>
+
             <span
               onClick={handlerRatingLowToHigh}
               onKeyDown={evt => handleTap(evt, handlerRatingLowToHigh)}
               tabIndex={smallOpen ? 0 : -1}
+              role='button'
+              aria-selected={isR_LtH}
             ><Rating /> низкий рейтинг</span>
+
             <span
               onClick={handlerPriceHighToLow}
               onKeyDown={evt => handleTap(evt, handlerPriceHighToLow)}
               tabIndex={smallOpen ? 0 : -1}
+              role='button'
+              aria-selected={isP_HtL}
             ><Rating /> высокая цена</span>
+
             <span
               onClick={handlerPriceLowToHigh}
               onKeyDown={evt => handleTap(evt, handlerPriceLowToHigh)}
               tabIndex={smallOpen ? 0 : -1}
+              role='button'
+              aria-selected={isP_LtH}
             ><Rating /> низкая цена</span>
+            
           </Card>
         </motion.div>
       </div >

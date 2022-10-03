@@ -29,6 +29,7 @@ export enum NumbersData {
 }
 
 export enum SortProductsOptions {
+  None,
   RatingHighToLow,
   RatingLowToHigh,
   PriceHighToLow,

@@ -1,16 +1,24 @@
 import classNames from 'classnames';
-import { OpenStaticType, ProductProps } from './Product.props';
+import { ProductProps } from './Product.props';
 import stls from './Product.module.css';
-import Image from 'next/image';
-import { getFormatter, handleTap, translateWordToCase } from '../../utils/helpers';
-import { Devider, P, Card, Tag, HTag, Button, Review, ReviewForm } from '..';
+import { handleTap, translateWordToCase } from '../../utils/helpers';
+import { P, Card, Tag, HTag, Button, Review, ReviewForm } from '..';
 import { ReviewsDeclinations } from '../../const';
 import { Characteristic } from '../Characteristic/Characteristic';
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import Raiting from '../Raiting/Raiting';
-
+import ProductLogo from './product-nodes/product_logo'
+import ProductPriceBlock from './product-nodes/product_blocks/product_price-block';
+import ProductRatingBlock from './product-nodes/product_blocks/product_rating-block';
+import ProductCreditBlock from './product-nodes/product_blocks/product_credit-block';
+import ProductAdvantagesBlock from './product-nodes/product_blocks/product_advantages-block';
+import ProductDisAdvantagesBlock from './product-nodes/product_blocks/product_disAdvantages-block';
+import Devider from '../Primitives/Devider/Devider';
+import ProductTitle from './product-nodes/product_title';
+import ProductTags from './product-nodes/product_tags';
+import ProductFich from './product-nodes/product_fich';
+import ProductDescription from './product-nodes/product_description';
 
 
 const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
@@ -22,24 +30,9 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
   const { title, image, price, oldPrice, credit, categories,
     description, characteristics, tags, advantages, disAdvantages, reviews, _id, initialRating } = product;
 
-  const formatter = getFormatter();
   const ProductClass = classNames(className, stls.product);
   const reviewsText = `${product.reviewCount} ${translateWordToCase(product.reviewCount, ReviewsDeclinations)}`
   const [reviewsForm, setReviewsForm] = useState<boolean>(false);
-  const [openStatic, setOpenStatic] = useState<OpenStaticType>(
-    { price: false, credit: false, rating: false, advantages: false, disadvantages: false }
-  );
-
-  function hanlderStaticOpen<B extends boolean>(p: B, c: B, r: B, a: B, da: B) {
-    setOpenStatic({ price: p, credit: c, rating: r, advantages: a, disadvantages: da })
-  };
-
-  const f = false;
-  const osP = openStatic.price;
-  const osC = openStatic.credit;
-  const osR = openStatic.rating;
-  const osA = openStatic.advantages;
-  const osDA = openStatic.disadvantages;
 
   function ScrollToReview(): void {
     setReviewsForm(true);
@@ -52,8 +45,6 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
       reviewRef.current.focus();
     }, 50)
   }
-
-
 
   const variants = {
     hidden: {
@@ -73,76 +64,47 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
     }
   }
 
-
-
   return (
     <div  {...propsProduct} ref={ref} >
       <Card className={ProductClass} >
 
-        <div className={stls.logo} >
-          <Image
-            layout='fixed'
-            src={process.env.NEXT_PUBLIC_DOMAIN + image}
-            blurDataURL={process.env.NEXT_PUBLIC_DOMAIN + image}
-            alt={title}
-            width={70}
-            height={70}
-            placeholder='blur'
-          />
-        </div>
+        <ProductLogo className={stls.logo} image={image} title={title} />
 
-        <div className={stls.title} >
-          <HTag tag='h3' >{title}</HTag>
-        </div>
+        <ProductTitle
+          className={stls.title}
+          title={title}
+        />
 
-        <Button className={stls.priceToggle}
-          onClick={() => hanlderStaticOpen(!osP, f, f, osA, osDA)}
-          tabIndex={-1}
-          aria-hidden={true}
-        >Цена</Button>
-        <motion.div
-          className={classNames(stls.price, { [stls.priceOpen]: osP })}
-          layout={stopAnimation ? false : true}
-        >
-          <span>
-            <span className='visually-aria-hidden'>Цена</span>
-            {formatter.format(price)}
-          </span>
-          {oldPrice &&
-            <Tag color='green' className={stls.discount}>
-              <span className='visually-aria-hidden'>Скидка</span>
-              {formatter.format(price - oldPrice)}
-            </Tag>
-          }
-        </motion.div>
+        <ProductPriceBlock
+          blockClass={stls.price}
+          blockClassOpen={stls.priceOpen}
+          buttonClass={stls.priceToggle}
+          tagClass={stls.discount}
 
-        <Button className={stls.сreditToggle}
-          onClick={() => hanlderStaticOpen(f, !osC, f, osA, osDA)}
-          tabIndex={-1}
-          aria-hidden={true}
-        >В кредит</Button>
-        <motion.span
-          className={classNames(stls.credit, { [stls.creditOpen]: osC })}
-          layout={stopAnimation ? false : true}
-        >
-          <span className='visually-aria-hidden'>Кредит</span>
-          {formatter.format(credit)}<span>/мес</span>
-        </motion.span>
+          price={price}
+          oldPrice={oldPrice}
+        />
 
-        <Button className={stls.ratingToggle}
-          onClick={() => hanlderStaticOpen(f, f, !osR, osA, osDA)}
-          tabIndex={-1}
-          aria-hidden={true}
-        >Рейтинг</Button>
+        <ProductCreditBlock
+          buttonClass={stls.сreditToggle}
+          blockClass={stls.credit}
+          blockClassOpen={stls.creditOpen}
 
-        <Raiting
-          className={classNames(stls.rating, { [stls.ratingOpen]: osR })}
+          credit={credit}
+        />
+
+        <ProductRatingBlock
+          buttonClass={stls.ratingToggle}
+          blockClass={stls.rating}
+          blockClassOpen={stls.ratingOpen}
+
           rating={initialRating}
         />
 
-        <div className={stls.tags}>
-          {categories.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
-        </div>
+        <ProductTags
+          className={stls.tags}
+          categories={categories}
+        />
 
         <span className={stls.cost} aria-hidden={true} >цена</span>
         <span className={stls.inCredit} aria-hidden={true}>в кредит</span>
@@ -158,49 +120,32 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 
         <Devider className={stls.hr} id='hr1' />
 
-        <P className={stls.description} >{description}</P>
+        <ProductDescription className={stls.description} description={description} />
 
-        <div className={stls.fich}>
-          <Characteristic characteristics={characteristics} />
-          <div className={stls.suretyWrapper} >
-            <div className={stls.surety} >
-              {tags.map(tag => <Tag key={tag} color='ghost'>{tag}</Tag>)}
-            </div>
-          </div>
-        </div>
+        <ProductFich
+          BlockClass={stls.fich}
+          suretyWClass={stls.suretyWrapper}
+          suretyClass={stls.surety}
+
+          characteristics={characteristics}
+          tags={tags}
+        />
 
         <div className={stls.advantageBlock}>
-          {advantages &&
-            <>
-              <Button className={stls.advantagesToggle}
-                onClick={() => hanlderStaticOpen(osP, osC, osR, !osA, f)}
-                tabIndex={-1}
-              >Преимущества</Button>
-              <motion.div
-                layout={stopAnimation ? false : true}
-                transition={{ duration: 0.2 }}
-                className={classNames(stls.advantages, { [stls.advantagesOpen]: osA })}
-              >
-                <div>Преимущества</div>
-                {advantages}
-              </motion.div>
-            </>}
-          {disAdvantages &&
-            <>
-              <Button
-                className={stls.disAdvantagesToggle}
-                onClick={() => hanlderStaticOpen(osP, osC, osR, f, !osDA)}
-                tabIndex={-1}
-              >Недостатки</Button>
-              <motion.div
-                className={classNames(stls.disAdvantages, { [stls.disAdvantagesOpen]: osDA })}
-                layout={stopAnimation ? false : true}
-                transition={{ duration: 0.2 }}
-              >
-                <div>Недостатки</div>
-                {disAdvantages}
-              </motion.div>
-            </>}
+          <ProductAdvantagesBlock
+            blockClass={stls.advantages}
+            blockClassOpen={stls.advantagesOpen}
+            buttonClass={stls.advantagesToggle}
+
+            advantages={advantages}
+          />
+          <ProductDisAdvantagesBlock
+            blockClass={stls.disAdvantages}
+            blockClassOpen={stls.disAdvantagesOpen}
+            buttonClass={stls.disAdvantagesToggle}
+
+            disAdvantages={disAdvantages}
+          />
         </div>
 
         <Devider className={stls.hr} />
@@ -215,6 +160,7 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
         </div>
 
       </Card>
+
       <motion.div
         layout={stopAnimation ? false : true}
         initial={'hidden'}
@@ -236,4 +182,4 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 })
 
 Product.displayName = 'Product';
-export default motion(Product);
+export default React.memo(motion(Product));

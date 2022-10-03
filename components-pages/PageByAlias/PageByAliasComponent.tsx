@@ -1,22 +1,23 @@
 import { NextPage } from 'next';
 import { PageByAliasProps } from './PageByAliasComponent.props';
-import { HTag, Tag, SeoBlock, Skills, AdvantageBlock, HhData } from '../../components/';
+import { HTag, Tag, AdvantageBlock } from '../../components';
 import Product from '../../components/Product/Product';
 import { CATEGORY, SortProductsOptions } from '../../const';
 import { doNonBrackingSpaces } from '../../utils/helpers';
 import stls from './PageByAliasComponent.module.css';
 import { useEffect, useReducer } from 'react';
 import { sortReducer } from '../../state/reducers/sort-reducer/sort.reducer';
-import { setRatingHighToLow, setStateProducts } from '../../state/actions/sort.actions';
+import { setStateProducts } from '../../state/actions/sort.actions';
 import { SortForm } from '../../components/SortForm/SortForm';
-import { useReducedMotion } from 'framer-motion';
+import Skills from '../../components/Skills/Skills';
+import HhData from '../../components/HhData/HhData';
 
 
 const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page, products }) => {
 
   const [{ products: sortedProducts, sort, ratingIsOpen, priceIsOpen }, dispatchSort] = useReducer(sortReducer, {
     products,
-    sort: SortProductsOptions.RatingHighToLow,
+    sort: SortProductsOptions.None,
     ratingIsOpen: false,
     priceIsOpen: false
   });
@@ -24,20 +25,15 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
   useEffect(() => {
     if (products) {
       dispatchSort(setStateProducts(products));
-      dispatchSort(setRatingHighToLow());
     }
   }, [products])
 
-  const stopAnimation = useReducedMotion();
 
-  // сделать возврат empty page
-  if (!page) return <></>
   const nonBrackingTitle = doNonBrackingSpaces(page.title);
   const nonBrackingCategory = doNonBrackingSpaces(page.category);
 
 
   const shouldShowAdvantageBlock = page.advantages && page.advantages.length > 0;
-  const shouldShowSeoText = page.seoText;
 
   return (
     <div className={stls.pageWrapper}>
@@ -46,7 +42,7 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
         <HTag tag='h1'  >
           {nonBrackingTitle}
         </HTag>
-        {sortedProducts && <Tag size='large' color='grey' aria-label={sortedProducts.length + 'предложений'}   >{sortedProducts.length}</Tag>}
+        {sortedProducts && <Tag size='large' color='grey' aria-label={sortedProducts.length + 'предложений'}>{sortedProducts.length}</Tag>}
         <SortForm
           sort={sort}
           setSort={dispatchSort}
@@ -56,10 +52,10 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       </div>
 
       <div className={stls.products} role='list'>
-        {products && sortedProducts.map(product =>
+        {sortedProducts && sortedProducts.map(product =>
           <Product
             key={product._id}
-            layout={stopAnimation ? false : true}
+            layout
             product={product}
             role='listitem'
           />)}
@@ -76,8 +72,6 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       </div>
 
       {shouldShowAdvantageBlock && <AdvantageBlock advantages={page.advantages!} />}
-
-      {shouldShowSeoText && <SeoBlock seoText={page.seoText!} />}
 
       <Skills tags={page.tags} />
 

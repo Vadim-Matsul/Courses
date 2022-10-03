@@ -4,11 +4,12 @@ import { ReviewProps } from './Review.props';
 import { User } from '../svg';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { Button, Devider } from '..';
+import { Button } from '..';
 import stls from './Review.module.css';
 import { useState } from 'react';
 import Raiting from '../Raiting/Raiting';
 import { motion, useReducedMotion } from 'framer-motion';
+import Devider from '../Primitives/Devider/Devider';
 
 export const Review: NextPage<ReviewProps> = ({ review, tabIndex, className, ...props }) => {
 

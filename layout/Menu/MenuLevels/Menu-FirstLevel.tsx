@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/role-supports-aria-props */
 import classNames from 'classnames'
 import Link from 'next/link'
+import React from 'react';
 import { useContext } from 'react'
 import { firstLevelData } from '../../../const';
 import { MyContext } from '../../../context/AppContext'
 import stls from '../Menu.module.css';
-import { MenuSecondLevel } from './Menu-SecondLevel'
+import MenuSecondLevel from './Menu-SecondLevel'
 
-export const MenuFirstLevel = () => {
+
+const MenuFirstLevel = () => {
   const { menu, firstCategory } = useContext(MyContext)
 
 
@@ -40,5 +42,6 @@ export const MenuFirstLevel = () => {
       })}
     </div>
   )
-
 }
+
+export default MenuFirstLevel;

@@ -20,13 +20,13 @@ export const Tag: NextPage<PropsWithChildren<TagProps>> = ({ size = 'small', col
   });
 
   return (
-      <div
-        {...props}
-        className={TagClass}
-      >
-        {href
-          ? <a href={href}>{children}</a>
-          : <>{children}</>}
-      </div>
+    <div
+      {...props}
+      className={TagClass}
+    >
+      {href
+        ? <a href={href}>{children}</a>
+        : <>{children}</>}
+    </div>
   );
 };

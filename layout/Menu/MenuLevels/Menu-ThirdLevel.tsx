@@ -6,8 +6,8 @@ import { MenuDataRoutes } from '../../../const'
 import { MenuItem } from '../../../types/menu.types'
 import { motion, useReducedMotion } from 'framer-motion';
 import stls from '../Menu.module.css';
-import { useMemo } from 'react'
 import { handleTap } from '../../../utils/helpers'
+import React from 'react'
 
 
 interface MenuThirdLevelProps {
@@ -47,14 +47,6 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
 
 
   const thirdLevelBlock = classNames(stls.thirdLevelBlock)
-  const categoryAliaSarr = useMemo(() => category.pages.map(aliasBundle => aliasBundle.alias), [category]);
-  const currentAlias = router.asPath.split('/').pop();
-
-  if (currentAlias && categoryAliaSarr.includes(currentAlias)) {
-    category.isOpened = true
-  }
-
-
   const togglePathOnTap = (path: string) => router.push(path);
 
 
@@ -86,7 +78,7 @@ const MenuThirdLevel: NextPage<MenuThirdLevelProps> = ({ category, route }) => {
                 aria-label={
                   `${route}${page.alias}` == router.asPath
                     ? `Текущая страница ${page.alias}`
-                    : `${page.alias}`
+                    : page.alias
                 }
                 aria-current={`${route}${page.alias}` == router.asPath} // не читается всеми screenReader
                 onKeyDown={evt => handleTap<HTMLAnchorElement>(evt, togglePathOnTap, route.concat(page.alias))}

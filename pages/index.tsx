@@ -15,14 +15,11 @@ interface ReturnProps extends Record<string, unknown> {
 
 
 const Main: NextPage<ReturnProps> = ({ menu }) => {
-  const route = useRouter()
 
   return (
-    <>
+    <div className={'other'} >
       <span>Main</span>
-      <Input placeholder='' />
-      <TextArea placeholder='test area' />
-    </>
+    </div>
   );
 }
 

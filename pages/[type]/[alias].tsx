@@ -9,8 +9,9 @@ import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
 import { PageModel } from '../../types/page.types';
 import { ProductModel } from '../../types/product.types';
-import PageByAliasComponent from '../../components-pages/PageByAlias.component.tsx/PageByAliasComponent';
+import PageByAliasComponent from '../../components-pages/PageByAlias/PageByAliasComponent';
 import Head from 'next/head';
+
 
 interface ReturnProps extends Record<string, unknown> {
   menu: MenuItem[],
@@ -24,25 +25,30 @@ interface Params extends ParsedUrlQuery {
   alias: string
 }
 
+
+
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
-const firstCategory: CATEGORY = CATEGORY.COURSES;
 
 const PageByAlias: NextPage<ReturnProps> = ({ page, products, firstCategory }) => {
 
   return (
     <>
-      <Head>
-        <title>{page.metaTitle}</title>
-        <meta name='description' content={page.metaDescription} />
-        <meta property='og:title' content={page.metaTitle} />
-        <meta property='og:description' content={page.metaDescription} />
-        <meta name='og:type' content='product' />
-      </Head>
-      <PageByAliasComponent
-        page={page}
-        products={products}
-        firstCategory={firstCategory}
-      />
+      {page && products &&
+        <>
+          <Head>
+            <title>{page.metaTitle}</title>
+            <meta name='description' content={page.metaDescription} />
+            <meta property='og:title' content={page.metaTitle} />
+            <meta property='og:description' content={page.metaDescription} />
+            <meta name='og:type' content='product' />
+          </Head>
+          <PageByAliasComponent
+            page={page}
+            products={products}
+            firstCategory={firstCategory}
+          />
+        </>
+      }
     </>
   );
 }
@@ -67,7 +73,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     const { data: menu } = await axios.post<MenuItem[]>(DOMAIN + HTTP.SIDEBAR_NAV, {
       firstCategory
-    })
+    });
 
     const currentPaths = menu.flatMap(category => category.pages.map(bundleAlias => `${toBePage.route}${bundleAlias.alias}`));
 
@@ -83,20 +89,34 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<ReturnProps, Params> = async ({ params }) => {
 
+
   if (!params) {
     return {
       notFound: true
     }
   }
 
+  const firstCategory = params.type === 'courses' ? CATEGORY.COURSES : CATEGORY.SERVIСES
+
   const { data: menu } = await axios.post<MenuItem[]>(DOMAIN + HTTP.SIDEBAR_NAV, {
     firstCategory
   })
+
+  const aliasArr = menu.flatMap(category => category.pages.map(aliasB => aliasB.alias));
+  if (!aliasArr.includes(params.alias)) {
+    return {
+      notFound: true
+    }
+  }
+
   const { data: page } = await axios.get<PageModel>(DOMAIN + HTTP.CURRENT_PAGE + params.alias)
+
   const { data: products } = await axios.post<ProductModel[]>(DOMAIN + HTTP.ANOTHER_PRODUCTS, {
     category: page.category,
     limit: NumbersData.products_limit
   })
+
+
 
   return {
     props: { menu, page, products, firstCategory }
