@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { HTAG } from './HTag.props';
-import stls from './HTag.module.css';
+import stls from './Htag.module.css';
 
 export const HTag: NextPage<HTAG> = ({ tag, children, ...props }) => {
 
