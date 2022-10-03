@@ -23,12 +23,14 @@ const ProductCreditBlock: React.FC<ProductCreditBlockProps> = (props) => {
   const CreditClass = classNames(credit_c, { [credit_open_c]: creditOpen });
 
   const changeShowCredit = () => setCreditOpen(!creditOpen);
+  const changeShowToFalse = () => setCreditOpen(false);
 
   return (
     <>
       <ButtonToggle
         buttonToggleClass={buttonClass}
         onClick={changeShowCredit}
+        onMouseLeave={changeShowToFalse}
       >В кредит</ButtonToggle>
       <motion.span
         className={CreditClass}

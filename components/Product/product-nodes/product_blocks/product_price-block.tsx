@@ -26,6 +26,7 @@ const ProductPriceBlock: React.FC<ProductPriceBlockProps> = (props) => {
   const PriceClass = classNames(price_c, { [price_open_c]: priceOpen });
 
   const changeShowPrice = () => setPriceOpen(!priceOpen)
+  const changeShowToFalse = () => setPriceOpen(false)
 
 
   return (
@@ -33,6 +34,7 @@ const ProductPriceBlock: React.FC<ProductPriceBlockProps> = (props) => {
       <ButtonToggle
         buttonToggleClass={buttonClass}
         onClick={changeShowPrice}
+        onMouseLeave={changeShowToFalse}
       >Цена</ButtonToggle>
 
       <motion.div

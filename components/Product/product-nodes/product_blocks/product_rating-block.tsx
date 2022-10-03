@@ -19,7 +19,8 @@ const ProductRatingBlock: React.FC<ProductRatingBlockProps> = (props) => {
 
   const RatingClass = classNames(rating_c, { [rating_open_c]: ratingOpen });
 
-  const changeShowRating = () => setRatingOpen(!ratingOpen)
+  const changeShowRating = () => setRatingOpen(!ratingOpen);
+  const changeShowToFalse = () => setRatingOpen(false);
 
 
   return (
@@ -27,6 +28,7 @@ const ProductRatingBlock: React.FC<ProductRatingBlockProps> = (props) => {
       <ButtonToggle
         buttonToggleClass={buttonClass}
         onClick={changeShowRating}
+        onMouseLeave={changeShowToFalse}
       >Рейтинг</ButtonToggle>
 
       <Raiting

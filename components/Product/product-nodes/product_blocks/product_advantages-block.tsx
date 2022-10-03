@@ -21,7 +21,8 @@ const ProductAdvantagesBlock: React.FC<ProductAdvantagesBlockProps> = (props) =>
   const AdvantagesClass = classNames(advantages_c, { [advantages_open_c]: advantagesOpen });
   const stopAnimation = useReducedMotion();
 
-  const changeShowAdvantages = () => setAdvantagesOpen(!advantagesOpen)
+  const changeShowAdvantages = () => setAdvantagesOpen(!advantagesOpen);
+  const changeShowToFalse = () => setAdvantagesOpen(false);
 
 
   return (
@@ -31,6 +32,7 @@ const ProductAdvantagesBlock: React.FC<ProductAdvantagesBlockProps> = (props) =>
           <ButtonToggle
             buttonToggleClass={buttonClass}
             onClick={changeShowAdvantages}
+            onMouseLeave={changeShowToFalse}
           >Преимущества</ButtonToggle >
 
           <motion.div

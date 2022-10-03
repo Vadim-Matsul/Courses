@@ -52,10 +52,9 @@ const PageByAliasComponent: NextPage<PageByAliasProps> = ({ firstCategory, page,
       </div>
 
       <div className={stls.products} role='list'>
-        {sortedProducts && sortedProducts.map(product =>
+        {products && products.map(product =>
           <Product
             key={product._id}
-            layout
             product={product}
             role='listitem'
           />)}

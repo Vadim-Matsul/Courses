@@ -1,5 +1,4 @@
 
-
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import React, { useEffect } from 'react';
 import { wrapperLayoutHOC } from '../../layout';
@@ -9,8 +8,8 @@ import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
 import { PageModel } from '../../types/page.types';
 import { ProductModel } from '../../types/product.types';
-import PageByAliasComponent from '../../components-pages/PageByAlias/PageByAliasComponent';
 import Head from 'next/head';
+import PageByAliasComponent from '../../components-pages/PageByAlias/PageByAliasComponent';
 
 
 interface ReturnProps extends Record<string, unknown> {

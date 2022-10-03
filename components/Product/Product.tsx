@@ -2,9 +2,8 @@ import classNames from 'classnames';
 import { ProductProps } from './Product.props';
 import stls from './Product.module.css';
 import { handleTap, translateWordToCase } from '../../utils/helpers';
-import { P, Card, Tag, HTag, Button, Review, ReviewForm } from '..';
+import { Card, Button, Review, ReviewForm } from '..';
 import { ReviewsDeclinations } from '../../const';
-import { Characteristic } from '../Characteristic/Characteristic';
 import { MutableRefObject, useRef, useState } from 'react';
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
@@ -28,10 +27,10 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 
   const { className, product, ...propsProduct } = props;
   const { title, image, price, oldPrice, credit, categories,
-    description, characteristics, tags, advantages, disAdvantages, reviews, _id, initialRating } = product;
+    description, characteristics, tags, advantages, disAdvantages, reviews, _id, initialRating, reviewCount } = product;
 
   const ProductClass = classNames(className, stls.product);
-  const reviewsText = `${product.reviewCount} ${translateWordToCase(product.reviewCount, ReviewsDeclinations)}`
+  const reviewsText = `${reviewCount} ${translateWordToCase(reviewCount, ReviewsDeclinations)}`
   const [reviewsForm, setReviewsForm] = useState<boolean>(false);
 
   function ScrollToReview(): void {
@@ -182,4 +181,4 @@ const Product = React.forwardRef<HTMLDivElement, ProductProps>((props, ref) => {
 })
 
 Product.displayName = 'Product';
-export default React.memo(motion(Product));
+export default React.memo(Product);
