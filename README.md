@@ -1,28 +1,15 @@
 <h1 align="center">
-:mortar_board:<a href='https://first-steps-next-js.vercel.app/'>Проект - знакомство с NEXT.JS</a>
+:mortar_board:<a href='https://first-steps-next-js.vercel.app/'>Проект - Courses</a>:mortar_board:
 </h1>
 
-:large_blue_circle:<b>Цель pet-project:</b>
+:large_blue_circle:<b>Skills</b>
 <br/>
-
-+ **Изучение работы NEXT.JS**
-  + Next-компоненты и их оптимизация
-  + Принципы `SSR & SSG`
-  > Различия `getServerSideProps` - `getStaticProps getStaticPaths` <br/>
-  > Содержимое context и возможности опций в возвращаемых объектах
-  + Востребованность зарезервированных файлов
-+ **Адаптивность вёрстки благодаря <a href='#scroll' >`CSS-Grid`</a>**
-+ **Доступность сайта**
-  + Для `ScreenReader` с использование `ARIA-атрибутов`
-  + Контраст цветов соответствует `AA`
-  + Обработка событий клавиатуры (`TabIndex`)
-+ **Open Graph Tags для микроразметки**
-+ **Практика работы с `TypeScript` `StyleLint` `ESLint` `Husky`**
-
-_( P.S - акцент на работу с данными, а не стилизацию )_
++ <a href='#scroll' >`Адаптивная`</a> вёрстка сайта по макету
++ Проект сделан доступным для Screen Reader
++ Оптимизировано взаимодействие с UI с помощью клавиатуры
++ Добавлено SEO & настроены Open Graph Tags
 
 <hr/>
-
 
 <div id='scroll' />
 
