@@ -1,4 +1,5 @@
 import { useReducedMotion } from 'framer-motion';
+import { wrap } from 'module';
 import React from 'react';
 import { MenuItem, Page } from '../types/menu.types';
 
@@ -40,7 +41,7 @@ export function handleTap<T>(
 
 export const searchAlias = (main: MenuItem[], search: string) => {
 
-  const output = new Map< string, string[] >();
+  const output = new Map<string, string[]>();
 
   main.forEach(category => {
     const aliasS: string[] = []
@@ -55,3 +56,23 @@ export const searchAlias = (main: MenuItem[], search: string) => {
 
   return Array.from(output)
 }
+
+export const throttle = (func: Function, delay: number) => {
+  let
+    isPending: boolean = false,
+    timeout: ReturnType<typeof setTimeout>;
+
+  return () => {
+    if (isPending) return;
+
+    timeout && clearTimeout(timeout);
+
+    func();
+    isPending = true;
+
+    timeout = setTimeout(() => {
+      isPending = !isPending;
+    }, delay);
+  };
+
+};
